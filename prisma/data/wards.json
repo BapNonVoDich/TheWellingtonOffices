@@ -1,0 +1,1671 @@
+[
+  {
+    "no": 1,
+    "district": "Quận 1",
+    "ward": "Phường Sài Gòn",
+    "mergedFrom": [
+      "Phường Bến Nghé",
+      "PO_phường Đa Kao",
+      "PO_phường Nguyễn Thái Bình"
+    ]
+  },
+  {
+    "no": 2,
+    "district": "Quận 1",
+    "ward": "Phường Tân Định",
+    "mergedFrom": [
+      "Phường Tân Định",
+      "PO_phường Đa Kao"
+    ]
+  },
+  {
+    "no": 3,
+    "district": "Quận 1",
+    "ward": "Phường Bến Thành",
+    "mergedFrom": [
+      "Phường Bến Thành",
+      "Phường Phạm Ngũ Lão",
+      "PO_phường Cầu Ông Lãnh",
+      "PO_phường Nguyễn Thái Bình"
+    ]
+  },
+  {
+    "no": 4,
+    "district": "Quận 1",
+    "ward": "Phường Cầu Ông Lãnh",
+    "mergedFrom": [
+      "Phường Nguyễn Cư Trinh",
+      "Phường Cầu Kho",
+      "Phường Cô Giang",
+      "PO_phường Cầu Ông Lãnh"
+    ]
+  },
+  {
+    "no": 5,
+    "district": "Quận 3",
+    "ward": "Phường Bàn Cờ",
+    "mergedFrom": [
+      "Phường 1 (Quận 3)",
+      "Phường 2 (Quận 3)",
+      "Phường 3 (Quận 3)",
+      "Phường 5 (Quận 3)",
+      "PO_phường 4 (Quận 3)"
+    ]
+  },
+  {
+    "no": 6,
+    "district": "Quận 3",
+    "ward": "Phường Xuân Hòa",
+    "mergedFrom": [
+      "Phường Võ Thị Sáu",
+      "PO_phường 4 (Quận 3)"
+    ]
+  },
+  {
+    "no": 7,
+    "district": "Quận 3",
+    "ward": "Phường Nhiêu Lộc",
+    "mergedFrom": [
+      "Phường 9 (Quận 3)",
+      "Phường 11 (Quận 3)",
+      "Phường 12 (Quận 3)",
+      "Phường 14 (Quận 3)"
+    ]
+  },
+  {
+    "no": 8,
+    "district": "Quận 4",
+    "ward": "Phường Xóm Chiếu",
+    "mergedFrom": [
+      "Phường 13 (Quận 4)",
+      "Phường 16 (Quận 4)",
+      "Phường 18 (Quận 4)",
+      "PO_phường 15 (Quận 4)"
+    ]
+  },
+  {
+    "no": 9,
+    "district": "Quận 4",
+    "ward": "Phường Khánh Hội",
+    "mergedFrom": [
+      "Phường 8 (Quận 4)",
+      "Phường 9 (Quận 4)",
+      "PO_phường 2 (Quận 4)",
+      "PO_phường 4 (Quận 4)",
+      "PO_phường 15 (Quận 4)"
+    ]
+  },
+  {
+    "no": 10,
+    "district": "Quận 4",
+    "ward": "Phường Vĩnh Hội",
+    "mergedFrom": [
+      "Phường 1 (Quận 4)",
+      "Phường 3 (Quận 4)",
+      "PO_phường 2 (Quận 4)",
+      "PO_phường 4 (Quận 4)"
+    ]
+  },
+  {
+    "no": 11,
+    "district": "Quận 5",
+    "ward": "Phường Chợ Quán",
+    "mergedFrom": [
+      "Phường 1 (Quận 5)",
+      "Phường 2 (Quận 5)",
+      "Phường 4 (Quận 5)"
+    ]
+  },
+  {
+    "no": 12,
+    "district": "Quận 5",
+    "ward": "Phường An Đông",
+    "mergedFrom": [
+      "Phường 5 (Quận 5)",
+      "Phường 7 (Quận 5)",
+      "Phường 9 (Quận 5)"
+    ]
+  },
+  {
+    "no": 13,
+    "district": "Quận 5",
+    "ward": "Phường Chợ Lớn",
+    "mergedFrom": [
+      "Phường 11 (Quận 5)",
+      "Phường 12 (Quận 5)",
+      "Phường 13 (Quận 5)",
+      "Phường 14 (Quận 5)"
+    ]
+  },
+  {
+    "no": 14,
+    "district": "Quận 6",
+    "ward": "Phường Bình Tây",
+    "mergedFrom": [
+      "Phường 2 (Quận 6)",
+      "Phường 9 (Quận 6)"
+    ]
+  },
+  {
+    "no": 15,
+    "district": "Quận 6",
+    "ward": "Phường Bình Tiên",
+    "mergedFrom": [
+      "Phường 1 (Quận 6)",
+      "Phường 7 (Quận 6)",
+      "Phường 8 (Quận 6)"
+    ]
+  },
+  {
+    "no": 16,
+    "district": "Quận 6",
+    "ward": "Phường Bình Phú",
+    "mergedFrom": [
+      "Phường 10 (Quận 6)",
+      "Phường 11 (Quận 6)",
+      "PO_phường 16 (Quận 8)"
+    ]
+  },
+  {
+    "no": 17,
+    "district": "Quận 6",
+    "ward": "Phường Phú Lâm",
+    "mergedFrom": [
+      "Phường 12 (Quận 6)",
+      "Phường 13 (Quận 6)",
+      "Phường 14 (Quận 6)"
+    ]
+  },
+  {
+    "no": 18,
+    "district": "Quận 7",
+    "ward": "Phường Tân Thuận",
+    "mergedFrom": [
+      "Phường Bình Thuận",
+      "Phường Tân Thuận Đông",
+      "Phường Tân Thuận Tây"
+    ]
+  },
+  {
+    "no": 19,
+    "district": "Quận 7",
+    "ward": "Phường Phú Thuận",
+    "mergedFrom": [
+      "Phường Phú Thuận",
+      "PO_phường Phú Mỹ (Quận 7)"
+    ]
+  },
+  {
+    "no": 20,
+    "district": "Quận 7",
+    "ward": "Phường Tân Mỹ",
+    "mergedFrom": [
+      "Phường Tân Phú",
+      "PO_phường Phú Mỹ (Quận 7)"
+    ]
+  },
+  {
+    "no": 21,
+    "district": "Quận 7",
+    "ward": "Phường Tân Hưng",
+    "mergedFrom": [
+      "Phường Tân Phong",
+      "Phường Tân Quy",
+      "Phường Tân Kiểng",
+      "Phường Tân Hưng"
+    ]
+  },
+  {
+    "no": 22,
+    "district": "Quận 8",
+    "ward": "Phường Chánh Hưng",
+    "mergedFrom": [
+      "Phường 4 (Quận 8)",
+      "Rạch Ông",
+      "Hưng Phú",
+      "PO_phường 5 (Quận 8)"
+    ]
+  },
+  {
+    "no": 23,
+    "district": "Quận 8",
+    "ward": "Phường Phú Định",
+    "mergedFrom": [
+      "Phường 14 (Quận 8)",
+      "Phường 15 (Quận 8)",
+      "Xóm Củi",
+      "PO_phường 16 (Quận 8)"
+    ]
+  },
+  {
+    "no": 24,
+    "district": "Quận 8",
+    "ward": "Phường Bình Đông",
+    "mergedFrom": [
+      "Phường 6 (Quận 8)",
+      "PO_phường 5 (Quận 8)",
+      "PO_phường 7 (Quận 8)",
+      "Xã An Phú Tây (Huyện Bình Chánh)"
+    ]
+  },
+  {
+    "no": 25,
+    "district": "Quận 10",
+    "ward": "Phường Diên Hồng",
+    "mergedFrom": [
+      "Phường 6 (Quận 10)",
+      "Phường 8 (Quận 10)",
+      "PO_phường 14 (Quận 10)"
+    ]
+  },
+  {
+    "no": 26,
+    "district": "Quận 10",
+    "ward": "Phường Vườn Lài",
+    "mergedFrom": [
+      "Phường 1 (Quận 10)",
+      "Phường 2 (Quận 10)",
+      "Phường 4 (Quận 10)",
+      "Phường 9 (Quận 10)",
+      "Phường 10 (Quận 10)"
+    ]
+  },
+  {
+    "no": 27,
+    "district": "Quận 10",
+    "ward": "Phường Hòa Hưng",
+    "mergedFrom": [
+      "Phường 12 (Quận 10)",
+      "Phường 13 (Quận 10)",
+      "Phường 15 (Quận 10)",
+      "PO_phường 14 (Quận 10)"
+    ]
+  },
+  {
+    "no": 28,
+    "district": "Quận 11",
+    "ward": "Phường Minh Phụng",
+    "mergedFrom": [
+      "Phường 1 (Quận 11)",
+      "Phường 7 (Quận 11)",
+      "Phường 16 (Quận 11)"
+    ]
+  },
+  {
+    "no": 29,
+    "district": "Quận 11",
+    "ward": "Phường Bình Thới",
+    "mergedFrom": [
+      "Phường 3 (Quận 11)",
+      "Phường 10 (Quận 11)",
+      "PO_phường 8 (Quận 11)"
+    ]
+  },
+  {
+    "no": 30,
+    "district": "Quận 11",
+    "ward": "Phường Hòa Bình",
+    "mergedFrom": [
+      "Phường 5 (Quận 11)",
+      "Phường 14 (Quận 11)"
+    ]
+  },
+  {
+    "no": 31,
+    "district": "Quận 11",
+    "ward": "Phường Phú Thọ",
+    "mergedFrom": [
+      "Phường 11 (Quận 11)",
+      "Phường 15 (Quận 11)",
+      "PO_phường 8 (Quận 11)"
+    ]
+  },
+  {
+    "no": 32,
+    "district": "Quận 12",
+    "ward": "Phường Đông Hưng Thuận",
+    "mergedFrom": [
+      "Phường Tân Thới Nhất",
+      "Phường Tân Hưng Thuận",
+      "Phường Đông Hưng Thuận"
+    ]
+  },
+  {
+    "no": 33,
+    "district": "Quận 12",
+    "ward": "Phường Trung Mỹ Tây",
+    "mergedFrom": [
+      "Phường Tân Chánh Hiệp",
+      "Phường Trung Mỹ Tây"
+    ]
+  },
+  {
+    "no": 34,
+    "district": "Quận 12",
+    "ward": "Phường Tân Thới Hiệp",
+    "mergedFrom": [
+      "Phường Hiệp Thành (Quận 12)",
+      "Phường Tân Thới Hiệp"
+    ]
+  },
+  {
+    "no": 35,
+    "district": "Quận 12",
+    "ward": "Phường Thới An",
+    "mergedFrom": [
+      "Phường Thạnh Xuân",
+      "Phường Thới An"
+    ]
+  },
+  {
+    "no": 36,
+    "district": "Quận 12",
+    "ward": "Phường An Phú Đông",
+    "mergedFrom": [
+      "Phường Thạnh Lộc",
+      "Phường An Phú Đông"
+    ]
+  },
+  {
+    "no": 37,
+    "district": "Quận Bình Tân",
+    "ward": "Phường An Lạc",
+    "mergedFrom": [
+      "Phường Bình Trị Đông B",
+      "Phường An Lạc A",
+      "Phường An Lạc"
+    ]
+  },
+  {
+    "no": 38,
+    "district": "Quận Bình Tân",
+    "ward": "Phường Bình Tân",
+    "mergedFrom": [
+      "Phường Bình Hưng Hòa B",
+      "PO_phường Bình Trị Đông A",
+      "PO_phường Tân Tạo"
+    ]
+  },
+  {
+    "no": 39,
+    "district": "Quận Bình Tân",
+    "ward": "Phường Tân Tạo",
+    "mergedFrom": [
+      "Xã Tân Kiên",
+      "PO_phường Tân Tạo A",
+      "PO_phường Tân Tạo"
+    ]
+  },
+  {
+    "no": 40,
+    "district": "Quận Bình Tân",
+    "ward": "Phường Bình Trị Đông",
+    "mergedFrom": [
+      "Phường Bình Trị Đông",
+      "PO_phường Bình Hưng Hòa A",
+      "PO_phường Bình Trị Đông A"
+    ]
+  },
+  {
+    "no": 41,
+    "district": "Quận Bình Tân",
+    "ward": "Phường Bình Hưng Hòa",
+    "mergedFrom": [
+      "Phường Bình Hưng Hòa",
+      "PO_phường Sơn Kỳ",
+      "PO_phường Bình Hưng Hòa A"
+    ]
+  },
+  {
+    "no": 42,
+    "district": "Quận Bình Thạnh",
+    "ward": "Phường Gia Định",
+    "mergedFrom": [
+      "Phường 1 (quận Bình Thạnh)",
+      "Phường 2 (quận Bình Thạnh)",
+      "Phường 7 (quận Bình Thạnh)",
+      "Phường 17 (quận Bình Thạnh)"
+    ]
+  },
+  {
+    "no": 43,
+    "district": "Quận Bình Thạnh",
+    "ward": "Phường Bình Thạnh",
+    "mergedFrom": [
+      "Phường 12 (quận Bình Thạnh)",
+      "Phường 14 (quận Bình Thạnh)",
+      "Phường 26 (quận Bình Thạnh)"
+    ]
+  },
+  {
+    "no": 44,
+    "district": "Quận Bình Thạnh",
+    "ward": "Phường Bình Lợi Trung",
+    "mergedFrom": [
+      "Phường 5 (quận Bình Thạnh)",
+      "Phường 11 (quận Bình Thạnh)",
+      "Phường 13 (quận Bình Thạnh)"
+    ]
+  },
+  {
+    "no": 45,
+    "district": "Quận Bình Thạnh",
+    "ward": "Phường Thạnh Mỹ Tây",
+    "mergedFrom": [
+      "Phường 19",
+      "Phường 22",
+      "Phường 25"
+    ]
+  },
+  {
+    "no": 46,
+    "district": "Quận Bình Thạnh",
+    "ward": "Phường Bình Quới",
+    "mergedFrom": [
+      "Phường 27",
+      "Phường 28"
+    ]
+  },
+  {
+    "no": 47,
+    "district": "Quận Gò Vấp",
+    "ward": "Phường Hạnh Thông",
+    "mergedFrom": [
+      "Phường 1 (quận Gò Vấp)",
+      "Phường 3 (quận Gò Vấp)"
+    ]
+  },
+  {
+    "no": 48,
+    "district": "Quận Gò Vấp",
+    "ward": "Phường An Nhơn",
+    "mergedFrom": [
+      "Phường 5 (quận Gò Vấp)",
+      "Phường 6 (quận Gò Vấp)"
+    ]
+  },
+  {
+    "no": 49,
+    "district": "Quận Gò Vấp",
+    "ward": "Phường Gò Vấp",
+    "mergedFrom": [
+      "Phường 10 (quận Gò Vấp)",
+      "Phường 17 (quận Gò Vấp)"
+    ]
+  },
+  {
+    "no": 50,
+    "district": "Quận Gò Vấp",
+    "ward": "Phường An Hội Đông",
+    "mergedFrom": [
+      "Phường 15 (quận Gò Vấp)",
+      "Phường 16 (quận Gò Vấp)"
+    ]
+  },
+  {
+    "no": 51,
+    "district": "Quận Gò Vấp",
+    "ward": "Phường Thông Tây Hội",
+    "mergedFrom": [
+      "Phường 8 (quận Gò Vấp)",
+      "Phường 11 (quận Gò Vấp)"
+    ]
+  },
+  {
+    "no": 52,
+    "district": "Quận Gò Vấp",
+    "ward": "Phường An Hội Tây",
+    "mergedFrom": [
+      "Phường 12 (quận Gò Vấp)",
+      "Phường 14 (quận Gò Vấp)"
+    ]
+  },
+  {
+    "no": 53,
+    "district": "Quận Phú Nhuận",
+    "ward": "Phường Đức Nhuận",
+    "mergedFrom": [
+      "Phường 4 (quận Phú Nhuận)",
+      "Phường 5 (quận Phú Nhuận)",
+      "Phường 9 (quận Phú Nhuận)"
+    ]
+  },
+  {
+    "no": 54,
+    "district": "Quận Phú Nhuận",
+    "ward": "Phường Cầu Kiệu",
+    "mergedFrom": [
+      "Phường 1 (quận Phú Nhuận)",
+      "Phường 2 (quận Phú Nhuận)",
+      "Phường 7 (quận Phú Nhuận)",
+      "PO_phường 15 (quận Phú Nhuận)"
+    ]
+  },
+  {
+    "no": 55,
+    "district": "Quận Phú Nhuận",
+    "ward": "Phường Phú Nhuận",
+    "mergedFrom": [
+      "Phường 8 (quận Phú Nhuận)",
+      "Phường 10 (quận Phú Nhuận)",
+      "Phường 11 (quận Phú Nhuận)",
+      "Phường 13 (quận Phú Nhuận)",
+      "PO_phường 15 (quận Phú Nhuận)"
+    ]
+  },
+  {
+    "no": 56,
+    "district": "Quận Tân Bình",
+    "ward": "Phường Tân Sơn Hòa",
+    "mergedFrom": [
+      "Phường 1 (quận Tân Bình)",
+      "Phường 2 (quận Tân Bình)",
+      "Phường 3 (quận Tân Bình)"
+    ]
+  },
+  {
+    "no": 57,
+    "district": "Quận Tân Bình",
+    "ward": "Phường Tân Sơn Nhất",
+    "mergedFrom": [
+      "Phường 4 (quận Tân Bình)",
+      "Phường 5 (quận Tân Bình)",
+      "Phường 7 (quận Tân Bình)"
+    ]
+  },
+  {
+    "no": 58,
+    "district": "Quận Tân Bình",
+    "ward": "Phường Tân Hòa",
+    "mergedFrom": [
+      "Phường 6 (quận Tân Bình)",
+      "Phường 8 (quận Tân Bình)",
+      "Phường 9 (quận Tân Bình)"
+    ]
+  },
+  {
+    "no": 59,
+    "district": "Quận Tân Bình",
+    "ward": "Phường Bảy Hiền",
+    "mergedFrom": [
+      "Phường 10 (quận Tân Bình)",
+      "Phường 11 (quận Tân Bình)",
+      "Phường 12 (quận Tân Bình)"
+    ]
+  },
+  {
+    "no": 60,
+    "district": "Quận Tân Bình",
+    "ward": "Phường Tân Bình",
+    "mergedFrom": [
+      "Phường 13 (quận Tân Bình)",
+      "Phường 14 (quận Tân Bình)",
+      "PO_phường 15 (quận Tân Bình)"
+    ]
+  },
+  {
+    "no": 61,
+    "district": "Quận Tân Bình",
+    "ward": "Phường Tân Sơn",
+    "mergedFrom": [
+      "Phần còn lại phường 15 (quận Tân Bình)"
+    ]
+  },
+  {
+    "no": 62,
+    "district": "Quận Tân Phú",
+    "ward": "Phường Tây Thạnh",
+    "mergedFrom": [
+      "Phường Tây Thạnh",
+      "PO_phường Sơn Kỳ"
+    ]
+  },
+  {
+    "no": 63,
+    "district": "Quận Tân Phú",
+    "ward": "Phường Tân Sơn Nhì",
+    "mergedFrom": [
+      "Phường Tân Sơn Nhì",
+      "Phường Sơn Kỳ",
+      "PO_phường Tân Quý",
+      "PO_phường Tân Thành"
+    ]
+  },
+  {
+    "no": 64,
+    "district": "Quận Tân Phú",
+    "ward": "Phường Phú Thọ Hòa",
+    "mergedFrom": [
+      "Phường Phú Thọ Hòa",
+      "PO_phường Tân Thành",
+      "PO_phường Tân Quý"
+    ]
+  },
+  {
+    "no": 65,
+    "district": "Quận Tân Phú",
+    "ward": "Phường Tân Phú",
+    "mergedFrom": [
+      "Phường Phú Trung",
+      "Phường Hòa Thạnh",
+      "PO_phường Tân Thới Hòa",
+      "PO_phường Tân Thành"
+    ]
+  },
+  {
+    "no": 66,
+    "district": "Quận Tân Phú",
+    "ward": "Phường Phú Thạnh",
+    "mergedFrom": [
+      "Phường Hiệp Tân",
+      "Phường Phú Thạnh",
+      "PO_phường Tân Thới Hòa"
+    ]
+  },
+  {
+    "no": 67,
+    "district": "Thành phố Thủ Đức",
+    "ward": "Phường Hiệp Bình",
+    "mergedFrom": [
+      "Phường Hiệp Bình Chánh",
+      "Phường Hiệp Bình Phước",
+      "PO_phường Linh Đông"
+    ]
+  },
+  {
+    "no": 68,
+    "district": "Thành phố Thủ Đức",
+    "ward": "Phường Thủ Đức",
+    "mergedFrom": [
+      "Phường Bình Thọ",
+      "Phường Linh Chiểu",
+      "Phường Trường Thọ",
+      "PO_phường Linh Tây",
+      "PO_phường Linh Đông"
+    ]
+  },
+  {
+    "no": 69,
+    "district": "Thành phố Thủ Đức",
+    "ward": "Phường Tam Bình",
+    "mergedFrom": [
+      "Phường Bình Chiểu",
+      "Phường Tam Phú",
+      "Phường Tam Bình"
+    ]
+  },
+  {
+    "no": 70,
+    "district": "Thành phố Thủ Đức",
+    "ward": "Phường Linh Xuân",
+    "mergedFrom": [
+      "Phường Linh Trung",
+      "Phường Linh Xuân",
+      "PO_phường Linh Tây"
+    ]
+  },
+  {
+    "no": 71,
+    "district": "Thành phố Thủ Đức",
+    "ward": "Phường Tăng Nhơn Phú",
+    "mergedFrom": [
+      "Phường Tân Phú (thành phố Thủ Đức)",
+      "Phường Hiệp Phú",
+      "Phường Tăng Nhơn Phú A",
+      "Phường Tăng Nhơn Phú B",
+      "PO_phường Long Thạnh Mỹ"
+    ]
+  },
+  {
+    "no": 72,
+    "district": "Thành phố Thủ Đức",
+    "ward": "Phường Long Bình",
+    "mergedFrom": [
+      "Phường Long Bình",
+      "PO_phường Long Thạnh Mỹ"
+    ]
+  },
+  {
+    "no": 73,
+    "district": "Thành phố Thủ Đức",
+    "ward": "Phường Long Phước",
+    "mergedFrom": [
+      "Phường Trường Thạnh",
+      "Phường Long Phước"
+    ]
+  },
+  {
+    "no": 74,
+    "district": "Thành phố Thủ Đức",
+    "ward": "Phường Long Trường",
+    "mergedFrom": [
+      "Phường Phú Hữu",
+      "Phường Long Trường"
+    ]
+  },
+  {
+    "no": 75,
+    "district": "Thành phố Thủ Đức",
+    "ward": "Phường Cát Lái",
+    "mergedFrom": [
+      "Phường Thạnh Mỹ Lợi",
+      "Phường Cát Lái"
+    ]
+  },
+  {
+    "no": 76,
+    "district": "Thành phố Thủ Đức",
+    "ward": "Phường Bình Trưng",
+    "mergedFrom": [
+      "Phường Bình Trưng Đông",
+      "Phường Bình Trưng Tây",
+      "PO_phường An Phú (thành phố Thủ Đức)"
+    ]
+  },
+  {
+    "no": 77,
+    "district": "Thành phố Thủ Đức",
+    "ward": "Phường Phước Long",
+    "mergedFrom": [
+      "Phường Phước Bình",
+      "Phường Phước Long A",
+      "Phường Phước Long B"
+    ]
+  },
+  {
+    "no": 78,
+    "district": "Thành phố Thủ Đức",
+    "ward": "Phường An Khánh",
+    "mergedFrom": [
+      "Phường Thủ Thiêm",
+      "Phường An Lợi Đông",
+      "Phường Thảo Điền",
+      "Phường An Khánh",
+      "PO_phường An Phú (thành phố Thủ Đức)"
+    ]
+  },
+  {
+    "no": 79,
+    "district": "Thành phố Dĩ An",
+    "ward": "Phường Đông Hòa",
+    "mergedFrom": [
+      "Phường Bình An",
+      "Phường Bình Thắng",
+      "Phường Đông Hòa"
+    ]
+  },
+  {
+    "no": 80,
+    "district": "Thành phố Dĩ An",
+    "ward": "Phường Dĩ An",
+    "mergedFrom": [
+      "Phường An Bình",
+      "Phường Dĩ An",
+      "PO_phường Tân Đông Hiệp"
+    ]
+  },
+  {
+    "no": 81,
+    "district": "Thành phố Dĩ An",
+    "ward": "Phường Tân Đông Hiệp",
+    "mergedFrom": [
+      "Phường Tân Bình",
+      "PO_phường Thái Hòa",
+      "PO_phường Tân Đông Hiệp"
+    ]
+  },
+  {
+    "no": 82,
+    "district": "Thành phố Thuận An",
+    "ward": "Phường An Phú",
+    "mergedFrom": [
+      "Phường An Phú (thành phố Thuận An)",
+      "PO_phường Bình Chuẩn"
+    ]
+  },
+  {
+    "no": 83,
+    "district": "Thành phố Thuận An",
+    "ward": "Phường Bình Hòa",
+    "mergedFrom": [
+      "Phường Bình Hòa",
+      "PO_phường Vĩnh Phú"
+    ]
+  },
+  {
+    "no": 84,
+    "district": "Thành phố Thuận An",
+    "ward": "Phường Lái Thiêu",
+    "mergedFrom": [
+      "Phường Bình Nhâm",
+      "Phường Lái Thiêu",
+      "PO_phường Vĩnh Phú"
+    ]
+  },
+  {
+    "no": 85,
+    "district": "Thành phố Thuận An",
+    "ward": "Phường Thuận An",
+    "mergedFrom": [
+      "Phường Hưng Định",
+      "Phường An Thạnh",
+      "Xã An Sơn"
+    ]
+  },
+  {
+    "no": 86,
+    "district": "Thành phố Thuận An",
+    "ward": "Phường Thuận Giao",
+    "mergedFrom": [
+      "Phường Thuận Giao",
+      "Phường Bình Chuẩn"
+    ]
+  },
+  {
+    "no": 87,
+    "district": "Thành phố Thủ Dầu Một",
+    "ward": "Phường Thủ Dầu Một",
+    "mergedFrom": [
+      "Phường Phú Cường",
+      "Phường Phú Thọ",
+      "Phường Chánh Nghĩa",
+      "PO_phường Hiệp Thành (thành phố Thủ Dầu Một)",
+      "Chánh Mỹ"
+    ]
+  },
+  {
+    "no": 88,
+    "district": "Thành phố Thủ Dầu Một",
+    "ward": "Phường Phú Lợi",
+    "mergedFrom": [
+      "Phường Phú Hòa",
+      "Phường Phú Lợi",
+      "PO_phường Hiệp Thành (thành phố Thủ Dầu Một)"
+    ]
+  },
+  {
+    "no": 89,
+    "district": "Thành phố Thủ Dầu Một",
+    "ward": "Phường Chánh Hiệp",
+    "mergedFrom": [
+      "Phường Định Hòa",
+      "Phường Tương Bình Hiệp",
+      "PO_phường Hiệp An",
+      "PO_phường Chánh Mỹ"
+    ]
+  },
+  {
+    "no": 90,
+    "district": "Thành phố Thủ Dầu Một",
+    "ward": "Phường Bình Dương",
+    "mergedFrom": [
+      "Phường Phú Mỹ (thành phố Thủ Dầu Một)",
+      "Phường Hòa Phú",
+      "Phường Phú Tân",
+      "Phú Chánh"
+    ]
+  },
+  {
+    "no": 91,
+    "district": "Thành phố Bến Cát",
+    "ward": "Phường Hòa Lợi",
+    "mergedFrom": [
+      "Phường Tân Định (thành phố Bến Cát)",
+      "Phường Hòa Lợi"
+    ]
+  },
+  {
+    "no": 92,
+    "district": "Thành phố Bến Cát",
+    "ward": "Phường Phú An",
+    "mergedFrom": [
+      "Phường Tân An",
+      "Xã Phú An",
+      "Hiệp An"
+    ]
+  },
+  {
+    "no": 93,
+    "district": "Thành phố Bến Cát",
+    "ward": "Phường Tây Nam",
+    "mergedFrom": [
+      "Phường An Tây",
+      "PO_xã Thanh Tuyền",
+      "PO_xã An Lập"
+    ]
+  },
+  {
+    "no": 94,
+    "district": "Thành phố Bến Cát",
+    "ward": "Phường Long Nguyên",
+    "mergedFrom": [
+      "Phường An Điền",
+      "Xã Long Nguyên",
+      "PO_phường Mỹ Phước"
+    ]
+  },
+  {
+    "no": 95,
+    "district": "Thành phố Bến Cát",
+    "ward": "Phường Bến Cát",
+    "mergedFrom": [
+      "Xã Tân Hưng (huyện Bàu Bàng)",
+      "Xã Lai Hưng",
+      "PO_phường Mỹ Phước"
+    ]
+  },
+  {
+    "no": 96,
+    "district": "Thành phố Bến Cát",
+    "ward": "Phường Chánh Phú Hòa",
+    "mergedFrom": [
+      "Phường Chánh Phú Hòa",
+      "Xã Hưng Hòa"
+    ]
+  },
+  {
+    "no": 97,
+    "district": "Thị xã Tân Uyên",
+    "ward": "Phường Vĩnh Tân",
+    "mergedFrom": [
+      "Phường Vĩnh Tân",
+      "Thị trấn Tân Bình"
+    ]
+  },
+  {
+    "no": 98,
+    "district": "Thị xã Tân Uyên",
+    "ward": "Phường Bình Cơ",
+    "mergedFrom": [
+      "Xã Bình Mỹ (huyện Bắc Tân Uyên)",
+      "Phường Hội Nghĩa"
+    ]
+  },
+  {
+    "no": 99,
+    "district": "Thị xã Tân Uyên",
+    "ward": "Phường Tân Uyên",
+    "mergedFrom": [
+      "Phường Uyên Hưng",
+      "Xã Bạch Đằng",
+      "Xã Tân Lập",
+      "PO_xã Tân Mỹ"
+    ]
+  },
+  {
+    "no": 100,
+    "district": "Thị xã Tân Uyên",
+    "ward": "Phường Tân Hiệp",
+    "mergedFrom": [
+      "Phường Khánh Bình",
+      "Phường Tân Hiệp"
+    ]
+  },
+  {
+    "no": 101,
+    "district": "Thị xã Tân Uyên",
+    "ward": "Phường Tân Khánh",
+    "mergedFrom": [
+      "Phường Thạnh Phước",
+      "Phường Tân Phước Khánh",
+      "Phường Tân Vĩnh Hiệp",
+      "PO_phường Thái Hòa",
+      "PO_xã Thạnh Hội"
+    ]
+  },
+  {
+    "no": 102,
+    "district": "Thành phố Vũng Tàu",
+    "ward": "Phường Vũng Tàu",
+    "mergedFrom": [
+      "Phường 1 (thành phố Vũng Tàu)",
+      "Phường 2 (thành phố Vũng Tàu)",
+      "Phường 3 (thành phố Vũng Tàu)",
+      "Phường 4 (thành phố Vũng Tàu)",
+      "Phường 5 (thành phố Vũng Tàu)",
+      "Thắng Nhì",
+      "Thắng Tam"
+    ]
+  },
+  {
+    "no": 103,
+    "district": "Thành phố Vũng Tàu",
+    "ward": "Phường Tam Thắng",
+    "mergedFrom": [
+      "Phường 7 (thành phố Vũng Tàu)",
+      "Phường 8 (thành phố Vũng Tàu)",
+      "Phường 9 (thành phố Vũng Tàu)",
+      "Nguyễn An Ninh"
+    ]
+  },
+  {
+    "no": 104,
+    "district": "Thành phố Vũng Tàu",
+    "ward": "Phường Rạch Dừa",
+    "mergedFrom": [
+      "Phường 10 (thành phố Vũng Tàu)",
+      "Thắng Nhất",
+      "Rạch Dừa"
+    ]
+  },
+  {
+    "no": 105,
+    "district": "Thành phố Vũng Tàu",
+    "ward": "Phường Phước Thắng",
+    "mergedFrom": [
+      "Phường 11 (thành phố Vũng Tàu)",
+      "Phường 12 (thành phố Vũng Tàu)"
+    ]
+  },
+  {
+    "no": 106,
+    "district": "Thành phố Bà Rịa",
+    "ward": "Phường Long Hương",
+    "mergedFrom": [
+      "Xã Tân Hưng (thành phố Bà Rịa)",
+      "Kim Dinh",
+      "Long Hương"
+    ]
+  },
+  {
+    "no": 107,
+    "district": "Thành phố Bà Rịa",
+    "ward": "Phường Bà Rịa",
+    "mergedFrom": [
+      "Phường Phước Trung",
+      "Phường Phước Nguyên",
+      "Long Toàn",
+      "Phước Hưng"
+    ]
+  },
+  {
+    "no": 108,
+    "district": "Thành phố Bà Rịa",
+    "ward": "Phường Tam Long",
+    "mergedFrom": [
+      "Phường Long Tâm",
+      "Xã Hòa Long",
+      "Xã Long Phước"
+    ]
+  },
+  {
+    "no": 109,
+    "district": "Thị xã Phú Mỹ",
+    "ward": "Phường Tân Hải",
+    "mergedFrom": [
+      "Phường Tân Hòa",
+      "Phường Tân Hải"
+    ]
+  },
+  {
+    "no": 110,
+    "district": "Thị xã Phú Mỹ",
+    "ward": "Phường Tân Phước",
+    "mergedFrom": [
+      "Phường Phước Hòa",
+      "Phường Tân Phước"
+    ]
+  },
+  {
+    "no": 111,
+    "district": "Thị xã Phú Mỹ",
+    "ward": "Phường Phú Mỹ",
+    "mergedFrom": [
+      "Phường Phú Mỹ (thị xã Phú Mỹ)",
+      "Mỹ Xuân"
+    ]
+  },
+  {
+    "no": 112,
+    "district": "Thị xã Phú Mỹ",
+    "ward": "Phường Tân Thành",
+    "mergedFrom": [
+      "Phường Hắc Dịch",
+      "Xã Sông Xoài"
+    ]
+  },
+  {
+    "no": 113,
+    "district": "Huyện Bình Chánh",
+    "ward": "Xã Vĩnh Lộc",
+    "mergedFrom": [
+      "Xã Vĩnh Lộc A",
+      "PO_xã Phạm Văn Hai"
+    ]
+  },
+  {
+    "no": 114,
+    "district": "Huyện Bình Chánh",
+    "ward": "Xã Tân Vĩnh Lộc",
+    "mergedFrom": [
+      "Xã Vĩnh Lộc B",
+      "PO_xã Phạm Văn Hai",
+      "PO_phường Tân Tạo"
+    ]
+  },
+  {
+    "no": 115,
+    "district": "Huyện Bình Chánh",
+    "ward": "Xã Bình Lợi",
+    "mergedFrom": [
+      "Xã Lê Minh Xuân",
+      "Xã Bình Lợi"
+    ]
+  },
+  {
+    "no": 116,
+    "district": "Huyện Bình Chánh",
+    "ward": "Xã Tân Nhựt",
+    "mergedFrom": [
+      "Thị trấn Tân Túc",
+      "Xã Tân Nhựt",
+      "PO_phường Tân Tạo A",
+      "Xã Tân Kiên",
+      "PO_phường 16 (Quận 8)"
+    ]
+  },
+  {
+    "no": 117,
+    "district": "Huyện Bình Chánh",
+    "ward": "Xã Bình Chánh",
+    "mergedFrom": [
+      "Xã Tân Quý Tây",
+      "Xã Bình Chánh",
+      "Xã An Phú Tây"
+    ]
+  },
+  {
+    "no": 118,
+    "district": "Huyện Bình Chánh",
+    "ward": "Xã Hưng Long",
+    "mergedFrom": [
+      "Xã Đa Phước",
+      "Xã Qui Đức",
+      "Xã Hưng Long"
+    ]
+  },
+  {
+    "no": 119,
+    "district": "Huyện Bình Chánh",
+    "ward": "Xã Bình Hưng",
+    "mergedFrom": [
+      "Xã Phong Phú",
+      "Xã Bình Hưng",
+      "PO_phường 7 (Quận 8)"
+    ]
+  },
+  {
+    "no": 120,
+    "district": "Huyện Cần Giờ",
+    "ward": "Xã Bình Khánh",
+    "mergedFrom": [
+      "Xã Tam Thôn Hiệp",
+      "Xã Bình Khánh",
+      "PO_xã An Thới Đông"
+    ]
+  },
+  {
+    "no": 121,
+    "district": "Huyện Cần Giờ",
+    "ward": "Xã An Thới Đông",
+    "mergedFrom": [
+      "Xã Lý Nhơn",
+      "PO_xã An Thới Đông"
+    ]
+  },
+  {
+    "no": 122,
+    "district": "Huyện Cần Giờ",
+    "ward": "Xã Cần Giờ",
+    "mergedFrom": [
+      "Xã Long Hòa (huyện Cần Giờ)",
+      "Thị trấn Cần Thạnh"
+    ]
+  },
+  {
+    "no": 123,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã Củ Chi",
+    "mergedFrom": [
+      "Xã Tân Phú Trung",
+      "Xã Tân Thông Hội",
+      "Xã Phước Vĩnh An"
+    ]
+  },
+  {
+    "no": 124,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã Tân An Hội",
+    "mergedFrom": [
+      "Thị trấn Củ Chi",
+      "Xã Phước Hiệp",
+      "Xã Tân An Hội"
+    ]
+  },
+  {
+    "no": 125,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã Thái Mỹ",
+    "mergedFrom": [
+      "Xã Trung Lập Thượng",
+      "Xã Phước Thạnh",
+      "Xã Thái Mỹ"
+    ]
+  },
+  {
+    "no": 126,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã An Nhơn Tây",
+    "mergedFrom": [
+      "Xã Phú Mỹ Hưng",
+      "Xã An Phú",
+      "Xã An Nhơn Tây"
+    ]
+  },
+  {
+    "no": 127,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã Nhuận Đức",
+    "mergedFrom": [
+      "Xã Phạm Văn Cội",
+      "Xã Trung Lập Hạ",
+      "Xã Nhuận Đức"
+    ]
+  },
+  {
+    "no": 128,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã Phú Hòa Đông",
+    "mergedFrom": [
+      "Xã Tân Thạnh Tây",
+      "Xã Tân Thạnh Đông",
+      "Xã Phú Hòa Đông"
+    ]
+  },
+  {
+    "no": 129,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã Bình Mỹ",
+    "mergedFrom": [
+      "Xã Bình Mỹ (huyện Củ Chi)",
+      "Xã Hòa Phú",
+      "Xã Trung An"
+    ]
+  },
+  {
+    "no": 130,
+    "district": "Huyện Hóc Môn",
+    "ward": "Xã Đông Thạnh",
+    "mergedFrom": [
+      "Xã Thới Tam Thôn",
+      "Xã Nhị Bình",
+      "Xã Đông Thạnh"
+    ]
+  },
+  {
+    "no": 131,
+    "district": "Huyện Hóc Môn",
+    "ward": "Xã Hóc Môn",
+    "mergedFrom": [
+      "Xã Tân Hiệp (huyện Hóc Môn)",
+      "Xã Tân Xuân",
+      "Thị trấn Hóc Môn"
+    ]
+  },
+  {
+    "no": 132,
+    "district": "Huyện Hóc Môn",
+    "ward": "Xã Xuân Thới Sơn",
+    "mergedFrom": [
+      "Xã Tân Thới Nhì",
+      "Xã Xuân Thới Đông",
+      "Xã Xuân Thới Sơn"
+    ]
+  },
+  {
+    "no": 133,
+    "district": "Huyện Hóc Môn",
+    "ward": "Xã Bà Điểm",
+    "mergedFrom": [
+      "Xã Xuân Thới Thượng",
+      "Xã Trung Chánh",
+      "Xã Bà Điểm"
+    ]
+  },
+  {
+    "no": 134,
+    "district": "Huyện Nhà Bè",
+    "ward": "Xã Nhà Bè",
+    "mergedFrom": [
+      "Thị trấn Nhà Bè",
+      "Xã Phú Xuân",
+      "Xã Phước Kiển",
+      "Xã Phước Lộc"
+    ]
+  },
+  {
+    "no": 135,
+    "district": "Huyện Nhà Bè",
+    "ward": "Xã Hiệp Phước",
+    "mergedFrom": [
+      "Xã Nhơn Đức",
+      "Xã Long Thới",
+      "Xã Hiệp Phước"
+    ]
+  },
+  {
+    "no": 136,
+    "district": "Huyện Bắc Tân Uyên",
+    "ward": "Xã Thường Tân",
+    "mergedFrom": [
+      "Xã Lạc An",
+      "Xã Hiếu Liêm",
+      "Xã Thường Tân",
+      "PO_xã Tân Mỹ"
+    ]
+  },
+  {
+    "no": 137,
+    "district": "Huyện Bắc Tân Uyên",
+    "ward": "Xã Bắc Tân Uyên",
+    "mergedFrom": [
+      "Thị trấn Tân Thành",
+      "Xã Đất Cuốc",
+      "Xã Tân Định"
+    ]
+  },
+  {
+    "no": 138,
+    "district": "Huyện Phú Giáo",
+    "ward": "Xã Phú Giáo",
+    "mergedFrom": [
+      "Thị trấn Phước Vĩnh",
+      "Xã An Bình",
+      "PO_xã Tam Lập"
+    ]
+  },
+  {
+    "no": 139,
+    "district": "Huyện Phú Giáo",
+    "ward": "Xã Phước Hòa",
+    "mergedFrom": [
+      "Xã Vĩnh Hòa",
+      "Xã Phước Hòa",
+      "PO_xã Tam Lập"
+    ]
+  },
+  {
+    "no": 140,
+    "district": "Huyện Phú Giáo",
+    "ward": "Xã Phước Thành",
+    "mergedFrom": [
+      "Xã Tân Hiệp (huyện Phú Giáo)",
+      "Xã An Thái",
+      "Xã Phước Sang"
+    ]
+  },
+  {
+    "no": 141,
+    "district": "Huyện Phú Giáo",
+    "ward": "Xã An Long",
+    "mergedFrom": [
+      "Xã An Linh",
+      "Xã Tân Long",
+      "Xã An Long"
+    ]
+  },
+  {
+    "no": 142,
+    "district": "Huyện Bàu Bàng",
+    "ward": "Xã Trừ Văn Thố",
+    "mergedFrom": [
+      "Xã Trừ Văn Thố",
+      "Xã Cây Trường II",
+      "PO_thị trấn Lai Uyên"
+    ]
+  },
+  {
+    "no": 143,
+    "district": "Huyện Bàu Bàng",
+    "ward": "Xã Bàu Bàng",
+    "mergedFrom": [
+      "Phần còn lại thị trấn Lai Uyên"
+    ]
+  },
+  {
+    "no": 144,
+    "district": "Huyện Dầu Tiếng",
+    "ward": "Xã Long Hòa",
+    "mergedFrom": [
+      "Xã Long Tân",
+      "Xã Long Hòa (huyện Dầu Tiếng)",
+      "PO_xã Minh Tân",
+      "PO_xã Minh Thạnh"
+    ]
+  },
+  {
+    "no": 145,
+    "district": "Huyện Dầu Tiếng",
+    "ward": "Xã Thanh An",
+    "mergedFrom": [
+      "Xã Thanh An",
+      "PO_xã Định Hiệp",
+      "PO_xã Thanh Tuyền",
+      "PO_xã An Lập"
+    ]
+  },
+  {
+    "no": 146,
+    "district": "Huyện Dầu Tiếng",
+    "ward": "Xã Dầu Tiếng",
+    "mergedFrom": [
+      "Thị trấn Dầu Tiếng",
+      "Xã Định An",
+      "Xã Định Thành",
+      "PO_xã Định Hiệp"
+    ]
+  },
+  {
+    "no": 147,
+    "district": "Huyện Dầu Tiếng",
+    "ward": "Xã Minh Thạnh",
+    "mergedFrom": [
+      "Xã Minh Hòa",
+      "PO_xã Minh Tân",
+      "PO_xã Minh Thạnh"
+    ]
+  },
+  {
+    "no": 148,
+    "district": "Thị xã Phú Mỹ",
+    "ward": "Xã Châu Pha",
+    "mergedFrom": [
+      "Xã Tóc Tiên",
+      "Xã Châu Pha"
+    ]
+  },
+  {
+    "no": 149,
+    "district": "Huyện Long Điền",
+    "ward": "Xã Long Hải",
+    "mergedFrom": [
+      "Thị trấn Long Hải",
+      "Xã Phước Tỉnh",
+      "Xã Phước Hưng"
+    ]
+  },
+  {
+    "no": 150,
+    "district": "Huyện Long Điền",
+    "ward": "Xã Long Điền",
+    "mergedFrom": [
+      "Thị trấn Long Điền",
+      "Xã Tam An"
+    ]
+  },
+  {
+    "no": 151,
+    "district": "Huyện Đất Đỏ",
+    "ward": "Xã Phước Hải",
+    "mergedFrom": [
+      "Thị trấn Phước Hải",
+      "Xã Phước Hội"
+    ]
+  },
+  {
+    "no": 152,
+    "district": "Huyện Đất Đỏ",
+    "ward": "Xã Đất Đỏ",
+    "mergedFrom": [
+      "Thị trấn Đất Đỏ",
+      "Xã Long Tân (huyện Long Đất)",
+      "Xã Láng Dài",
+      "Xã Phước Long Thọ"
+    ]
+  },
+  {
+    "no": 153,
+    "district": "Huyện Châu Đức",
+    "ward": "Xã Nghĩa Thành",
+    "mergedFrom": [
+      "Xã Đá Bạc",
+      "Xã Nghĩa Thành"
+    ]
+  },
+  {
+    "no": 154,
+    "district": "Huyện Châu Đức",
+    "ward": "Xã Ngãi Giao",
+    "mergedFrom": [
+      "Thị trấn Ngãi Giao",
+      "Xã Bình Ba",
+      "Xã Suối Nghệ"
+    ]
+  },
+  {
+    "no": 155,
+    "district": "Huyện Châu Đức",
+    "ward": "Xã Kim Long",
+    "mergedFrom": [
+      "Thị trấn Kim Long",
+      "Xã Bàu Chinh",
+      "Xã Láng Lớn"
+    ]
+  },
+  {
+    "no": 156,
+    "district": "Huyện Châu Đức",
+    "ward": "Xã Châu Đức",
+    "mergedFrom": [
+      "Xã Cù Bị",
+      "Xã Xà Bang"
+    ]
+  },
+  {
+    "no": 157,
+    "district": "Huyện Châu Đức",
+    "ward": "Xã Bình Giã",
+    "mergedFrom": [
+      "Xã Bình Trung",
+      "Xã Quảng Thành",
+      "Xã Bình Giã"
+    ]
+  },
+  {
+    "no": 158,
+    "district": "Huyện Châu Đức",
+    "ward": "Xã Xuân Sơn",
+    "mergedFrom": [
+      "Xã Suối Rao",
+      "Xã Sơn Bình",
+      "Xã Xuân Sơn"
+    ]
+  },
+  {
+    "no": 159,
+    "district": "Huyện Xuyên Mộc",
+    "ward": "Xã Hồ Tràm",
+    "mergedFrom": [
+      "Thị trấn Phước Bửu",
+      "Xã Phước Tân",
+      "Xã Phước Thuận"
+    ]
+  },
+  {
+    "no": 160,
+    "district": "Huyện Xuyên Mộc",
+    "ward": "Xã Xuyên Mộc",
+    "mergedFrom": [
+      "Xã Bông Trang",
+      "Xã Bưng Riềng",
+      "Xã Xuyên Mộc"
+    ]
+  },
+  {
+    "no": 161,
+    "district": "Huyện Xuyên Mộc",
+    "ward": "Xã Hòa Hội",
+    "mergedFrom": [
+      "Xã Hòa Hưng",
+      "Xã Hòa Bình",
+      "Xã Hòa Hội"
+    ]
+  },
+  {
+    "no": 162,
+    "district": "Huyện Xuyên Mộc",
+    "ward": "Xã Bàu Lâm",
+    "mergedFrom": [
+      "Xã Tân Lâm",
+      "Xã Bàu Lâm"
+    ]
+  },
+  {
+    "no": 163,
+    "district": "Huyện Côn Đảo",
+    "ward": "Đặc khu Côn Đảo",
+    "mergedFrom": [
+      "Huyện Côn Đảo"
+    ]
+  },
+  {
+    "no": 164,
+    "district": "Huyện Xuyên Mộc",
+    "ward": "Xã Bình Châu",
+    "mergedFrom": [
+      "Không sáp nhập"
+    ]
+  },
+  {
+    "no": 165,
+    "district": "Huyện Xuyên Mộc",
+    "ward": "Xã Hòa Hiệp",
+    "mergedFrom": [
+      "Không sáp nhập"
+    ]
+  },
+  {
+    "no": 166,
+    "district": "Thị xã Phú Mỹ",
+    "ward": "Xã Long Sơn",
+    "mergedFrom": [
+      "Không sáp nhập"
+    ]
+  },
+  {
+    "no": 167,
+    "district": "Huyện Cần Giờ",
+    "ward": "Xã Thạnh An",
+    "mergedFrom": [
+      "Không sáp nhập"
+    ]
+  },
+  {
+    "no": 168,
+    "district": "Thành phố Bến Cát",
+    "ward": "Phường Thới Hòa",
+    "mergedFrom": [
+      "Không sáp nhập"
+    ]
+  }
+]

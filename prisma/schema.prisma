@@ -1,0 +1,123 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  AGENT
+  ADMIN
+}
+
+enum Grade {
+  A
+  B
+  C
+  OTHER
+}
+
+model Employee {
+  id                String    @id @default(auto()) @map("_id") @db.ObjectId
+  email             String    @unique
+  name              String
+  password          String
+  role              Role      @default(AGENT)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  propertiesCreated   Property[] @relation("CreatedByProperty")
+  propertiesUpdated   Property[] @relation("UpdatedByProperty")
+  officesCreated      Office[]   @relation("CreatedByOffice")
+  officesUpdated      Office[]   @relation("UpdatedByOffice")
+}
+
+model District {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  name  String @unique
+  wards Ward[]
+}
+// prisma/schema.prisma
+
+model Ward {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  
+  // DOI THANH MANG CAC CHUOI (Array of Strings)
+  mergedFrom  String[]
+  
+  district    District  @relation(fields: [districtId], references: [id])
+  districtId  String    @db.ObjectId
+  properties  Property[]
+}
+
+model Property {
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
+  name            String    @unique
+  address_line    String
+  wardId          String?   @db.ObjectId
+  ward            Ward?     @relation(fields: [wardId], references: [id])
+  
+  // THAY ĐỔI: Chuyển thành mảng String để lưu nhiều URL ảnh
+  imageUrls       String[]
+
+  // XÓA BỎ: 'grade' đã được chuyển sang Office
+  // grade           String
+  
+  description     String?
+  // ... (các trường khác của Property giữ nguyên)
+  directions      String?
+  yearBuilt       Int?
+  latitude        Float?
+  longitude       Float?
+  managementFee   String?
+  parkingFee      String?
+  overtimeFee     String?
+  electricityFee  String?
+  amenities       String[]
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  createdById     String    @db.ObjectId
+  createdBy       Employee  @relation("CreatedByProperty", fields: [createdById], references: [id])
+  lastUpdatedById String    @db.ObjectId
+  lastUpdatedBy   Employee  @relation("UpdatedByProperty", fields: [lastUpdatedById], references: [id])
+  offices         Office[]
+}
+
+enum OfficeType {
+  TRADITIONAL
+  SERVICED
+}
+
+model Office {
+  id                  String      @id @default(auto()) @map("_id") @db.ObjectId
+  type                OfficeType  @default(TRADITIONAL)
+  
+  // THÊM MỚI: grade bây giờ nằm ở đây và sử dụng enum
+  grade               Grade       @default(OTHER)
+
+  area                Int
+  price_per_sqm       Float
+  floor               String?
+  isAvailable         Boolean     @default(true)
+
+  // THÊM MỚI: minimumLeaseTerm và maximumLeaseTerm
+  minimumLeaseTerm    Int?
+  maximumLeaseTerm    Int?
+
+  handoverCondition   String?
+  // ... (các trường khác của Office giữ nguyên)
+  view              String?
+  photos            String[]
+  electricityFee    String?
+  waterFee          String?
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+  createdById       String      @db.ObjectId
+  createdBy         Employee    @relation("CreatedByOffice", fields: [createdById], references: [id])
+  lastUpdatedById   String      @db.ObjectId
+  lastUpdatedBy     Employee    @relation("UpdatedByOffice", fields: [lastUpdatedById], references: [id])
+  propertyId        String      @db.ObjectId
+  property          Property    @relation(fields: [propertyId], references: [id])
+}
