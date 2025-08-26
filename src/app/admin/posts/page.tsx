@@ -104,7 +104,7 @@ export default function AdminPostsPage() {
         <div className="fixed inset-0 bg-black bg-opacity-50 z-40 flex justify-center items-center">
             <div className="bg-white p-6 rounded-lg shadow-xl z-50 max-w-sm w-full">
                 <h3 className="text-lg font-bold">Xác nhận Xóa</h3>
-                <p className="py-4">Bạn có chắc chắn muốn xóa bài viết "{postToDelete.title}" không?</p>
+                <p className="py-4">Bạn có chắc chắn muốn xóa bài viết {postToDelete.title} không?</p>
                 <div className="flex justify-end space-x-2">
                     <button onClick={() => setPostToDelete(null)} className="bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300">Hủy</button>
                     <button onClick={handleDelete} disabled={isPending} className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 disabled:bg-gray-400">
@@ -113,7 +113,7 @@ export default function AdminPostsPage() {
                 </div>
             </div>
         </div>
-      )}
+      )};
     </>
-  );
+  )
 }

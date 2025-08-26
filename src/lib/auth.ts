@@ -1,8 +1,12 @@
+// src/lib/auth.ts
 import NextAuth from "next-auth"
 import CredentialsProvider from 'next-auth/providers/credentials';
-import prisma from './prisma';
+import prisma from '@/lib/prisma';
 import bcrypt from 'bcrypt';
 
+if (!process.env.NEXTAUTH_SECRET) {
+    throw new Error("Vui lòng định nghĩa biến môi trường NEXTAUTH_SECRET trong file .env");
+}
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   session: {
@@ -32,7 +36,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (!isPasswordValid) {
           return null;
         }
-        // Return user object that NextAuth expects
         return {
           id: employee.id,
           email: employee.email,
@@ -44,19 +47,23 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   ],
   callbacks: {
     jwt({ token, user }) {
+      // Khi đăng nhập, gán các thuộc tính từ user vào token
       if (user) {
         token.id = user.id;
-        // @ts-expect-error -- user object has role from authorize callback
         token.role = user.role;
       }
       return token;
     },
     session({ session, token }) {
-      
-      
-      session.user.id = token.id as string;
-      // @ts-expect-error -- session.user is extended with custom properties
-      session.user.role = token.role;
+      // Lấy các thuộc tính từ token và gán vào session
+      // Đây là phiên bản an toàn và rõ ràng nhất
+      const safeTokenId = token.id as string | undefined;
+      const safeTokenRole = token.role as string | undefined;
+
+      if (session.user && safeTokenId && safeTokenRole) {
+        session.user.id = safeTokenId;
+        session.user.role = safeTokenRole;
+      }
       
       return session;
     },

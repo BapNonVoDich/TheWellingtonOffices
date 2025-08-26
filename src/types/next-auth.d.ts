@@ -25,7 +25,7 @@ declare module 'next-auth' {
 // Mở rộng type của JSON Web Token
 declare module 'next-auth/jwt' {
   interface JWT {
-    role: string;
-    id: string;
+    role: string ;
+    id: string | undefined;
   }
 }
