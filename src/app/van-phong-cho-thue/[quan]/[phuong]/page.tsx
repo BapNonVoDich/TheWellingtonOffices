@@ -1,4 +1,4 @@
-// src/app/van-phong-cho-thue/[quan]/page.tsx
+// src/app/van-phong-cho-thue/[quan]/[phuong]/page.tsx
 import Link from 'next/link';
 import Image from 'next/image';
 import prisma from '@/lib/prisma';
@@ -6,66 +6,60 @@ import { notFound } from 'next/navigation';
 import { slugify } from '@/lib/utils';
 import type { Metadata } from 'next';
 
-// Hàm này sẽ chạy lúc build, lấy tất cả các quận và tạo ra các trang tĩnh
+// Hàm này sẽ chạy lúc build, lấy tất cả các phường và tạo ra các trang tĩnh
 export async function generateStaticParams() {
-  const districts = await prisma.district.findMany({
-    where: {
-        NOT: {
-            name: {
-                in: ["Tỉnh Bình Dương", "Tỉnh Bà Rịa - Vũng Tàu"]
-            }
-        }
-    }
-  });
-  return districts.map((district) => ({
-    quan: slugify(district.name),
+  const wards = await prisma.ward.findMany({ include: { district: true } });
+  
+  return wards.map((ward) => ({
+    quan: slugify(ward.district.name),
+    phuong: slugify(ward.name),
   }));
 }
 
 // Hàm này tạo Title và Description động cho SEO
-type Props = { params: { quan: string } };
+type Props = { params: { quan: string, phuong: string } };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const allDistricts = await prisma.district.findMany();
-  const currentDistrict = allDistricts.find(d => slugify(d.name) === params.quan);
-  const districtName = currentDistrict?.name || 'Khu vực';
+  const allWards = await prisma.ward.findMany({ include: { district: true } });
+  const currentWard = allWards.find(w => slugify(w.district.name) === params.quan && slugify(w.name) === params.phuong);
+  const wardName = currentWard?.name || 'Khu vực';
+  const districtName = currentWard?.district.name || '';
 
   return {
-    title: `Văn phòng cho thuê tại ${districtName} | The Wellington Offices`,
-    description: `Tìm kiếm và thuê văn phòng tốt nhất tại ${districtName}.`,
+    title: `Văn phòng cho thuê tại ${wardName}, ${districtName}`,
+    description: `Tìm kiếm và thuê văn phòng tốt nhất tại ${wardName}, ${districtName}.`,
   };
 }
 
+
 // Component chính để render trang
-export default async function DistrictPage({ params }: { params: { quan: string } }) {
-    const allDistricts = await prisma.district.findMany({
+export default async function WardPage({ params }: { params: { quan: string, phuong: string } }) {
+    const allWards = await prisma.ward.findMany({
         include: { 
-            wards: { 
+            district: true, 
+            properties: { 
                 include: { 
-                    properties: { 
-                        include: { 
-                            offices: { where: { isAvailable: true } }, 
-                            ward: true 
-                        } 
-                    } 
+                    offices: { where: { isAvailable: true } }, 
+                    ward: true 
                 } 
             } 
         }
     });
-    const currentDistrict = allDistricts.find(d => slugify(d.name) === params.quan);
-    
-    if (!currentDistrict) {
+    const currentWard = allWards.find(w => slugify(w.district.name) === params.quan && slugify(w.name) === params.phuong);
+
+    if (!currentWard) {
         notFound();
     }
     
-    const properties = currentDistrict.wards.flatMap(ward => ward.properties);
-    const districtName = currentDistrict.name;
+    const properties = currentWard.properties;
+    const wardName = currentWard.name;
+    const districtName = currentWard.district.name;
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">
-                Văn phòng cho thuê tại <span className="text-blue-600">{districtName}</span>
+                Văn phòng cho thuê tại <span className="text-blue-600">{`${wardName}, ${districtName}`}</span>
             </h1>
-            <p className="mt-4 text-lg text-gray-600">Khám phá các lựa chọn không gian làm việc tốt nhất tại khu vực {districtName}.</p>
+            <p className="mt-4 text-lg text-gray-600">Tổng hợp các tòa nhà văn phòng tốt nhất tại khu vực này.</p>
             
             <div className="mt-12">
                 {properties.length === 0 ? (

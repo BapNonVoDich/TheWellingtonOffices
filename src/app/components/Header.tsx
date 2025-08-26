@@ -4,10 +4,9 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Grade, OfficeType, District, Ward } from '@prisma/client';
-import DropdownMenu from './DropdownMenu';
-import MegaMenu from './MegaMenu'; // Import component moi
+import MegaMenu from './MegaMenu'; 
+import DropdownMenu from './DropdownMenu'; // Component này vẫn cần cho các menu đơn giản
 
-// Dinh nghia kieu du lieu day du cho props
 interface HeaderProps {
   districts: (District & { wards: Ward[] })[];
 }
@@ -15,7 +14,6 @@ interface HeaderProps {
 export default function Header({ districts }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Dữ liệu cho các dropdown đơn giản
   const gradeItems = Object.values(Grade).map(g => ({
     href: `/tim-van-phong?grade=${g}`,
     label: `Hạng ${g}`,
@@ -63,7 +61,6 @@ export default function Header({ districts }: HeaderProps) {
             </div>
             {/* Menu Desktop */}
             <div className="hidden md:flex items-center space-x-1 text-base">
-              {/* SỬ DỤNG COMPONENT MEGA MENU MỚI */}
               <MegaMenu title="Theo Quận & Phường" items={districts} />
               <DropdownMenu title="Theo Hạng" items={gradeItems} />
               <DropdownMenu title="Theo Loại" items={typeItems} />
