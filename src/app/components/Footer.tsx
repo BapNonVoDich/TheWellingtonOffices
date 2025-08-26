@@ -19,7 +19,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold text-white mb-4">Kết nối với chúng tôi</h3>
             <div className="space-y-4 text-base">
-              <p><strong>Địa chỉ:</strong> 123 Lê Lợi, P. Bến Thành, Q.1, TP.HCM</p>
+              <p><strong>Địa chỉ:</strong> 18E Cộng Hoà, P. Tân Bình, Q. Tân Bình, TP.HCM</p>
               <p><strong>Giờ làm việc:</strong> T2 - T6: 8:00 - 18:00</p>
               <p><strong>Hotline:</strong> 097 1777213</p>
               <p><strong>Email:</strong> thewellingtonoffice@gmail.com</p>

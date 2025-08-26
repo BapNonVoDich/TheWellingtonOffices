@@ -23,6 +23,7 @@ export default async function AdminLayout({
           <div className="flex justify-between items-center h-16">
             <div className="flex-shrink-0">
               <Link href="/admin/dashboard" className="text-xl font-bold text-blue-600">Admin Dashboard</Link>
+              <Link href="/admin/posts" className="text-sm font-medium text-gray-600 hover:text-gray-900">Quản lý Tin tức</Link>
             </div>
             <div className="flex items-center space-x-4">
               <span className="text-gray-700">Chào, {session.user.name}</span>
