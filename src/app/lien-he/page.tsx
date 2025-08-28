@@ -1,12 +1,27 @@
 // src/app/lien-he/page.tsx
-import type { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Liên hệ | The Wellington Offices',
-  description: 'Liên hệ với chúng tôi để được tư vấn về văn phòng cho thuê.',
+import { useFormState, useFormStatus } from 'react-dom';
+// Đảm bảo import từ file .tsx mới
+import { handleContactSubmit } from '@/app/actions/contactActions';
+
+const initialState = {
+  message: '',
+  success: false,
 };
 
+function SubmitButton() {
+    const { pending } = useFormStatus();
+    return (
+        <button type="submit" disabled={pending} className="bg-blue-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-blue-700 disabled:bg-gray-400">
+            {pending ? 'Đang gửi...' : 'Gửi đi'}
+        </button>
+    )
+}
+
 export default function ContactPage() {
+  const [state, formAction] = useFormState(handleContactSubmit, initialState);
+
   return (
     <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-12">
@@ -29,7 +44,7 @@ export default function ContactPage() {
         {/* Cột Form */}
         <div className="md:col-span-2 bg-white p-8 rounded-lg shadow-md">
            <h2 className="text-2xl font-bold text-gray-800 mb-4">Gửi yêu cầu tư vấn</h2>
-           <form action="#" method="POST" className="space-y-6">
+           <form action={formAction} className="space-y-6">
               <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700">Họ và tên</label>
                   <input type="text" name="name" id="name" required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"/>
@@ -46,10 +61,13 @@ export default function ContactPage() {
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700">Nội dung yêu cầu</label>
                   <textarea name="message" id="message" rows={4} required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"></textarea>
               </div>
+               {state.message && (
+                 <p className={`${state.success ? 'text-green-600' : 'text-red-600'} text-sm font-semibold`}>
+                    {state.message}
+                 </p>
+              )}
               <div className="flex justify-end">
-                  <button type="submit" className="bg-blue-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-blue-700">
-                      Gửi đi
-                  </button>
+                  <SubmitButton />
               </div>
            </form>
         </div>

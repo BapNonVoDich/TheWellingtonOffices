@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import prisma from "@/lib/prisma";
-
+// Yêu cầu Next.js build lại trang này mỗi 3600 giây (1 giờ)
+export const revalidate = 3600; 
 export default async function HomePage() {
   // Always fetch at SSR so data is ready before hydration
   const properties = await prisma.property.findMany({

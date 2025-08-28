@@ -3,9 +3,10 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { slugify } from '@/lib/utils';
 import { Grade, OfficeType, District, Ward } from '@prisma/client';
-import MegaMenu from './MegaMenu'; 
-import DropdownMenu from './DropdownMenu'; // Component này vẫn cần cho các menu đơn giản
+import MegaMenu from './MegaMenu';
+import DropdownMenu from './DropdownMenu'; // Giả sử bạn vẫn còn component này cho Hạng và Loại
 
 interface HeaderProps {
   districts: (District & { wards: Ward[] })[];
@@ -14,6 +15,7 @@ interface HeaderProps {
 export default function Header({ districts }: HeaderProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // Dữ liệu cho các dropdown
   const gradeItems = Object.values(Grade).map(g => ({
     href: `/tim-van-phong?grade=${g}`,
     label: `Hạng ${g}`,
@@ -27,20 +29,21 @@ export default function Header({ districts }: HeaderProps) {
   return (
     <header className="fixed top-0 left-0 right-0 h-[104px] z-50">
       {/* Thanh top bar */}
-      <div className="bg-gray-800 text-white h-10">
+      <div className="bg-gray-800 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center md:justify-between items-center h-10 text-sm">
-            <div className="flex items-center space-x-6 min-h-[40px]">
+          <div className="flex justify-between items-center h-10 text-sm">
+            {/* THAY ĐỔI 1: Tối ưu hiển thị contact info trên mobile */}
+            <div className="flex flex-col sm:flex-row items-center sm:space-x-6">
               <div className="flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" viewBox="0 0 20 20" fill="currentColor"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" /></svg>
                 <span>Hotline: 097 1777213</span>
               </div>
-              <div className="hidden sm:flex items-center min-h-[40px]">
+              <div className="flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" viewBox="0 0 20 20" fill="currentColor"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" /><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" /></svg>
                 <span>thewellingtonoffice@gmail.com</span>
               </div>
             </div>
-            <div className="hidden md:flex items-center space-x-6 min-h-[40px]">
+            <div className="hidden md:flex items-center space-x-6">
               <Link href="/ky-gui" className="hover:text-gray-300">Ký gửi</Link>
               <Link href="/tin-tuc" className="hover:text-gray-300">Tin tức</Link>
               <Link href="/ve-chung-toi" className="hover:text-gray-300">Về chúng tôi</Link>
@@ -85,12 +88,17 @@ export default function Header({ districts }: HeaderProps) {
           </div>
         </nav>
 
-        {/* Mobile Panel */}
+        {/* THAY ĐỔI 2: Cập nhật Panel Menu Mobile */}
         {isMobileMenuOpen && (
           <div className="md:hidden absolute w-full bg-white shadow-lg z-40">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <Link href="/tim-toa-nha" className="block text-gray-600 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Tìm Tòa nhà</Link>
-              <Link href="/tim-van-phong" className="block text-gray-600 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Tìm Văn phòng</Link>
+              <Link href="/tim-toa-nha" onClick={() => setIsMobileMenuOpen(false)} className="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Tìm Tòa nhà</Link>
+              <Link href="/tim-van-phong" onClick={() => setIsMobileMenuOpen(false)} className="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Tìm Văn phòng</Link>
+              <div className="border-t border-gray-200 my-2"></div>
+              <Link href="/ky-gui" onClick={() => setIsMobileMenuOpen(false)} className="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Ký gửi</Link>
+              <Link href="/tin-tuc" onClick={() => setIsMobileMenuOpen(false)} className="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Tin tức</Link>
+              <Link href="/ve-chung-toi" onClick={() => setIsMobileMenuOpen(false)} className="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Về chúng tôi</Link>
+              <Link href="/lien-he" onClick={() => setIsMobileMenuOpen(false)} className="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Liên hệ</Link>
             </div>
           </div>
         )}
