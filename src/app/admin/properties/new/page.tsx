@@ -1,59 +1,72 @@
-// src/app/admin/properties/new/page.tsx
-import { createProperty } from '@/app/actions/propertyActions';
+// src/app/tin-tuc/[slug]/page.tsx
 import prisma from '@/lib/prisma';
-import WardCombobox from '@/app/components/WardCombobox';
-import ImageUploader from '@/app/components/ImageUploader';
+import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
+import Image from 'next/image';
 
-export default async function NewPropertyPage() {
-  const districts = await prisma.district.findMany({
-    orderBy: { name: 'asc' },
-    include: {
-      wards: {
-        orderBy: { name: 'asc' },
-      }
-    }
+type Props = { params: Promise<{ slug: string }> }; // Thay đổi kiểu dữ liệu ở đây
+
+// Hàm này tạo Title và Description động cho SEO
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params; // Thêm await
+  const post = await prisma.post.findUnique({
+    where: { slug: slug },
   });
 
+  if (!post) {
+    return {
+      title: 'Không tìm thấy bài viết'
+    }
+  }
+
+  return {
+    title: `${post.title} | The Wellington Offices`,
+    description: post.content.substring(0, 160),
+  };
+}
+
+export default async function PostDetailPage({ params }: { params: Promise<{ slug: string }> }) { // Thay đổi kiểu dữ liệu ở đây
+  const { slug } = await params; // Thêm await
+  const post = await prisma.post.findUnique({
+    where: { slug: slug, published: true },
+    include: { author: true },
+  });
+
+  if (!post) {
+    notFound();
+  }
+
   return (
-    <div className="bg-white p-8 rounded-lg shadow-md max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold text-gray-800 mb-6">Thêm Tòa nhà mới</h1>
-      <form action={createProperty} className="space-y-6">
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">Tên Tòa nhà</label>
-          <input type="text" name="name" id="name" required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"/>
-        </div>
-        <div>
-          <label htmlFor="address_line" className="block text-sm font-medium text-gray-700">Địa chỉ (Số nhà, Tên đường)</label>
-          <input type="text" name="address_line" id="address_line" required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"/>
-        </div>
+    <div className="max-w-4xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+      <article>
+        <header className="mb-8">
+          <h1 className="text-4xl font-extrabold text-gray-900 leading-tight">
+            {post.title}
+          </h1>
+          <div className="mt-4 text-sm text-gray-500">
+            <span>Viết bởi {post.author.name}</span>
+            <span className="mx-2">&middot;</span>
+            <span>Ngày đăng: {new Date(post.createdAt).toLocaleDateString('vi-VN')}</span>
+          </div>
+        </header>
 
-        <div>
-          <label htmlFor="ward" className="block text-sm font-medium text-gray-700">Phường/Xã</label>
-          <WardCombobox districts={districts} />
-        </div>
+        {post.imageUrl && (
+          <div className="relative w-full h-96 rounded-lg overflow-hidden mb-8">
+            <Image
+              src={post.imageUrl}
+              alt={post.title}
+              fill
+              style={{ objectFit: 'cover' }}
+              priority
+            />
+          </div>
+        )}
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700">Hình ảnh</label>
-          <ImageUploader name="imageUrls" isMultiple={true} />
-        </div>
-
-        <div>
-          <label htmlFor="amenities" className="block text-sm font-medium text-gray-700">Tiện ích (ngăn cách bởi dấu phẩy)</label>
-          <input 
-            type="text" 
-            name="amenities" 
-            id="amenities" 
-            placeholder="Vd: Gym, Hồ bơi, Bãi đỗ xe" 
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-          />
-        </div>
-
-        <div className="flex justify-end">
-          <button type="submit" className="bg-blue-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-blue-700 transition-colors">
-            Tạo Tòa nhà
-          </button>
-        </div>
-      </form>
+        <div
+          className="prose lg:prose-xl max-w-none text-gray-700"
+          dangerouslySetInnerHTML={{ __html: post.content }}
+        />
+      </article>
     </div>
   );
 }

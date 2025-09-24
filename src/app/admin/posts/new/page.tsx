@@ -1,8 +1,14 @@
 // src/app/admin/posts/new/page.tsx
+'use client';
+
+import { useState } from 'react';
 import { createPost } from '@/app/actions/postActions';
 import ImageUploader from '@/app/components/ImageUploader';
+import RichTextEditor from '@/app/components/RichTextEditor';
 
 export default function NewPostPage() {
+  const [content, setContent] = useState('');
+
   return (
     <div className="bg-white p-8 rounded-lg shadow-md max-w-4xl mx-auto">
       <h1 className="text-2xl font-bold text-gray-800 mb-6">Tạo bài viết mới</h1>
@@ -17,7 +23,11 @@ export default function NewPostPage() {
         </div>
         <div>
           <label htmlFor="content" className="block text-sm font-medium text-gray-700">Nội dung</label>
-          <textarea name="content" id="content" rows={15} required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"></textarea>
+          <input type="hidden" name="content" value={content} />
+          <RichTextEditor
+            initialContent={content}
+            onChange={(newContent) => setContent(newContent)}
+          />
         </div>
         <div className="flex items-center">
           <input type="checkbox" name="published" id="published" className="h-4 w-4 text-blue-600 border-gray-300 rounded"/>

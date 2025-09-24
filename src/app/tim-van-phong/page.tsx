@@ -95,7 +95,7 @@ export default async function SearchOfficePage({ searchParams }: SearchOfficePag
             ) : (
                 <div className="space-y-6">
                   {offices.map((office) => (
-                    <Link href={`/property/${office.propertyId}`} key={office.id}>
+                    <Link href={`/property/${office.property.slug}`} key={office.id}>
                       <div className="bg-white border rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col md:flex-row overflow-hidden">
                         <div className="relative w-full md:w-1/3 h-48 md:h-auto">
                           {office.property.imageUrls[0] ? (

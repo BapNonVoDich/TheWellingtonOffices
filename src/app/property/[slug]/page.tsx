@@ -1,15 +1,25 @@
-// src/app/property/[id]/page.tsx
+// src/app/property/[slug]/page.tsx
 import prisma from '@/lib/prisma';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import type { PropertyWithDetails } from '@/types'; // Import type moi
+import type { PropertyWithDetails } from '@/types';
 
-export default async function PropertyDetailPage({ params }: { params: { id: string } }) {
-  const { id } = params;
+// generateStaticParams để tạo các trang tĩnh khi build
+export async function generateStaticParams() {
+  const properties = await prisma.property.findMany({
+    select: { slug: true },
+  });
+ 
+  return properties.map((property) => ({
+    slug: property.slug,
+  }));
+}
 
-  // Ap dung type vao ket qua tra ve
+export default async function PropertyDetailPage({ params }: { params: { slug: string } }) {
+  const { slug } = await params;
+
   const property: PropertyWithDetails | null = await prisma.property.findUnique({
-    where: { id: id },
+    where: { slug: slug }, // Thay đổi từ id sang slug
     include: {
       offices: {
         where: { isAvailable: true },
@@ -30,26 +40,24 @@ export default async function PropertyDetailPage({ params }: { params: { id: str
   return (
     <div className="bg-gray-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Phan thong tin chinh cua toa nha */}
         <div className="bg-white p-8 rounded-lg shadow-md">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             <div className="relative w-full h-96 rounded-lg overflow-hidden">
-  {/* Kiem tra xem mang anh co ton tai va co phan tu khong */}
-  {property.imageUrls && property.imageUrls.length > 0 ? (
-    <Image
-      src={property.imageUrls[0]} // Lay anh dau tien trong mang
-      alt={property.name}
-      fill={true}
-      style={{objectFit: 'cover'}}
-      sizes="(max-width: 768px) 100vw, 50vw"
-      priority // Thêm priority để ưu tiên tải ảnh chính
-    />
-  ) : (
-    <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-      <span className="text-gray-500">Không có hình ảnh</span>
-    </div>
-  )}
-</div>
+              {property.imageUrls && property.imageUrls.length > 0 ? (
+                <Image
+                  src={property.imageUrls[0]}
+                  alt={property.name}
+                  fill={true}
+                  style={{objectFit: 'cover'}}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority
+                />
+              ) : (
+                <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                  <span className="text-gray-500">Không có hình ảnh</span>
+                </div>
+              )}
+            </div>
             <div className="flex flex-col h-full">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900">{property.name}</h1>
               <p className="text-lg text-gray-600 mt-2">
@@ -74,7 +82,6 @@ export default async function PropertyDetailPage({ params }: { params: { id: str
           </div>
         </div>
 
-        {/* Phan danh sach van phong cho thue */}
         <div className="mt-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">Các văn phòng đang cho thuê</h2>
           <div className="overflow-x-auto relative shadow-md sm:rounded-lg">

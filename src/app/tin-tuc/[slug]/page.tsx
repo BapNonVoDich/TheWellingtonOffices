@@ -8,8 +8,9 @@ type Props = { params: { slug: string } };
 
 // Ham nay tao Title va Description dong cho SEO
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params; // Thêm await
   const post = await prisma.post.findUnique({
-    where: { slug: params.slug },
+    where: { slug: slug },
   });
 
   if (!post) {
@@ -23,10 +24,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: post.content.substring(0, 160), // Lấy 160 ký tự đầu làm description
   };
 }
-
 export default async function PostDetailPage({ params }: { params: { slug: string } }) {
+  const { slug } = await params; // Thêm await
   const post = await prisma.post.findUnique({
-    where: { slug: params.slug, published: true },
+    where: { slug: slug, published: true },
     include: { author: true },
   });
 
@@ -60,11 +61,14 @@ export default async function PostDetailPage({ params }: { params: { slug: strin
           </div>
         )}
 
-        {/* Dùng 'whitespace-pre-wrap' để giữ lại các định dạng xuống dòng */}
-        <div className="prose prose-lg max-w-none text-gray-700 whitespace-pre-wrap">
-          {post.content}
-        </div>
+        {/* Sử dụng class 'prose' và dangerouslySetInnerHTML để render HTML */}
+        <div
+          className="prose lg:prose-xl max-w-none text-gray-700"
+          dangerouslySetInnerHTML={{ __html: post.content }}
+        />
       </article>
     </div>
   );
+
+
 }

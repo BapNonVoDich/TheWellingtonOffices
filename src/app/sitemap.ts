@@ -63,8 +63,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   // Tạo sitemap cho các trang tòa nhà (Property)
-  const propertyPages = properties.map((property) => ({
-    url: `${baseUrl}/property/${property.id}`,
+   const propertyPages = properties.map((property) => ({
+    url: `${baseUrl}/property/${property.slug}`, // Chính xác
     lastModified: property.updatedAt,
     changeFrequency: 'weekly',
     priority: 0.9,

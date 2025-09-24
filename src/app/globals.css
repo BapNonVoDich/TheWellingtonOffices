@@ -7,9 +7,9 @@
   }
   
   body {
-    @apply text-[22px] leading-normal;
-    font-size: 22px;
-    line-height: 1.5;
+    /* XÓA BỎ các dòng áp dụng kích thước chữ cố định tại đây */
+    @apply bg-gray-100 text-gray-800 antialiased; /* Chỉ giữ lại các style cơ bản */
+    line-height: 1.6;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     box-sizing: border-box;
@@ -19,18 +19,14 @@
     box-sizing: border-box;
   }
 
-  /* Define header height variable */
   :root {
     --header-height: 104px;
   }
 
-  /* Font consistency */
   .font-sans {
     font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
-    font-size-adjust: 0.5;
   }
 
-  /* Images must keep aspect ratio */
   img {
     max-width: 100%;
     height: auto;
@@ -49,4 +45,79 @@
   .contain-layout {
     contain: layout style paint;
   }
+}
+
+/* === THÊM ĐOẠN MÃ NÀY VÀO CUỐI TỆP === */
+@layer base {
+  .prose h1, .prose h2, .prose h3 {
+    font-weight: 700;
+    margin-bottom: 0.8em;
+    margin-top: 1.2em;
+  }
+
+  .prose h1 {
+    font-size: 2.25rem; /* Tương đương text-4xl */
+    line-height: 2.5rem;
+  }
+
+  .prose h2 {
+    font-size: 1.875rem; /* Tương đương text-3xl */
+    line-height: 2.25rem;
+  }
+
+  .prose h3 {
+    font-size: 1.5rem; /* Tương đương text-2xl */
+    line-height: 2rem;
+  }
+
+  .prose p {
+    margin-bottom: 1.25em;
+  }
+  
+  .prose ul, .prose ol {
+    margin-bottom: 1.25em;
+    padding-left: 1.5em;
+  }
+  
+  .prose ul {
+    list-style-type: disc;
+  }
+
+  .prose ol {
+    list-style-type: decimal;
+  }
+
+  .prose li {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+
+  /* ... Thêm vào cuối tệp ... */
+
+/* Tiptap Table Styles */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.prose th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+/* For resizable columns */
+.tableWrapper {
+  overflow-x: auto;
+}
+.resize-cursor {
+  cursor: col-resize;
+}
+
 }

@@ -9,16 +9,18 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        // Use CSS variable approach for better font loading
         sans: ['var(--font-inter)', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
       },
-      // Add consistent spacing scale
       spacing: {
-        '104': '26rem', // 416px - matches your pt-[104px]
+        '104': '26rem',
       }
     },
   },
-  plugins: [],
+  // === THÊM DÒNG NÀY VÀO ĐÂY ===
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
+  // ============================
 }
 
 export default config

@@ -20,33 +20,31 @@ enum Grade {
 }
 
 model Post {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  title       String   @unique
-  slug        String   @unique
-  content     String
-  imageUrl    String?
-  published   Boolean  @default(false)
-
-  authorId    String   @db.ObjectId
-  author      Employee @relation(fields: [authorId], references: [id])
-
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String   @unique
+  slug      String   @unique
+  content   String
+  imageUrl  String?
+  published Boolean  @default(false)
+  authorId  String   @db.ObjectId
+  author    Employee @relation(fields: [authorId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Employee {
-  id                String    @id @default(auto()) @map("_id") @db.ObjectId
-  email             String    @unique
-  name              String
-  password          String
-  role              Role      @default(AGENT)
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
+  id                  String     @id @default(auto()) @map("_id") @db.ObjectId
+  email               String     @unique
+  name                String
+  password            String
+  role                Role       @default(AGENT)
+  createdAt           DateTime   @default(now())
+  updatedAt           DateTime   @updatedAt
   propertiesCreated   Property[] @relation("CreatedByProperty")
   propertiesUpdated   Property[] @relation("UpdatedByProperty")
   officesCreated      Office[]   @relation("CreatedByOffice")
   officesUpdated      Office[]   @relation("UpdatedByOffice")
-  posts           Post[]
+  posts               Post[]
 }
 
 model District {
@@ -54,35 +52,25 @@ model District {
   name  String @unique
   wards Ward[]
 }
-// prisma/schema.prisma
 
 model Ward {
-  id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
-  
-  // DOI THANH MANG CAC CHUOI (Array of Strings)
-  mergedFrom  String[]
-  
-  district    District  @relation(fields: [districtId], references: [id])
-  districtId  String    @db.ObjectId
-  properties  Property[]
+  id         String     @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  mergedFrom String[]
+  district   District   @relation(fields: [districtId], references: [id])
+  districtId String     @db.ObjectId
+  properties Property[]
 }
 
 model Property {
   id              String    @id @default(auto()) @map("_id") @db.ObjectId
   name            String    @unique
+  slug            String    @unique
   address_line    String
   wardId          String?   @db.ObjectId
   ward            Ward?     @relation(fields: [wardId], references: [id])
-  
-  // THAY ĐỔI: Chuyển thành mảng String để lưu nhiều URL ảnh
   imageUrls       String[]
-
-  // XÓA BỎ: 'grade' đã được chuyển sang Office
-  // grade           String
-  
   description     String?
-  // ... (các trường khác của Property giữ nguyên)
   directions      String?
   yearBuilt       Int?
   latitude        Float?
@@ -107,33 +95,26 @@ enum OfficeType {
 }
 
 model Office {
-  id                  String      @id @default(auto()) @map("_id") @db.ObjectId
-  type                OfficeType  @default(TRADITIONAL)
-  
-  // THÊM MỚI: grade bây giờ nằm ở đây và sử dụng enum
-  grade               Grade       @default(OTHER)
-
-  area                Int
-  price_per_sqm       Float
-  floor               String?
-  isAvailable         Boolean     @default(true)
-
-  // THÊM MỚI: minimumLeaseTerm và maximumLeaseTerm
-  minimumLeaseTerm    Int?
-  maximumLeaseTerm    Int?
-
-  handoverCondition   String?
-  // ... (các trường khác của Office giữ nguyên)
+  id                String     @id @default(auto()) @map("_id") @db.ObjectId
+  type              OfficeType @default(TRADITIONAL)
+  grade             Grade      @default(OTHER)
+  area              Int
+  price_per_sqm     Float
+  floor             String?
+  isAvailable       Boolean    @default(true)
+  minimumLeaseTerm  Int?
+  maximumLeaseTerm  Int?
+  handoverCondition String?
   view              String?
   photos            String[]
   electricityFee    String?
   waterFee          String?
-  createdAt         DateTime    @default(now())
-  updatedAt         DateTime    @updatedAt
-  createdById       String      @db.ObjectId
-  createdBy         Employee    @relation("CreatedByOffice", fields: [createdById], references: [id])
-  lastUpdatedById   String      @db.ObjectId
-  lastUpdatedBy     Employee    @relation("UpdatedByOffice", fields: [lastUpdatedById], references: [id])
-  propertyId        String      @db.ObjectId
-  property          Property    @relation(fields: [propertyId], references: [id])
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+  createdById       String     @db.ObjectId
+  createdBy         Employee   @relation("CreatedByOffice", fields: [createdById], references: [id])
+  lastUpdatedById   String     @db.ObjectId
+  lastUpdatedBy     Employee   @relation("UpdatedByOffice", fields: [lastUpdatedById], references: [id])
+  propertyId        String     @db.ObjectId
+  property          Property   @relation(fields: [propertyId], references: [id])
 }

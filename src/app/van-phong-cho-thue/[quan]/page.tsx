@@ -73,7 +73,7 @@ export default async function DistrictPage({ params }: { params: { quan: string 
                 ) : (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                       {properties.map((property) => (
-                        <Link href={`/property/${property.id}`} key={property.id}>
+                        <Link href={`/property/${property.slug}`} key={property.id}>
                           <div className="border rounded-lg shadow-lg overflow-hidden h-full flex flex-col hover:shadow-xl transition-shadow duration-300">
                             <div className="relative w-full h-48">
                               {property.imageUrls && property.imageUrls.length > 0 ? (

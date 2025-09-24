@@ -1,13 +1,13 @@
 // src/app/actions/propertyActions.ts
 'use server';
 
-import { auth } from '@/lib/auth'; // Su dung ham auth cua NextAuth v5
+import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { slugify } from '@/lib/utils';
 
 export async function createProperty(formData: FormData) {
-  // Lay session cua user dang dang nhap o server
   const session = await auth();
   if (!session?.user?.id) {
     throw new Error('Bạn phải đăng nhập để thực hiện hành động này.');
@@ -17,12 +17,11 @@ export async function createProperty(formData: FormData) {
   const imageUrlsString = formData.get('imageUrls')?.toString() || '';
   const imageUrls = imageUrlsString.split('\n').map(url => url.trim()).filter(url => url);
 
-  // Lay du lieu tu form mot cach an toan
   const name = formData.get('name')?.toString() || '';
   const address_line = formData.get('address_line')?.toString() || '';
   
+  const propertySlug = slugify(`${name} ${address_line}`);
   
-  // Tim wardId tu ten ward/district
   const wardName = formData.get('wardName')?.toString();
   const districtName = formData.get('districtName')?.toString();
   
@@ -41,7 +40,6 @@ export async function createProperty(formData: FormData) {
     }
   }
 
-  // Kiem tra du lieu co ban
   if (!name || !address_line) {
     throw new Error('Vui lòng điền đầy đủ tên và địa chỉ.');
   }
@@ -50,15 +48,16 @@ export async function createProperty(formData: FormData) {
     await prisma.property.create({
       data: {
         name,
+        slug: propertySlug,
         address_line,
         imageUrls,
         wardId: wardId,
-        amenities: [], // Se them sau
+        amenities: [], 
         createdById: userId,
         lastUpdatedById: userId,
       },
     });
-  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+  } catch (error: unknown) { 
     console.error(error);
     if (error instanceof Error && 'code' in error && error.code === 'P2002') {
       throw new Error('Tên tòa nhà này đã tồn tại.');
@@ -72,7 +71,6 @@ export async function createProperty(formData: FormData) {
 }
 
 
-// cap nhat property
 export async function updateProperty(id: string, formData: FormData) {
   const session = await auth();
   if (!session?.user?.id) {
@@ -80,12 +78,15 @@ export async function updateProperty(id: string, formData: FormData) {
   }
   const userId = session.user.id;
 
-  // Lay du lieu tu form
+  // Lấy dữ liệu tên và địa chỉ mới từ form
   const name = formData.get('name')?.toString() || '';
   const address_line = formData.get('address_line')?.toString() || '';
   const imageUrlsString = formData.get('imageUrls')?.toString() || '';
   const imageUrls = imageUrlsString.split('\n').map(url => url.trim()).filter(url => url);
   
+  // Tự động tạo slug mới dựa trên thông tin vừa cập nhật
+  const propertySlug = slugify(`${name} ${address_line}`);
+
   const wardName = formData.get('wardName')?.toString();
   const districtName = formData.get('districtName')?.toString();
   
@@ -97,8 +98,6 @@ export async function updateProperty(id: string, formData: FormData) {
     if (ward) {
       wardId = ward.id;
     } else {
-        // Neu nguoi dung nhap mot phuong khong co trong combobox, ta co the bo qua hoac bao loi
-        // O day ta bo qua de giu lai ward cu neu co
         const existingProperty = await prisma.property.findUnique({ where: { id } });
         wardId = existingProperty?.wardId || null;
     }
@@ -113,24 +112,24 @@ export async function updateProperty(id: string, formData: FormData) {
       where: { id: id },
       data: {
         name,
+        slug: propertySlug, // Cập nhật slug mới vào database
         address_line,
         imageUrls,
         wardId: wardId,
-        lastUpdatedById: userId, // Cap nhat nguoi chinh sua cuoi cung
+        lastUpdatedById: userId,
       },
     });
-  } catch (error: unknown) { // Use 'unknown' instead of 'any'
+  } catch (error: unknown) {
     console.error(error);
     throw new Error('Không thể cập nhật tòa nhà. Vui lòng thử lại.');
   }
 
   revalidatePath('/admin/dashboard');
   revalidatePath(`/admin/properties/edit/${id}`);
+  // Chuyển hướng về trang dashboard sau khi cập nhật
   redirect('/admin/dashboard');
 }
 
-
-// Ham moi de xoa property
 export async function deleteProperty(id: string) {
   const session = await auth();
   if (!session?.user?.id) {
@@ -138,13 +137,10 @@ export async function deleteProperty(id: string) {
   }
 
   try {
-    // Su dung transaction de dam bao ca 2 hanh dong cung thanh cong hoac that bai
     await prisma.$transaction([
-      // 1. Xoa tat ca cac Office lien quan truoc
       prisma.office.deleteMany({
         where: { propertyId: id },
       }),
-      // 2. Sau do moi xoa Property
       prisma.property.delete({
         where: { id: id },
       }),
@@ -154,6 +150,5 @@ export async function deleteProperty(id: string) {
     throw new Error('Không thể xóa tòa nhà. Vui lòng thử lại.');
   }
 
-  // Lam moi du lieu trang dashboard de cap nhat danh sach
   revalidatePath('/admin/dashboard');
 }

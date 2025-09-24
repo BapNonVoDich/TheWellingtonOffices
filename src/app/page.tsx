@@ -82,7 +82,7 @@ export default async function HomePage() {
                 </div>
               ))
             : properties.map((property) => (
-                <Link href={`/property/${property.id}`} key={property.id}>
+                <Link href={`/property/${property.slug}`} key={property.id}>
                   <div 
                     className="border rounded-lg shadow-lg overflow-hidden bg-white hover:shadow-xl transition-shadow duration-300"
                     style={{ height: '320px' }} // Consistent height
