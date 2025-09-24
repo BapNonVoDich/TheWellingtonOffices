@@ -1,5 +1,6 @@
 // src/app/admin/posts/new/page.tsx
 import { createPost } from '@/app/actions/postActions';
+import ImageUploader from '@/app/components/ImageUploader';
 
 export default function NewPostPage() {
   return (
@@ -11,8 +12,8 @@ export default function NewPostPage() {
           <input type="text" name="title" id="title" required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"/>
         </div>
         <div>
-          <label htmlFor="imageUrl" className="block text-sm font-medium text-gray-700">URL Hình ảnh đại diện</label>
-          <input type="text" name="imageUrl" id="imageUrl" className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"/>
+          <label className="block text-sm font-medium text-gray-700">URL Hình ảnh đại diện</label>
+          <ImageUploader name="imageUrl" />
         </div>
         <div>
           <label htmlFor="content" className="block text-sm font-medium text-gray-700">Nội dung</label>

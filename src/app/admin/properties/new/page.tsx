@@ -2,9 +2,9 @@
 import { createProperty } from '@/app/actions/propertyActions';
 import prisma from '@/lib/prisma';
 import WardCombobox from '@/app/components/WardCombobox';
+import ImageUploader from '@/app/components/ImageUploader';
 
 export default async function NewPropertyPage() {
-  // Lấy dữ liệu quận và các phường lồng nhau để truyền vào combobox
   const districts = await prisma.district.findMany({
     orderBy: { name: 'asc' },
     include: {
@@ -26,21 +26,15 @@ export default async function NewPropertyPage() {
           <label htmlFor="address_line" className="block text-sm font-medium text-gray-700">Địa chỉ (Số nhà, Tên đường)</label>
           <input type="text" name="address_line" id="address_line" required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"/>
         </div>
-        
+
         <div>
           <label htmlFor="ward" className="block text-sm font-medium text-gray-700">Phường/Xã</label>
           <WardCombobox districts={districts} />
         </div>
 
         <div>
-          <label htmlFor="imageUrls" className="block text-sm font-medium text-gray-700">URL Hình ảnh (mỗi URL một dòng)</label>
-          <textarea 
-            name="imageUrls" 
-            id="imageUrls" 
-            rows={4} 
-            placeholder="https://.../image1.jpg&#10;https://.../image2.jpg" 
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-          ></textarea>
+          <label className="block text-sm font-medium text-gray-700">Hình ảnh</label>
+          <ImageUploader name="imageUrls" isMultiple={true} />
         </div>
 
         <div>
@@ -53,7 +47,7 @@ export default async function NewPropertyPage() {
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
           />
         </div>
-        
+
         <div className="flex justify-end">
           <button type="submit" className="bg-blue-600 text-white font-semibold px-6 py-2 rounded-md hover:bg-blue-700 transition-colors">
             Tạo Tòa nhà

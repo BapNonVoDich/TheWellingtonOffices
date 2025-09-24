@@ -13,7 +13,7 @@ type PropertyWithRelations = Property & {
 };
 
 // Component moi de render trang
-export default function DashboardPage() {
+export default function DashboardPage() { 
   // State de luu danh sach property
   const [properties, setProperties] = useState<PropertyWithRelations[]>([]);
   // State de quan ly modal
@@ -90,7 +90,19 @@ export default function DashboardPage() {
             <h3 className="text-lg font-bold">Xác nhận Xóa</h3>
             <p className="py-4">Bạn có chắc chắn muốn xóa tòa nhà &ldquo;{propertyToDelete.name}&rdquo; không? Hành động này không thể hoàn tác.</p>
             <div className="flex justify-end space-x-2">
-              {/* ... buttons ... */}
+              <button 
+                onClick={() => setPropertyToDelete(null)}
+                className="px-4 py-2 text-sm font-medium rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50"
+              >
+                Hủy
+              </button>
+              <button
+                onClick={handleDelete}
+                className="px-4 py-2 text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700"
+                disabled={isPending}
+              >
+                {isPending ? 'Đang xóa...' : 'Xóa'}
+              </button>
             </div>
           </div>
         </div>

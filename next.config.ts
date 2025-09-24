@@ -7,9 +7,18 @@ const nextConfig: NextConfig = {
         protocol: 'https' ,
         hostname: 'images.unsplash.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
     ],
     // Thêm vào đây để cho phép Next.js sử dụng định dạng AVIF và WebP
     formats: ['image/avif', 'image/webp'],
+  },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '5mb', // Tăng giới hạn kích thước payload lên 5MB
+    },
   },
 };
 

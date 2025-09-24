@@ -2,6 +2,7 @@
 import { updatePost } from '@/app/actions/postActions';
 import prisma from '@/lib/prisma';
 import { notFound } from 'next/navigation';
+import ImageUploader from '@/app/components/ImageUploader';
 
 export default async function EditPostPage({ params }: { params: { id: string } }) {
   const post = await prisma.post.findUnique({
@@ -23,8 +24,8 @@ export default async function EditPostPage({ params }: { params: { id: string } 
           <input type="text" name="title" id="title" required defaultValue={post.title} className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"/>
         </div>
         <div>
-          <label htmlFor="imageUrl" className="block text-sm font-medium text-gray-700">URL Hình ảnh đại diện</label>
-          <input type="text" name="imageUrl" id="imageUrl" defaultValue={post.imageUrl || ''} className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md"/>
+          <label className="block text-sm font-medium text-gray-700">URL Hình ảnh đại diện</label>
+          <ImageUploader name="imageUrl" defaultValue={post.imageUrl || ''} />
         </div>
         <div>
           <label htmlFor="content" className="block text-sm font-medium text-gray-700">Nội dung</label>
