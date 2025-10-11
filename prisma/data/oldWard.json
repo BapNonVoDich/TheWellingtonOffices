@@ -1,0 +1,2192 @@
+[
+  {
+    "no": 1,
+    "district": "Quận 1",
+    "ward": "Phường Bến Nghé",
+    "splitInto": [
+      "Phường Sài Gòn"
+    ]
+  },
+  {
+    "no": 2,
+    "district": "Quận 1",
+    "ward": "Phường Bến Thành",
+    "splitInto": [
+      "Phường Bến Thành"
+    ]
+  },
+  {
+    "no": 3,
+    "district": "Quận 1",
+    "ward": "Phường Cô Giang",
+    "splitInto": [
+      "Phường Cầu Ông Lãnh"
+    ]
+  },
+  {
+    "no": 4,
+    "district": "Quận 1",
+    "ward": "Phường Cầu Kho",
+    "splitInto": [
+      "Phường Cầu Ông Lãnh"
+    ]
+  },
+  {
+    "no": 5,
+    "district": "Quận 1",
+    "ward": "Phường Cầu Ông Lãnh",
+    "splitInto": [
+      "Phường Bến Thành",
+      "Phường Cầu Ông Lãnh"
+    ]
+  },
+  {
+    "no": 6,
+    "district": "Quận 1",
+    "ward": "Phường Đa Kao",
+    "splitInto": [
+      "Phường Sài Gòn",
+      "Phường Tân Định"
+    ]
+  },
+  {
+    "no": 7,
+    "district": "Quận 1",
+    "ward": "Phường Nguyễn Cư Trinh",
+    "splitInto": [
+      "Phường Cầu Ông Lãnh"
+    ]
+  },
+  {
+    "no": 8,
+    "district": "Quận 1",
+    "ward": "Phường Nguyễn Thái Bình",
+    "splitInto": [
+      "Phường Sài Gòn",
+      "Phường Bến Thành"
+    ]
+  },
+  {
+    "no": 9,
+    "district": "Quận 1",
+    "ward": "Phường Phạm Ngũ Lão",
+    "splitInto": [
+      "Phường Bến Thành"
+    ]
+  },
+  {
+    "no": 10,
+    "district": "Quận 1",
+    "ward": "Phường Tân Định",
+    "splitInto": [
+      "Phường Tân Định"
+    ]
+  },
+  {
+    "no": 11,
+    "district": "Quận 2",
+    "ward": "Phường An Khánh",
+    "splitInto": [
+      "Phường An Khánh"
+    ]
+  },
+  {
+    "no": 12,
+    "district": "Quận 2",
+    "ward": "Phường An Lợi Đông",
+    "splitInto": [
+      "Phường An Khánh"
+    ]
+  },
+  {
+    "no": 13,
+    "district": "Quận 2",
+    "ward": "Phường An Phú",
+    "splitInto": [
+      "Phường Bình Trưng",
+      "Phường An Khánh"
+    ]
+  },
+  {
+    "no": 16,
+    "district": "Quận 2",
+    "ward": "Phường Bình Trưng Đông",
+    "splitInto": [
+      "Phường Bình Trưng"
+    ]
+  },
+  {
+    "no": 17,
+    "district": "Quận 2",
+    "ward": "Phường Bình Trưng Tây",
+    "splitInto": [
+      "Phường Bình Trưng"
+    ]
+  },
+  {
+    "no": 18,
+    "district": "Quận 2",
+    "ward": "Phường Cát Lái",
+    "splitInto": [
+      "Phường Cát Lái"
+    ]
+  },
+  {
+    "no": 19,
+    "district": "Quận 2",
+    "ward": "Phường Thảo Điền",
+    "splitInto": [
+      "Phường An Khánh",
+      "Phường An Khánh"
+    ]
+  },
+  {
+    "no": 20,
+    "district": "Quận 2",
+    "ward": "Phường Thạnh Mỹ Lợi",
+    "splitInto": [
+      "Phường Cát Lái"
+    ]
+  },
+  {
+    "no": 21,
+    "district": "Quận 2",
+    "ward": "Phường Thủ Thiêm",
+    "splitInto": [
+      "Phường An Khánh"
+    ]
+  },
+  {
+    "no": 22,
+    "district": "Quận 3",
+    "ward": "Phường 1",
+    "splitInto": [
+      "Phường Bàn Cờ"
+    ]
+  },
+  {
+    "no": 23,
+    "district": "Quận 3",
+    "ward": "Phường 2",
+    "splitInto": [
+      "Phường Bàn Cờ"
+    ]
+  },
+  {
+    "no": 24,
+    "district": "Quận 3",
+    "ward": "Phường 3",
+    "splitInto": [
+      "Phường Bàn Cờ"
+    ]
+  },
+  {
+    "no": 25,
+    "district": "Quận 3",
+    "ward": "Phường 4",
+    "splitInto": [
+      "Phường Bàn Cờ",
+      "Phường Xuân Hòa"
+    ]
+  },
+  {
+    "no": 26,
+    "district": "Quận 3",
+    "ward": "Phường 5",
+    "splitInto": [
+      "Phường Bàn Cờ"
+    ]
+  },
+  {
+    "no": 30,
+    "district": "Quận 3",
+    "ward": "Phường 9",
+    "splitInto": [
+      "Phường Nhiêu Lộc"
+    ]
+  },
+  {
+    "no": 32,
+    "district": "Quận 3",
+    "ward": "Phường 11",
+    "splitInto": [
+      "Phường Nhiêu Lộc"
+    ]
+  },
+  {
+    "no": 33,
+    "district": "Quận 3",
+    "ward": "Phường 12",
+    "splitInto": [
+      "Phường Nhiêu Lộc"
+    ]
+  },
+  {
+    "no": 35,
+    "district": "Quận 3",
+    "ward": "Phường 14",
+    "splitInto": [
+      "Phường Nhiêu Lộc"
+    ]
+  },
+  {
+    "no": 36,
+    "district": "Quận 4",
+    "ward": "Phường 1",
+    "splitInto": [
+      "Phường Vĩnh Hội"
+    ]
+  },
+  {
+    "no": 37,
+    "district": "Quận 4",
+    "ward": "Phường 2",
+    "splitInto": [
+      "Phường Khánh Hội",
+      "Phường Vĩnh Hội"
+    ]
+  },
+  {
+    "no": 38,
+    "district": "Quận 4",
+    "ward": "Phường 3",
+    "splitInto": [
+      "Phường Vĩnh Hội"
+    ]
+  },
+  {
+    "no": 39,
+    "district": "Quận 4",
+    "ward": "Phường 4",
+    "splitInto": [
+      "Phường Khánh Hội",
+      "Phường Vĩnh Hội"
+    ]
+  },
+  {
+    "no": 42,
+    "district": "Quận 4",
+    "ward": "Phường 8",
+    "splitInto": [
+      "Phường Khánh Hội"
+    ]
+  },
+  {
+    "no": 43,
+    "district": "Quận 4",
+    "ward": "Phường 9",
+    "splitInto": [
+      "Phường Khánh Hội"
+    ]
+  },
+  {
+    "no": 46,
+    "district": "Quận 4",
+    "ward": "Phường 13",
+    "splitInto": [
+      "Phường Xóm Chiếu"
+    ]
+  },
+  {
+    "no": 48,
+    "district": "Quận 4",
+    "ward": "Phường 15",
+    "splitInto": [
+      "Phường Xóm Chiếu",
+      "Phường Khánh Hội"
+    ]
+  },
+  {
+    "no": 49,
+    "district": "Quận 4",
+    "ward": "Phường 16",
+    "splitInto": [
+      "Phường Xóm Chiếu"
+    ]
+  },
+  {
+    "no": 50,
+    "district": "Quận 4",
+    "ward": "Phường 18",
+    "splitInto": [
+      "Phường Xóm Chiếu"
+    ]
+  },
+  {
+    "no": 51,
+    "district": "Quận 5",
+    "ward": "Phường 1",
+    "splitInto": [
+      "Phường Chợ Quán"
+    ]
+  },
+  {
+    "no": 52,
+    "district": "Quận 5",
+    "ward": "Phường 2",
+    "splitInto": [
+      "Phường Chợ Quán"
+    ]
+  },
+  {
+    "no": 54,
+    "district": "Quận 5",
+    "ward": "Phường 4",
+    "splitInto": [
+      "Phường Chợ Quán"
+    ]
+  },
+  {
+    "no": 55,
+    "district": "Quận 5",
+    "ward": "Phường 5",
+    "splitInto": [
+      "Phường An Đông"
+    ]
+  },
+  {
+    "no": 57,
+    "district": "Quận 5",
+    "ward": "Phường 7",
+    "splitInto": [
+      "Phường An Đông"
+    ]
+  },
+  {
+    "no": 59,
+    "district": "Quận 5",
+    "ward": "Phường 9",
+    "splitInto": [
+      "Phường An Đông"
+    ]
+  },
+  {
+    "no": 61,
+    "district": "Quận 5",
+    "ward": "Phường 11",
+    "splitInto": [
+      "Phường Chợ Lớn"
+    ]
+  },
+  {
+    "no": 62,
+    "district": "Quận 5",
+    "ward": "Phường 12",
+    "splitInto": [
+      "Phường Chợ Lớn"
+    ]
+  },
+  {
+    "no": 63,
+    "district": "Quận 5",
+    "ward": "Phường 13",
+    "splitInto": [
+      "Phường Chợ Lớn"
+    ]
+  },
+  {
+    "no": 64,
+    "district": "Quận 5",
+    "ward": "Phường 14",
+    "splitInto": [
+      "Phường Chợ Lớn"
+    ]
+  },
+  {
+    "no": 66,
+    "district": "Quận 6",
+    "ward": "Phường 1",
+    "splitInto": [
+      "Phường Bình Tiên"
+    ]
+  },
+  {
+    "no": 67,
+    "district": "Quận 6",
+    "ward": "Phường 2",
+    "splitInto": [
+      "Phường Bình Tây"
+    ]
+  },
+  {
+    "no": 72,
+    "district": "Quận 6",
+    "ward": "Phường 7",
+    "splitInto": [
+      "Phường Bình Tiên"
+    ]
+  },
+  {
+    "no": 73,
+    "district": "Quận 6",
+    "ward": "Phường 8",
+    "splitInto": [
+      "Phường Bình Tiên"
+    ]
+  },
+  {
+    "no": 74,
+    "district": "Quận 6",
+    "ward": "Phường 9",
+    "splitInto": [
+      "Phường Bình Tây"
+    ]
+  },
+  {
+    "no": 75,
+    "district": "Quận 6",
+    "ward": "Phường 10",
+    "splitInto": [
+      "Phường Bình Phú"
+    ]
+  },
+  {
+    "no": 76,
+    "district": "Quận 6",
+    "ward": "Phường 11",
+    "splitInto": [
+      "Phường Bình Phú"
+    ]
+  },
+  {
+    "no": 77,
+    "district": "Quận 6",
+    "ward": "Phường 12",
+    "splitInto": [
+      "Phường Phú Lâm"
+    ]
+  },
+  {
+    "no": 78,
+    "district": "Quận 6",
+    "ward": "Phường 13",
+    "splitInto": [
+      "Phường Phú Lâm"
+    ]
+  },
+  {
+    "no": 79,
+    "district": "Quận 6",
+    "ward": "Phường 14",
+    "splitInto": [
+      "Phường Phú Lâm"
+    ]
+  },
+  {
+    "no": 80,
+    "district": "Quận 7",
+    "ward": "Phường Bình Thuận",
+    "splitInto": [
+      "Phường Tân Thuận"
+    ]
+  },
+  {
+    "no": 81,
+    "district": "Quận 7",
+    "ward": "Phường Phú Mỹ",
+    "splitInto": [
+      "Phường Phú Thuận",
+      "Phường Tân Mỹ"
+    ]
+  },
+  {
+    "no": 82,
+    "district": "Quận 7",
+    "ward": "Phường Phú Thuận",
+    "splitInto": [
+      "Phường Phú Thuận"
+    ]
+  },
+  {
+    "no": 83,
+    "district": "Quận 7",
+    "ward": "Phường Tân Hưng",
+    "splitInto": [
+      "Phường Tân Hưng"
+    ]
+  },
+  {
+    "no": 84,
+    "district": "Quận 7",
+    "ward": "Phường Tân Kiểng",
+    "splitInto": [
+      "Phường Tân Hưng"
+    ]
+  },
+  {
+    "no": 85,
+    "district": "Quận 7",
+    "ward": "Phường Tân Phong",
+    "splitInto": [
+      "Phường Tân Hưng"
+    ]
+  },
+  {
+    "no": 86,
+    "district": "Quận 7",
+    "ward": "Phường Tân Phú",
+    "splitInto": [
+      "Phường Tân Mỹ"
+    ]
+  },
+  {
+    "no": 87,
+    "district": "Quận 7",
+    "ward": "Phường Tân Quy",
+    "splitInto": [
+      "Phường Tân Hưng"
+    ]
+  },
+  {
+    "no": 88,
+    "district": "Quận 7",
+    "ward": "Phường Tân Thuận Đông",
+    "splitInto": [
+      "Phường Tân Thuận"
+    ]
+  },
+  {
+    "no": 89,
+    "district": "Quận 7",
+    "ward": "Phường Tân Thuận Tây",
+    "splitInto": [
+      "Phường Tân Thuận"
+    ]
+  },
+  {
+    "no": 92,
+    "district": "Quận 8",
+    "ward": "Phường Rạch Ông",
+    "splitInto": [
+      "Phường Chánh Hưng"
+    ]
+  },
+  {
+    "no": 93,
+    "district": "Quận 8",
+    "ward": "Phường 4",
+    "splitInto": [
+      "Phường Chánh Hưng"
+    ]
+  },
+  {
+    "no": 94,
+    "district": "Quận 8",
+    "ward": "Phường 5",
+    "splitInto": [
+      "Phường Chánh Hưng",
+      "Phường Bình Đông"
+    ]
+  },
+  {
+    "no": 95,
+    "district": "Quận 8",
+    "ward": "Phường 6",
+    "splitInto": [
+      "Phường Bình Đông"
+    ]
+  },
+  {
+    "no": 96,
+    "district": "Quận 8",
+    "ward": "Phường 7",
+    "splitInto": [
+      "Phường Bình Đông"
+    ]
+  },
+  {
+    "no": 101,
+    "district": "Quận 8",
+    "ward": "Phường Hưng Phú",
+    "splitInto": [
+      "Phường Chánh Hưng"
+    ]
+  },
+  {
+    "no": 102,
+    "district": "Quận 8",
+    "ward": "Phường Xóm Củi",
+    "splitInto": [
+      "Phường Phú Định"
+    ]
+  },
+  {
+    "no": 103,
+    "district": "Quận 8",
+    "ward": "Phường 14",
+    "splitInto": [
+      "Phường Phú Định"
+    ]
+  },
+  {
+    "no": 104,
+    "district": "Quận 8",
+    "ward": "Phường 15",
+    "splitInto": [
+      "Phường Phú Định"
+    ]
+  },
+  {
+    "no": 105,
+    "district": "Quận 8",
+    "ward": "Phường 16",
+    "splitInto": [
+      "Phường Bình Phú",
+      "Phường Phú Định"
+    ]
+  },
+  {
+    "no": 108,
+    "district": "Quận 9",
+    "ward": "Phường Hiệp Phú",
+    "splitInto": [
+      "Phường Tăng Nhơn Phú"
+    ]
+  },
+  {
+    "no": 109,
+    "district": "Quận 9",
+    "ward": "Phường Long Bình",
+    "splitInto": [
+      "Phường Long Bình"
+    ]
+  },
+  {
+    "no": 110,
+    "district": "Quận 9",
+    "ward": "Phường Long Phước",
+    "splitInto": [
+      "Phường Long Phước"
+    ]
+  },
+  {
+    "no": 111,
+    "district": "Quận 9",
+    "ward": "Phường Long Thạnh Mỹ",
+    "splitInto": [
+      "Phường Tăng Nhơn Phú",
+      "Phường Long Bình"
+    ]
+  },
+  {
+    "no": 112,
+    "district": "Quận 9",
+    "ward": "Phường Long Trường",
+    "splitInto": [
+      "Phường Long Trường"
+    ]
+  },
+  {
+    "no": 113,
+    "district": "Quận 9",
+    "ward": "Phường Phú Hữu",
+    "splitInto": [
+      "Phường Long Trường"
+    ]
+  },
+  {
+    "no": 114,
+    "district": "Quận 9",
+    "ward": "Phường Phước Bình",
+    "splitInto": [
+      "Phường Phước Long"
+    ]
+  },
+  {
+    "no": 115,
+    "district": "Quận 9",
+    "ward": "Phường Phước Long A",
+    "splitInto": [
+      "Phường Phước Long"
+    ]
+  },
+  {
+    "no": 116,
+    "district": "Quận 9",
+    "ward": "Phường Phước Long B",
+    "splitInto": [
+      "Phường Phước Long"
+    ]
+  },
+  {
+    "no": 117,
+    "district": "Quận 9",
+    "ward": "Phường Tăng Nhơn Phú A",
+    "splitInto": [
+      "Phường Tăng Nhơn Phú"
+    ]
+  },
+  {
+    "no": 118,
+    "district": "Quận 9",
+    "ward": "Phường Tăng Nhơn Phú B",
+    "splitInto": [
+      "Phường Tăng Nhơn Phú"
+    ]
+  },
+  {
+    "no": 119,
+    "district": "Quận 9",
+    "ward": "Phường Tân Phú",
+    "splitInto": [
+      "Phường Tăng Nhơn Phú"
+    ]
+  },
+  {
+    "no": 120,
+    "district": "Quận 9",
+    "ward": "Phường Trường Thạnh",
+    "splitInto": [
+      "Phường Long Phước"
+    ]
+  },
+  {
+    "no": 121,
+    "district": "Quận 10",
+    "ward": "Phường 1",
+    "splitInto": [
+      "Phường Vườn Lài"
+    ]
+  },
+  {
+    "no": 122,
+    "district": "Quận 10",
+    "ward": "Phường 2",
+    "splitInto": [
+      "Phường Vườn Lài"
+    ]
+  },
+  {
+    "no": 124,
+    "district": "Quận 10",
+    "ward": "Phường 4",
+    "splitInto": [
+      "Phường Vườn Lài"
+    ]
+  },
+  {
+    "no": 126,
+    "district": "Quận 10",
+    "ward": "Phường 6",
+    "splitInto": [
+      "Phường Diên Hồng"
+    ]
+  },
+  {
+    "no": 128,
+    "district": "Quận 10",
+    "ward": "Phường 8",
+    "splitInto": [
+      "Phường Diên Hồng"
+    ]
+  },
+  {
+    "no": 129,
+    "district": "Quận 10",
+    "ward": "Phường 9",
+    "splitInto": [
+      "Phường Vườn Lài"
+    ]
+  },
+  {
+    "no": 130,
+    "district": "Quận 10",
+    "ward": "Phường 10",
+    "splitInto": [
+      "Phường Vườn Lài"
+    ]
+  },
+  {
+    "no": 132,
+    "district": "Quận 10",
+    "ward": "Phường 12",
+    "splitInto": [
+      "Phường Hòa Hưng"
+    ]
+  },
+  {
+    "no": 133,
+    "district": "Quận 10",
+    "ward": "Phường 13",
+    "splitInto": [
+      "Phường Hòa Hưng"
+    ]
+  },
+  {
+    "no": 134,
+    "district": "Quận 10",
+    "ward": "Phường 14",
+    "splitInto": [
+      "Phường Diên Hồng",
+      "Phường Hòa Hưng"
+    ]
+  },
+  {
+    "no": 135,
+    "district": "Quận 10",
+    "ward": "Phường 15",
+    "splitInto": [
+      "Phường Hòa Hưng"
+    ]
+  },
+  {
+    "no": 136,
+    "district": "Quận 11",
+    "ward": "Phường 1",
+    "splitInto": [
+      "Phường Minh Phụng"
+    ]
+  },
+  {
+    "no": 138,
+    "district": "Quận 11",
+    "ward": "Phường 3",
+    "splitInto": [
+      "Phường Bình Thới"
+    ]
+  },
+  {
+    "no": 140,
+    "district": "Quận 11",
+    "ward": "Phường 5",
+    "splitInto": [
+      "Phường Hòa Bình"
+    ]
+  },
+  {
+    "no": 142,
+    "district": "Quận 11",
+    "ward": "Phường 7",
+    "splitInto": [
+      "Phường Minh Phụng"
+    ]
+  },
+  {
+    "no": 143,
+    "district": "Quận 11",
+    "ward": "Phường 8",
+    "splitInto": [
+      "Phường Bình Thới",
+      "Phường Phú Thọ"
+    ]
+  },
+  {
+    "no": 145,
+    "district": "Quận 11",
+    "ward": "Phường 10",
+    "splitInto": [
+      "Phường Bình Thới"
+    ]
+  },
+  {
+    "no": 146,
+    "district": "Quận 11",
+    "ward": "Phường 11",
+    "splitInto": [
+      "Phường Phú Thọ"
+    ]
+  },
+  {
+    "no": 149,
+    "district": "Quận 11",
+    "ward": "Phường 14",
+    "splitInto": [
+      "Phường Hòa Bình"
+    ]
+  },
+  {
+    "no": 150,
+    "district": "Quận 11",
+    "ward": "Phường 15",
+    "splitInto": [
+      "Phường Phú Thọ"
+    ]
+  },
+  {
+    "no": 151,
+    "district": "Quận 11",
+    "ward": "Phường 16",
+    "splitInto": [
+      "Phường Minh Phụng"
+    ]
+  },
+  {
+    "no": 152,
+    "district": "Quận 12",
+    "ward": "Phường An Phú Đông",
+    "splitInto": [
+      "Phường An Phú Đông"
+    ]
+  },
+  {
+    "no": 153,
+    "district": "Quận 12",
+    "ward": "Phường Đông Hưng Thuận",
+    "splitInto": [
+      "Phường Đông Hưng Thuận"
+    ]
+  },
+  {
+    "no": 154,
+    "district": "Quận 12",
+    "ward": "Phường Hiệp Thành",
+    "splitInto": [
+      "Phường Tân Thới Hiệp"
+    ]
+  },
+  {
+    "no": 155,
+    "district": "Quận 12",
+    "ward": "Phường Tân Chánh Hiệp",
+    "splitInto": [
+      "Phường Trung Mỹ Tây"
+    ]
+  },
+  {
+    "no": 156,
+    "district": "Quận 12",
+    "ward": "Phường Tân Hưng Thuận",
+    "splitInto": [
+      "Phường Đông Hưng Thuận"
+    ]
+  },
+  {
+    "no": 157,
+    "district": "Quận 12",
+    "ward": "Phường Tân Thới Hiệp",
+    "splitInto": [
+      "Phường Tân Thới Hiệp"
+    ]
+  },
+  {
+    "no": 158,
+    "district": "Quận 12",
+    "ward": "Phường Tân Thới Nhất",
+    "splitInto": [
+      "Phường Đông Hưng Thuận"
+    ]
+  },
+  {
+    "no": 159,
+    "district": "Quận 12",
+    "ward": "Phường Thạnh Lộc",
+    "splitInto": [
+      "Phường An Phú Đông"
+    ]
+  },
+  {
+    "no": 160,
+    "district": "Quận 12",
+    "ward": "Phường Thạnh Xuân",
+    "splitInto": [
+      "Phường Thới An"
+    ]
+  },
+  {
+    "no": 161,
+    "district": "Quận 12",
+    "ward": "Phường Thới An",
+    "splitInto": [
+      "Phường Thới An"
+    ]
+  },
+  {
+    "no": 162,
+    "district": "Quận 12",
+    "ward": "Phường Trung Mỹ Tây",
+    "splitInto": [
+      "Phường Trung Mỹ Tây"
+    ]
+  },
+  {
+    "no": 163,
+    "district": "Quận Bình Thạnh",
+    "ward": "Phường 1",
+    "splitInto": [
+      "Phường Gia Định"
+    ]
+  },
+  {
+    "no": 164,
+    "district": "Quận Bình Thạnh",
+    "ward": "Phường 2",
+    "splitInto": [
+      "Phường Gia Định"
+    ]
+  },
+  {
+    "no": 166,
+    "district": "Quận Bình Thạnh",
+    "ward": "Phường 5",
+    "splitInto": [
+      "Phường Bình Lợi Trung"
+    ]
+  },
+  {
+    "no": 168,
+    "district": "Quận Bình Thạnh",
+    "ward": "Phường 7",
+    "splitInto": [
+      "Phường Gia Định"
+    ]
+  },
+  {
+    "no": 169,
+    "district": "Quận Bình Thạnh",
+    "ward": "Phường 11",
+    "splitInto": [
+      "Phường Bình Lợi Trung"
+    ]
+  },
+  {
+    "no": 170,
+    "district": "Quận Bình Thạnh",
+    "ward": "Phường 12",
+    "splitInto": [
+      "Phường Bình Thạnh"
+    ]
+  },
+  {
+    "no": 171,
+    "district": "Quận Bình Thạnh",
+    "ward": "Phường 13",
+    "splitInto": [
+      "Phường Bình Lợi Trung"
+    ]
+  },
+  {
+    "no": 172,
+    "district": "Quận Bình Thạnh",
+    "ward": "Phường 14",
+    "splitInto": [
+      "Phường Bình Thạnh"
+    ]
+  },
+  {
+    "no": 174,
+    "district": "Quận Bình Thạnh",
+    "ward": "Phường 17",
+    "splitInto": [
+      "Phường Gia Định"
+    ]
+  },
+  {
+    "no": 175,
+    "district": "Quận Bình Thạnh",
+    "ward": "Phường 19",
+    "splitInto": [
+      "Phường Thạnh Mỹ Tây"
+    ]
+  },
+  {
+    "no": 177,
+    "district": "Quận Bình Thạnh",
+    "ward": "Phường 22",
+    "splitInto": [
+      "Phường Thạnh Mỹ Tây"
+    ]
+  },
+  {
+    "no": 179,
+    "district": "Quận Bình Thạnh",
+    "ward": "Phường 25",
+    "splitInto": [
+      "Phường Thạnh Mỹ Tây"
+    ]
+  },
+  {
+    "no": 180,
+    "district": "Quận Bình Thạnh",
+    "ward": "Phường 26",
+    "splitInto": [
+      "Phường Bình Thạnh"
+    ]
+  },
+  {
+    "no": 181,
+    "district": "Quận Bình Thạnh",
+    "ward": "Phường 27",
+    "splitInto": [
+      "Phường Bình Quới"
+    ]
+  },
+  {
+    "no": 182,
+    "district": "Quận Bình Thạnh",
+    "ward": "Phường 28",
+    "splitInto": [
+      "Phường Bình Quới"
+    ]
+  },
+  {
+    "no": 183,
+    "district": "Quận Gò Vấp",
+    "ward": "Phường 1",
+    "splitInto": [
+      "Phường Hạnh Thông"
+    ]
+  },
+  {
+    "no": 184,
+    "district": "Quận Gò Vấp",
+    "ward": "Phường 3",
+    "splitInto": [
+      "Phường Hạnh Thông"
+    ]
+  },
+  {
+    "no": 186,
+    "district": "Quận Gò Vấp",
+    "ward": "Phường 5",
+    "splitInto": [
+      "Phường An Nhơn"
+    ]
+  },
+  {
+    "no": 187,
+    "district": "Quận Gò Vấp",
+    "ward": "Phường 6",
+    "splitInto": [
+      "Phường An Nhơn"
+    ]
+  },
+  {
+    "no": 189,
+    "district": "Quận Gò Vấp",
+    "ward": "Phường 8",
+    "splitInto": [
+      "Phường Thông Tây Hội"
+    ]
+  },
+  {
+    "no": 191,
+    "district": "Quận Gò Vấp",
+    "ward": "Phường 10",
+    "splitInto": [
+      "Phường Gò Vấp"
+    ]
+  },
+  {
+    "no": 192,
+    "district": "Quận Gò Vấp",
+    "ward": "Phường 11",
+    "splitInto": [
+      "Phường Thông Tây Hội"
+    ]
+  },
+  {
+    "no": 193,
+    "district": "Quận Gò Vấp",
+    "ward": "Phường 12",
+    "splitInto": [
+      "Phường An Hội Tây"
+    ]
+  },
+  {
+    "no": 195,
+    "district": "Quận Gò Vấp",
+    "ward": "Phường 14",
+    "splitInto": [
+      "Phường An Hội Tây"
+    ]
+  },
+  {
+    "no": 196,
+    "district": "Quận Gò Vấp",
+    "ward": "Phường 15",
+    "splitInto": [
+      "Phường An Hội Đông"
+    ]
+  },
+  {
+    "no": 197,
+    "district": "Quận Gò Vấp",
+    "ward": "Phường 16",
+    "splitInto": [
+      "Phường An Hội Đông"
+    ]
+  },
+  {
+    "no": 198,
+    "district": "Quận Gò Vấp",
+    "ward": "Phường 17",
+    "splitInto": [
+      "Phường Gò Vấp"
+    ]
+  },
+  {
+    "no": 199,
+    "district": "Quận Phú Nhuận",
+    "ward": "Phường 1",
+    "splitInto": [
+      "Phường Cầu Kiệu"
+    ]
+  },
+  {
+    "no": 200,
+    "district": "Quận Phú Nhuận",
+    "ward": "Phường 2",
+    "splitInto": [
+      "Phường Cầu Kiệu"
+    ]
+  },
+  {
+    "no": 202,
+    "district": "Quận Phú Nhuận",
+    "ward": "Phường 4",
+    "splitInto": [
+      "Phường Đức Nhuận"
+    ]
+  },
+  {
+    "no": 203,
+    "district": "Quận Phú Nhuận",
+    "ward": "Phường 5",
+    "splitInto": [
+      "Phường Đức Nhuận"
+    ]
+  },
+  {
+    "no": 204,
+    "district": "Quận Phú Nhuận",
+    "ward": "Phường 7",
+    "splitInto": [
+      "Phường Cầu Kiệu"
+    ]
+  },
+  {
+    "no": 205,
+    "district": "Quận Phú Nhuận",
+    "ward": "Phường 8",
+    "splitInto": [
+      "Phường Phú Nhuận"
+    ]
+  },
+  {
+    "no": 206,
+    "district": "Quận Phú Nhuận",
+    "ward": "Phường 9",
+    "splitInto": [
+      "Phường Đức Nhuận"
+    ]
+  },
+  {
+    "no": 207,
+    "district": "Quận Phú Nhuận",
+    "ward": "Phường 10",
+    "splitInto": [
+      "Phường Phú Nhuận"
+    ]
+  },
+  {
+    "no": 208,
+    "district": "Quận Phú Nhuận",
+    "ward": "Phường 11",
+    "splitInto": [
+      "Phường Phú Nhuận"
+    ]
+  },
+  {
+    "no": 210,
+    "district": "Quận Phú Nhuận",
+    "ward": "Phường 13",
+    "splitInto": [
+      "Phường Phú Nhuận"
+    ]
+  },
+  {
+    "no": 212,
+    "district": "Quận Phú Nhuận",
+    "ward": "Phường 15",
+    "splitInto": [
+      "Phường Cầu Kiệu",
+      "Phường Phú Nhuận"
+    ]
+  },
+  {
+    "no": 214,
+    "district": "Quận Tân Bình",
+    "ward": "Phường 1",
+    "splitInto": [
+      "Phường Tân Sơn Hòa"
+    ]
+  },
+  {
+    "no": 215,
+    "district": "Quận Tân Bình",
+    "ward": "Phường 2",
+    "splitInto": [
+      "Phường Tân Sơn Hòa"
+    ]
+  },
+  {
+    "no": 216,
+    "district": "Quận Tân Bình",
+    "ward": "Phường 3",
+    "splitInto": [
+      "Phường Tân Sơn Hòa"
+    ]
+  },
+  {
+    "no": 217,
+    "district": "Quận Tân Bình",
+    "ward": "Phường 4",
+    "splitInto": [
+      "Phường Tân Sơn Nhất"
+    ]
+  },
+  {
+    "no": 218,
+    "district": "Quận Tân Bình",
+    "ward": "Phường 5",
+    "splitInto": [
+      "Phường Tân Sơn Nhất"
+    ]
+  },
+  {
+    "no": 219,
+    "district": "Quận Tân Bình",
+    "ward": "Phường 6",
+    "splitInto": [
+      "Phường Tân Hòa"
+    ]
+  },
+  {
+    "no": 220,
+    "district": "Quận Tân Bình",
+    "ward": "Phường 7",
+    "splitInto": [
+      "Phường Tân Sơn Nhất"
+    ]
+  },
+  {
+    "no": 221,
+    "district": "Quận Tân Bình",
+    "ward": "Phường 8",
+    "splitInto": [
+      "Phường Tân Hòa"
+    ]
+  },
+  {
+    "no": 222,
+    "district": "Quận Tân Bình",
+    "ward": "Phường 9",
+    "splitInto": [
+      "Phường Tân Hòa"
+    ]
+  },
+  {
+    "no": 223,
+    "district": "Quận Tân Bình",
+    "ward": "Phường 10",
+    "splitInto": [
+      "Phường Bảy Hiền"
+    ]
+  },
+  {
+    "no": 224,
+    "district": "Quận Tân Bình",
+    "ward": "Phường 11",
+    "splitInto": [
+      "Phường Bảy Hiền"
+    ]
+  },
+  {
+    "no": 225,
+    "district": "Quận Tân Bình",
+    "ward": "Phường 12",
+    "splitInto": [
+      "Phường Bảy Hiền"
+    ]
+  },
+  {
+    "no": 226,
+    "district": "Quận Tân Bình",
+    "ward": "Phường 13",
+    "splitInto": [
+      "Phường Tân Bình"
+    ]
+  },
+  {
+    "no": 227,
+    "district": "Quận Tân Bình",
+    "ward": "Phường 14",
+    "splitInto": [
+      "Phường Tân Bình"
+    ]
+  },
+  {
+    "no": 228,
+    "district": "Quận Tân Bình",
+    "ward": "Phường 15",
+    "splitInto": [
+      "Phường Tân Bình",
+      "Phường Tân Sơn"
+    ]
+  },
+  {
+    "no": 229,
+    "district": "Quận Tân Phú",
+    "ward": "Phường Hòa Thạnh",
+    "splitInto": [
+      "Phường Tân Phú"
+    ]
+  },
+  {
+    "no": 230,
+    "district": "Quận Tân Phú",
+    "ward": "Phường Hiệp Tân",
+    "splitInto": [
+      "Phường Phú Thạnh"
+    ]
+  },
+  {
+    "no": 231,
+    "district": "Quận Tân Phú",
+    "ward": "Phường Phú Thạnh",
+    "splitInto": [
+      "Phường Phú Thạnh"
+    ]
+  },
+  {
+    "no": 232,
+    "district": "Quận Tân Phú",
+    "ward": "Phường Phú Thọ Hòa",
+    "splitInto": [
+      "Phường Phú Thọ Hòa"
+    ]
+  },
+  {
+    "no": 233,
+    "district": "Quận Tân Phú",
+    "ward": "Phường Phú Trung",
+    "splitInto": [
+      "Phường Tân Phú"
+    ]
+  },
+  {
+    "no": 234,
+    "district": "Quận Tân Phú",
+    "ward": "Phường Sơn Kỳ",
+    "splitInto": [
+      "Phường Tân Sơn Nhì"
+    ]
+  },
+  {
+    "no": 235,
+    "district": "Quận Tân Phú",
+    "ward": "Phường Tân Quý",
+    "splitInto": [
+      "Phường Tân Sơn Nhì",
+      "Phường Phú Thọ Hòa"
+    ]
+  },
+  {
+    "no": 236,
+    "district": "Quận Tân Phú",
+    "ward": "Phường Tân Sơn Nhì",
+    "splitInto": [
+      "Phường Tân Sơn Nhì"
+    ]
+  },
+  {
+    "no": 237,
+    "district": "Quận Tân Phú",
+    "ward": "Phường Tân Thành",
+    "splitInto": [
+      "Phường Tân Sơn Nhì",
+      "Phường Phú Thọ Hòa",
+      "Phường Tân Phú"
+    ]
+  },
+  {
+    "no": 238,
+    "district": "Quận Tân Phú",
+    "ward": "Phường Tân Thới Hòa",
+    "splitInto": [
+      "Phường Tân Phú",
+      "Phường Phú Thạnh"
+    ]
+  },
+  {
+    "no": 239,
+    "district": "Quận Tân Phú",
+    "ward": "Phường Tây Thạnh",
+    "splitInto": [
+      "Phường Tây Thạnh"
+    ]
+  },
+  {
+    "no": 240,
+    "district": "Quận Bình Tân",
+    "ward": "Phường An Lạc",
+    "splitInto": [
+      "Phường An Lạc"
+    ]
+  },
+  {
+    "no": 241,
+    "district": "Quận Bình Tân",
+    "ward": "Phường An Lạc A",
+    "splitInto": [
+      "Phường An Lạc"
+    ]
+  },
+  {
+    "no": 242,
+    "district": "Quận Bình Tân",
+    "ward": "Phường Bình Hưng Hòa",
+    "splitInto": [
+      "Phường Bình Hưng Hòa"
+    ]
+  },
+  {
+    "no": 243,
+    "district": "Quận Bình Tân",
+    "ward": "Phường Bình Hưng Hòa A",
+    "splitInto": [
+      "Phường Bình Trị Đông",
+      "Phường Bình Hưng Hòa"
+    ]
+  },
+  {
+    "no": 244,
+    "district": "Quận Bình Tân",
+    "ward": "Phường Bình Hưng Hòa B",
+    "splitInto": [
+      "Phường Bình Tân"
+    ]
+  },
+  {
+    "no": 245,
+    "district": "Quận Bình Tân",
+    "ward": "Phường Bình Trị Đông",
+    "splitInto": [
+      "Phường Bình Trị Đông"
+    ]
+  },
+  {
+    "no": 246,
+    "district": "Quận Bình Tân",
+    "ward": "Phường Bình Trị Đông A",
+    "splitInto": [
+      "Phường Bình Tân",
+      "Phường Bình Trị Đông"
+    ]
+  },
+  {
+    "no": 247,
+    "district": "Quận Bình Tân",
+    "ward": "Phường Bình Trị Đông B",
+    "splitInto": [
+      "Phường An Lạc"
+    ]
+  },
+  {
+    "no": 248,
+    "district": "Quận Bình Tân",
+    "ward": "Phường Tân Tạo",
+    "splitInto": [
+      "Phường Bình Tân",
+      "Xã Tân Vĩnh Lộc"
+    ]
+  },
+  {
+    "no": 249,
+    "district": "Quận Bình Tân",
+    "ward": "Phường Tân Tạo A",
+    "splitInto": [
+      "Phường Tân Tạo",
+      "Xã Tân Nhựt"
+    ]
+  },
+  {
+    "no": 250,
+    "district": "Quận Thủ Đức",
+    "ward": "Phường Bình Chiểu",
+    "splitInto": [
+      "Phường Tam Bình"
+    ]
+  },
+  {
+    "no": 251,
+    "district": "Quận Thủ Đức",
+    "ward": "Phường Bình Thọ",
+    "splitInto": [
+      "Phường Thủ Đức"
+    ]
+  },
+  {
+    "no": 252,
+    "district": "Quận Thủ Đức",
+    "ward": "Phường Hiệp Bình Chánh",
+    "splitInto": [
+      "Phường Hiệp Bình"
+    ]
+  },
+  {
+    "no": 253,
+    "district": "Quận Thủ Đức",
+    "ward": "Phường Hiệp Bình Phước",
+    "splitInto": [
+      "Phường Hiệp Bình"
+    ]
+  },
+  {
+    "no": 254,
+    "district": "Quận Thủ Đức",
+    "ward": "Phường Linh Chiểu",
+    "splitInto": [
+      "Phường Thủ Đức"
+    ]
+  },
+  {
+    "no": 255,
+    "district": "Quận Thủ Đức",
+    "ward": "Phường Linh Đông",
+    "splitInto": [
+      "Phường Hiệp Bình",
+      "Phường Thủ Đức"
+    ]
+  },
+  {
+    "no": 256,
+    "district": "Quận Thủ Đức",
+    "ward": "Phường Linh Tây",
+    "splitInto": [
+      "Phường Thủ Đức",
+      "Phường Linh Xuân"
+    ]
+  },
+  {
+    "no": 257,
+    "district": "Quận Thủ Đức",
+    "ward": "Phường Linh Trung",
+    "splitInto": [
+      "Phường Linh Xuân"
+    ]
+  },
+  {
+    "no": 258,
+    "district": "Quận Thủ Đức",
+    "ward": "Phường Linh Xuân",
+    "splitInto": [
+      "Phường Linh Xuân"
+    ]
+  },
+  {
+    "no": 259,
+    "district": "Quận Thủ Đức",
+    "ward": "Phường Tam Bình",
+    "splitInto": [
+      "Phường Tam Bình"
+    ]
+  },
+  {
+    "no": 260,
+    "district": "Quận Thủ Đức",
+    "ward": "Phường Tam Phú",
+    "splitInto": [
+      "Phường Tam Bình"
+    ]
+  },
+  {
+    "no": 261,
+    "district": "Quận Thủ Đức",
+    "ward": "Phường Trường Thọ",
+    "splitInto": [
+      "Phường Thủ Đức"
+    ]
+  },
+  {
+    "no": 262,
+    "district": "Huyện Nhà Bè",
+    "ward": "Thị trấn Nhà Bè",
+    "splitInto": [
+      "Xã Nhà Bè"
+    ]
+  },
+  {
+    "no": 263,
+    "district": "Huyện Nhà Bè",
+    "ward": "Xã Hiệp Phước",
+    "splitInto": [
+      "Xã Hiệp Phước"
+    ]
+  },
+  {
+    "no": 264,
+    "district": "Huyện Nhà Bè",
+    "ward": "Xã Long Thới",
+    "splitInto": [
+      "Xã Hiệp Phước"
+    ]
+  },
+  {
+    "no": 265,
+    "district": "Huyện Nhà Bè",
+    "ward": "Xã Nhơn Đức",
+    "splitInto": [
+      "Xã Hiệp Phước"
+    ]
+  },
+  {
+    "no": 266,
+    "district": "Huyện Nhà Bè",
+    "ward": "Xã Phú Xuân",
+    "splitInto": [
+      "Xã Nhà Bè"
+    ]
+  },
+  {
+    "no": 267,
+    "district": "Huyện Nhà Bè",
+    "ward": "Xã Phước Kiển",
+    "splitInto": [
+      "Xã Nhà Bè"
+    ]
+  },
+  {
+    "no": 268,
+    "district": "Huyện Nhà Bè",
+    "ward": "Xã Phước Lộc",
+    "splitInto": [
+      "Xã Nhà Bè"
+    ]
+  },
+  {
+    "no": 269,
+    "district": "Huyện Hóc Môn",
+    "ward": "Thị trấn Hóc Môn",
+    "splitInto": [
+      "Xã Hóc Môn"
+    ]
+  },
+  {
+    "no": 270,
+    "district": "Huyện Hóc Môn",
+    "ward": "Xã Bà Điểm",
+    "splitInto": [
+      "Xã Bà Điểm"
+    ]
+  },
+  {
+    "no": 271,
+    "district": "Huyện Hóc Môn",
+    "ward": "Xã Đông Thạnh",
+    "splitInto": [
+      "Xã Đông Thạnh"
+    ]
+  },
+  {
+    "no": 272,
+    "district": "Huyện Hóc Môn",
+    "ward": "Xã Nhị Bình",
+    "splitInto": [
+      "Xã Đông Thạnh"
+    ]
+  },
+  {
+    "no": 273,
+    "district": "Huyện Hóc Môn",
+    "ward": "Xã Tân Hiệp",
+    "splitInto": [
+      "Xã Hóc Môn"
+    ]
+  },
+  {
+    "no": 274,
+    "district": "Huyện Hóc Môn",
+    "ward": "Xã Tân Thới Nhì",
+    "splitInto": [
+      "Xã Xuân Thới Sơn"
+    ]
+  },
+  {
+    "no": 275,
+    "district": "Huyện Hóc Môn",
+    "ward": "Xã Tân Xuân",
+    "splitInto": [
+      "Xã Hóc Môn"
+    ]
+  },
+  {
+    "no": 276,
+    "district": "Huyện Hóc Môn",
+    "ward": "Xã Thới Tam Thôn",
+    "splitInto": [
+      "Xã Đông Thạnh"
+    ]
+  },
+  {
+    "no": 277,
+    "district": "Huyện Hóc Môn",
+    "ward": "Xã Trung Chánh",
+    "splitInto": [
+      "Xã Bà Điểm"
+    ]
+  },
+  {
+    "no": 278,
+    "district": "Huyện Hóc Môn",
+    "ward": "Xã Xuân Thới Đông",
+    "splitInto": [
+      "Xã Xuân Thới Sơn"
+    ]
+  },
+  {
+    "no": 279,
+    "district": "Huyện Hóc Môn",
+    "ward": "Xã Xuân Thới Sơn",
+    "splitInto": [
+      "Xã Xuân Thới Sơn"
+    ]
+  },
+  {
+    "no": 280,
+    "district": "Huyện Hóc Môn",
+    "ward": "Xã Xuân Thới Thượng",
+    "splitInto": [
+      "Xã Bà Điểm"
+    ]
+  },
+  {
+    "no": 281,
+    "district": "Huyện Bình Chánh",
+    "ward": "Thị trấn Tân Túc",
+    "splitInto": [
+      "Xã Tân Nhựt"
+    ]
+  },
+  {
+    "no": 282,
+    "district": "Huyện Bình Chánh",
+    "ward": "Xã An Phú Tây",
+    "splitInto": [
+      "Xã Bình Chánh"
+    ]
+  },
+  {
+    "no": 283,
+    "district": "Huyện Bình Chánh",
+    "ward": "Xã Bình Chánh",
+    "splitInto": [
+      "Xã Bình Chánh"
+    ]
+  },
+  {
+    "no": 284,
+    "district": "Huyện Bình Chánh",
+    "ward": "Xã Bình Hưng",
+    "splitInto": [
+      "Xã Bình Hưng"
+    ]
+  },
+  {
+    "no": 285,
+    "district": "Huyện Bình Chánh",
+    "ward": "Xã Hưng Long",
+    "splitInto": [
+      "Xã Hưng Long"
+    ]
+  },
+  {
+    "no": 286,
+    "district": "Huyện Bình Chánh",
+    "ward": "Xã Lê Minh Xuân",
+    "splitInto": [
+      "Xã Bình Lợi"
+    ]
+  },
+  {
+    "no": 287,
+    "district": "Huyện Bình Chánh",
+    "ward": "Xã Phạm Văn Hai",
+    "splitInto": [
+      "Xã Vĩnh Lộc",
+      "Xã Tân Vĩnh Lộc"
+    ]
+  },
+  {
+    "no": 288,
+    "district": "Huyện Bình Chánh",
+    "ward": "Xã Phong Phú",
+    "splitInto": [
+      "Xã Bình Hưng"
+    ]
+  },
+  {
+    "no": 289,
+    "district": "Huyện Bình Chánh",
+    "ward": "Xã Quy Đức",
+    "splitInto": [
+      "Xã Hưng Long"
+    ]
+  },
+  {
+    "no": 290,
+    "district": "Huyện Bình Chánh",
+    "ward": "Xã Tân Kiên",
+    "splitInto": [
+      "Phường Tân Tạo",
+      "Xã Tân Nhựt"
+    ]
+  },
+  {
+    "no": 291,
+    "district": "Huyện Bình Chánh",
+    "ward": "Xã Tân Nhựt",
+    "splitInto": [
+      "Xã Tân Nhựt"
+    ]
+  },
+  {
+    "no": 292,
+    "district": "Huyện Bình Chánh",
+    "ward": "Xã Tân Quý Tây",
+    "splitInto": [
+      "Xã Bình Chánh"
+    ]
+  },
+  {
+    "no": 293,
+    "district": "Huyện Bình Chánh",
+    "ward": "Xã Vĩnh Lộc A",
+    "splitInto": [
+      "Xã Vĩnh Lộc"
+    ]
+  },
+  {
+    "no": 294,
+    "district": "Huyện Bình Chánh",
+    "ward": "Xã Vĩnh Lộc B",
+    "splitInto": [
+      "Xã Tân Vĩnh Lộc"
+    ]
+  },
+  {
+    "no": 295,
+    "district": "Huyện Củ Chi",
+    "ward": "Thị trấn Củ Chi",
+    "splitInto": [
+      "Xã Tân An Hội"
+    ]
+  },
+  {
+    "no": 296,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã An Nhơn Tây",
+    "splitInto": [
+      "Xã An Nhơn Tây"
+    ]
+  },
+  {
+    "no": 297,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã An Phú",
+    "splitInto": [
+      "Xã An Nhơn Tây"
+    ]
+  },
+  {
+    "no": 298,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã Bình Mỹ",
+    "splitInto": [
+      "Xã Bình Mỹ"
+    ]
+  },
+  {
+    "no": 299,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã Hòa Phú",
+    "splitInto": [
+      "Xã Bình Mỹ"
+    ]
+  },
+  {
+    "no": 300,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã Nhuận Đức",
+    "splitInto": [
+      "Xã Nhuận Đức"
+    ]
+  },
+  {
+    "no": 301,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã Phạm Văn Cội",
+    "splitInto": [
+      "Xã Nhuận Đức"
+    ]
+  },
+  {
+    "no": 302,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã Phú Hòa Đông",
+    "splitInto": [
+      "Xã Phú Hòa Đông"
+    ]
+  },
+  {
+    "no": 303,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã Phú Mỹ Hưng",
+    "splitInto": [
+      "Xã An Nhơn Tây"
+    ]
+  },
+  {
+    "no": 304,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã Phước Hiệp",
+    "splitInto": [
+      "Xã Tân An Hội"
+    ]
+  },
+  {
+    "no": 305,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã Phước Thạnh",
+    "splitInto": [
+      "Xã Thái Mỹ"
+    ]
+  },
+  {
+    "no": 306,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã Phước Vĩnh An",
+    "splitInto": [
+      "Xã Củ Chi"
+    ]
+  },
+  {
+    "no": 307,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã Tân An Hội",
+    "splitInto": [
+      "Xã Tân An Hội"
+    ]
+  },
+  {
+    "no": 308,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã Tân Phú Trung",
+    "splitInto": [
+      "Xã Củ Chi"
+    ]
+  },
+  {
+    "no": 309,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã Tân Thông Hội",
+    "splitInto": [
+      "Xã Củ Chi"
+    ]
+  },
+  {
+    "no": 310,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã Thái Mỹ",
+    "splitInto": [
+      "Xã Thái Mỹ"
+    ]
+  },
+  {
+    "no": 311,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã Trung An",
+    "splitInto": [
+      "Xã Bình Mỹ"
+    ]
+  },
+  {
+    "no": 312,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã Trung Lập Hạ",
+    "splitInto": [
+      "Xã Nhuận Đức"
+    ]
+  },
+  {
+    "no": 313,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã Trung Lập Thượng",
+    "splitInto": [
+      "Xã Thái Mỹ"
+    ]
+  },
+  {
+    "no": 314,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã Tân Thạnh Tây",
+    "splitInto": [
+      "Xã Phú Hòa Đông"
+    ]
+  },
+  {
+    "no": 315,
+    "district": "Huyện Củ Chi",
+    "ward": "Xã Tân Thạnh Đông",
+    "splitInto": [
+      "Xã Phú Hòa Đông"
+    ]
+  },
+  {
+    "no": 316,
+    "district": "Huyện Cần Giờ",
+    "ward": "Thị trấn Cần Thạnh",
+    "splitInto": [
+      "Xã Cần Giờ"
+    ]
+  },
+  {
+    "no": 317,
+    "district": "Huyện Cần Giờ",
+    "ward": "Xã An Thới Đông",
+    "splitInto": [
+      "Xã Bình Khánh",
+      "Xã An Thới Đông"
+    ]
+  },
+  {
+    "no": 318,
+    "district": "Huyện Cần Giờ",
+    "ward": "Xã Bình Khánh",
+    "splitInto": [
+      "Xã Bình Khánh"
+    ]
+  },
+  {
+    "no": 319,
+    "district": "Huyện Cần Giờ",
+    "ward": "Xã Long Hòa",
+    "splitInto": [
+      "Xã Cần Giờ"
+    ]
+  },
+  {
+    "no": 320,
+    "district": "Huyện Cần Giờ",
+    "ward": "Xã Lý Nhơn",
+    "splitInto": [
+      "Xã An Thới Đông"
+    ]
+  },
+  {
+    "no": 321,
+    "district": "Huyện Cần Giờ",
+    "ward": "Xã Tam Thôn Hiệp",
+    "splitInto": [
+      "Xã Bình Khánh"
+    ]
+  },
+  {
+    "no": 322,
+    "district": "Huyện Cần Giờ",
+    "ward": "Xã Thạnh An",
+    "splitInto": [
+      "Xã Thạnh An"
+    ]
+  }
+]

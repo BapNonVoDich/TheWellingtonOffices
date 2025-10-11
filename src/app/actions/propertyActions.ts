@@ -6,45 +6,89 @@ import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { slugify } from '@/lib/utils';
+import { deleteImage } from '@/app/actions/cloudinaryActions';
+import { v2 as cloudinary } from 'cloudinary';
+import streamifier from 'streamifier';
 
-export async function createProperty(formData: FormData) {
-  const session = await auth();
-  if (!session?.user?.id) {
-    throw new Error('Bạn phải đăng nhập để thực hiện hành động này.');
-  }
-  const userId = session.user.id;
+// Cấu hình Cloudinary SDK với thông tin từ .env
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
-  const imageUrlsString = formData.get('imageUrls')?.toString() || '';
-  const imageUrls = imageUrlsString.split('\n').map(url => url.trim()).filter(url => url);
+async function uploadToCloudinary(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const uploadStream = cloudinary.uploader.upload_stream(
+      { folder: "thewellingtonoffices" },
+      (error, result) => {
+        if (result) {
+          resolve(result.secure_url);
+        } else {
+          reject(error);
+        }
+      }
+    );
 
-  const name = formData.get('name')?.toString() || '';
-  const address_line = formData.get('address_line')?.toString() || '';
-  
-  const propertySlug = slugify(`${name} ${address_line}`);
-  
-  const wardName = formData.get('wardName')?.toString();
-  const districtName = formData.get('districtName')?.toString();
-  
-  let wardId = null;
-  if (wardName && districtName) {
-    const ward = await prisma.ward.findFirst({
-      where: {
-        name: wardName,
-        district: {
-          name: districtName,
-        },
-      },
-    });
-    if (ward) {
-      wardId = ward.id;
-    }
-  }
+    file.arrayBuffer()
+      .then(buffer => {
+        streamifier.createReadStream(Buffer.from(buffer)).pipe(uploadStream);
+      })
+      .catch(err => reject(err));
+  });
+}
 
-  if (!name || !address_line) {
-    throw new Error('Vui lòng điền đầy đủ tên và địa chỉ.');
-  }
+export async function createProperty(prevState: any, formData: FormData) {
+  const imageFiles = formData.getAll('imageFiles') as File[];
+  const imageUrls: string[] = [];
 
   try {
+    const session = await auth();
+    if (!session?.user?.id) {
+      return { success: false, message: 'Bạn phải đăng nhập để thực hiện hành động này.' };
+    }
+    const userId = session.user.id;
+
+    const uploadPromises = imageFiles.map(file => uploadToCloudinary(file));
+    const uploadedUrls = await Promise.all(uploadPromises);
+    imageUrls.push(...uploadedUrls);
+
+    const name = formData.get('name')?.toString() || '';
+    const address_line = formData.get('address_line')?.toString() || '';
+    
+    if (!name || !address_line) {
+      if (imageUrls.length > 0) {
+          const deletePromises = imageUrls.map(async (url) => {
+            const publicId = url.split('/').slice(-2).join('/').split('.')[0];
+            if (publicId) {
+              await deleteImage(publicId);
+            }
+          });
+          await Promise.all(deletePromises);
+        }
+      return { success: false, message: 'Vui lòng điền đầy đủ tên và địa chỉ.' };
+    }
+    
+    const propertySlug = slugify(`${name} ${address_line}`);
+    
+    const wardName = formData.get('wardName')?.toString();
+    const districtName = formData.get('districtName')?.toString();
+    
+    let wardId = null;
+    if (wardName && districtName) {
+      const ward = await prisma.ward.findFirst({
+        where: {
+          name: wardName,
+          district: {
+            name: districtName,
+          },
+        },
+      });
+      if (ward) {
+        wardId = ward.id;
+      }
+    }
+
     await prisma.property.create({
       data: {
         name,
@@ -57,86 +101,155 @@ export async function createProperty(formData: FormData) {
         lastUpdatedById: userId,
       },
     });
+    
+    revalidatePath('/admin/dashboard');
+    // LOẠI BỎ HÀM redirect() Ở ĐÂY
+    // Thay vào đó, chúng ta sẽ trả về một đối tượng trạng thái
+    return { success: true, message: 'Đã tạo tòa nhà thành công.' };
+    
   } catch (error: unknown) { 
-    console.error(error);
-    if (error instanceof Error && 'code' in error && error.code === 'P2002') {
-      throw new Error('Tên tòa nhà này đã tồn tại.');
+    console.error("Lỗi khi tạo tòa nhà:", error);
+    if (imageUrls.length > 0) {
+      const deletePromises = imageUrls.map(async (url) => {
+        const publicId = url.split('/').slice(-2).join('/').split('.')[0];
+        if (publicId) {
+          await deleteImage(publicId);
+        }
+      });
+      await Promise.all(deletePromises);
     }
-    throw new Error('Không thể tạo tòa nhà. Vui lòng thử lại.');
-  }
-  
 
-  revalidatePath('/admin/dashboard');
-  redirect('/admin/dashboard');
+    if (error instanceof Error && 'code' in error && error.code === 'P2002') {
+      return { success: false, message: 'Tên tòa nhà này đã tồn tại.' };
+    }
+    return { success: false, message: 'Không thể tạo tòa nhà. Vui lòng thử lại.' };
+  }
 }
 
-
-export async function updateProperty(id: string, formData: FormData) {
-  const session = await auth();
-  if (!session?.user?.id) {
-    throw new Error('Bạn phải đăng nhập để thực hiện hành động này.');
-  }
-  const userId = session.user.id;
-
-  // Lấy dữ liệu tên và địa chỉ mới từ form
-  const name = formData.get('name')?.toString() || '';
-  const address_line = formData.get('address_line')?.toString() || '';
-  const imageUrlsString = formData.get('imageUrls')?.toString() || '';
-  const imageUrls = imageUrlsString.split('\n').map(url => url.trim()).filter(url => url);
-  
-  // Tự động tạo slug mới dựa trên thông tin vừa cập nhật
-  const propertySlug = slugify(`${name} ${address_line}`);
-
-  const wardName = formData.get('wardName')?.toString();
-  const districtName = formData.get('districtName')?.toString();
-  
-  let wardId: string | null = null;
-  if (wardName && districtName) {
-    const ward = await prisma.ward.findFirst({
-      where: { name: wardName, district: { name: districtName } },
-    });
-    if (ward) {
-      wardId = ward.id;
-    } else {
-        const existingProperty = await prisma.property.findUnique({ where: { id } });
-        wardId = existingProperty?.wardId || null;
-    }
-  }
-
-  if (!name || !address_line) {
-    throw new Error('Vui lòng điền đầy đủ tên và địa chỉ.');
-  }
+export async function updateProperty(id: string, prevState: any, formData: FormData) {
+  const newImageFiles = formData.getAll('newImageFiles') as File[];
+  const existingImageUrls = formData.getAll('existingImageUrls') as string[];
+  const newImageUrls: string[] = [];
 
   try {
+    const session = await auth();
+    if (!session?.user?.id) {
+      return { success: false, message: 'Bạn phải đăng nhập để thực hiện hành động này.' };
+    }
+    const userId = session.user.id;
+
+    const existingProperty = await prisma.property.findUnique({
+      where: { id },
+      select: { imageUrls: true, wardId: true },
+    });
+
+    if (!existingProperty) {
+      return { success: false, message: 'Không tìm thấy tòa nhà.' };
+    }
+    
+    const imagesToDelete = existingProperty.imageUrls.filter(url => !existingImageUrls.includes(url));
+    const deletePromises = imagesToDelete.map(async (url) => {
+        const publicId = url.split('/').slice(-2).join('/').split('.')[0];
+        if (publicId) {
+          await deleteImage(publicId);
+        }
+    });
+    await Promise.all(deletePromises);
+
+    const uploadPromises = newImageFiles.map(file => uploadToCloudinary(file));
+    const uploadedUrls = await Promise.all(uploadPromises);
+    newImageUrls.push(...uploadedUrls);
+
+    const finalImageUrls = [...existingImageUrls, ...newImageUrls];
+
+    const name = formData.get('name')?.toString() || '';
+    const address_line = formData.get('address_line')?.toString() || '';
+    
+    if (!name || !address_line) {
+       if (newImageUrls.length > 0) {
+        const deleteNewImages = newImageUrls.map(async (url) => {
+          const publicId = url.split('/').slice(-2).join('/').split('.')[0];
+          if (publicId) {
+            await deleteImage(publicId);
+          }
+        });
+        await Promise.all(deleteNewImages);
+      }
+      return { success: false, message: 'Vui lòng điền đầy đủ tên và địa chỉ.' };
+    }
+
+    const propertySlug = slugify(`${name} ${address_line}`);
+
+    const wardName = formData.get('wardName')?.toString();
+    const districtName = formData.get('districtName')?.toString();
+    
+    let wardId: string | null = existingProperty.wardId || null;
+    if (wardName && districtName) {
+        const ward = await prisma.ward.findFirst({
+            where: { name: wardName, district: { name: districtName } },
+        });
+        if (ward) {
+            wardId = ward.id;
+        }
+    }
+
     await prisma.property.update({
       where: { id: id },
       data: {
         name,
-        slug: propertySlug, // Cập nhật slug mới vào database
+        slug: propertySlug,
         address_line,
-        imageUrls,
+        imageUrls: finalImageUrls,
         wardId: wardId,
         lastUpdatedById: userId,
       },
     });
-  } catch (error: unknown) {
-    console.error(error);
-    throw new Error('Không thể cập nhật tòa nhà. Vui lòng thử lại.');
-  }
 
-  revalidatePath('/admin/dashboard');
-  revalidatePath(`/admin/properties/edit/${id}`);
-  // Chuyển hướng về trang dashboard sau khi cập nhật
-  redirect('/admin/dashboard');
+    revalidatePath('/admin/dashboard');
+    revalidatePath(`/admin/properties/edit/${id}`);
+    // LOẠI BỎ HÀM redirect() Ở ĐÂY
+    return { success: true, message: 'Cập nhật tòa nhà thành công.' };
+
+  } catch (error: unknown) {
+    console.error("Lỗi khi cập nhật tòa nhà:", error);
+    if (newImageUrls.length > 0) {
+      const deleteNewImages = newImageUrls.map(async (url) => {
+        const publicId = url.split('/').slice(-2).join('/').split('.')[0];
+        if (publicId) {
+          await deleteImage(publicId);
+        }
+      });
+      await Promise.all(deleteNewImages);
+    }
+    if (error instanceof Error && 'code' in error && error.code === 'P2002') {
+      return { success: false, message: 'Tên tòa nhà này đã tồn tại.' };
+    }
+    return { success: false, message: 'Không thể cập nhật tòa nhà. Vui lòng thử lại.' };
+  }
 }
 
 export async function deleteProperty(id: string) {
-  const session = await auth();
-  if (!session?.user?.id) {
-    throw new Error('Bạn phải đăng nhập để thực hiện hành động này.');
-  }
-
   try {
+    const session = await auth();
+    if (!session?.user?.id) {
+      return { success: false, message: 'Bạn phải đăng nhập để thực hiện hành động này.' };
+    }
+
+    const property = await prisma.property.findUnique({
+      where: { id: id },
+      select: { imageUrls: true }
+    });
+
+    if (property) {
+      const deletePromises = property.imageUrls.map(async (url) => {
+        const publicId = url.split('/').slice(-2).join('/').split('.')[0];
+        if (publicId) {
+          await deleteImage(publicId);
+        }
+      });
+      await Promise.all(deletePromises);
+    }
+
     await prisma.$transaction([
       prisma.office.deleteMany({
         where: { propertyId: id },
@@ -145,10 +258,12 @@ export async function deleteProperty(id: string) {
         where: { id: id },
       }),
     ]);
-  } catch (error) {
-    console.error("Lỗi khi xóa property:", error);
-    throw new Error('Không thể xóa tòa nhà. Vui lòng thử lại.');
-  }
 
-  revalidatePath('/admin/dashboard');
+    revalidatePath('/admin/dashboard');
+    return { success: true, message: 'Đã xóa tòa nhà thành công.' };
+
+  } catch (error: unknown) {
+    console.error("Lỗi khi xóa property:", error);
+    return { success: false, message: 'Không thể xóa tòa nhà. Vui lòng thử lại.' };
+  }
 }

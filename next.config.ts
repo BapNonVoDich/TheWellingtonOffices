@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     serverActions: {
-      bodySizeLimit: '5mb', // Tăng giới hạn kích thước payload lên 5MB
+      bodySizeLimit: '500mb', // Tăng giới hạn kích thước payload lên 5MB
     },
   },
 };
