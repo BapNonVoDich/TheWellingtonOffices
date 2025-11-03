@@ -20,7 +20,12 @@ export default function EditPostForm({ post }: { post: Post }) {
       </div>
       <div>
         <label className="block text-sm font-medium text-gray-700">URL Hình ảnh đại diện</label>
-        <ImageUploader name="imageUrl" defaultValue={post.imageUrl || ''} />
+        <ImageUploader 
+          name="imageUrl" 
+          defaultValue={post.imageUrl ? [post.imageUrl] : []} 
+          onFilesChange={() => {}}
+          onPreviewChange={() => {}}
+        />
       </div>
       <div>
         <label htmlFor="content" className="block text-sm font-medium text-gray-700">Nội dung</label>

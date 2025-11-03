@@ -19,7 +19,11 @@ export default function NewPostPage() {
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">URL Hình ảnh đại diện</label>
-          <ImageUploader name="imageUrl" />
+          <ImageUploader 
+            name="imageUrl" 
+            onFilesChange={() => {}}
+            onPreviewChange={() => {}}
+          />
         </div>
         <div>
           <label htmlFor="content" className="block text-sm font-medium text-gray-700">Nội dung</label>

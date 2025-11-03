@@ -113,7 +113,6 @@ export default async function SearchBuildingPage({ searchParams }: SearchBuildin
             <PaginationControls
               currentPage={currentPage}
               totalPages={totalPages}
-              totalCount={totalCount}
             />
         </div>
     )

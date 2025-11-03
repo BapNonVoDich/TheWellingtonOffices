@@ -7,10 +7,9 @@ import { useTransition } from 'react';
 interface PaginationControlsProps {
     currentPage: number;
     totalPages: number;
-    totalCount: number;
 }
 
-export default function PaginationControls({ currentPage, totalPages, totalCount }: PaginationControlsProps) {
+export default function PaginationControls({ currentPage, totalPages }: PaginationControlsProps) {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();

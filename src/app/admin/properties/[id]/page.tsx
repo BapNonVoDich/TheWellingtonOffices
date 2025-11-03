@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect, useTransition, Fragment } from 'react';
+import { useState, useEffect, useTransition, Fragment, useCallback } from 'react';
 import { notFound } from 'next/navigation';
 import { createOffice, updateOffice, deleteOffice } from '@/app/actions/officeActions';
-import { Property, Office, Grade, OfficeType } from '@prisma/client';
+import { Property, Office, Grade } from '@prisma/client';
 
 // Dinh nghia kieu du lieu day du
 type PropertyWithOffices = Property & {
@@ -21,7 +21,7 @@ export default function ManageOfficesPage({ params }: { params: { id: string } }
   const [officeToDelete, setOfficeToDelete] = useState<Office | null>(null);
 
   // Ham de tai lai du lieu
-  const fetchProperty = async () => {
+  const fetchProperty = useCallback(async () => {
     // Chung ta se tao API nay o buoc sau
     const res = await fetch(`/api/properties/${propertyId}`);
     if (!res.ok) {
@@ -31,11 +31,11 @@ export default function ManageOfficesPage({ params }: { params: { id: string } }
     const data = await res.json();
     setProperty(data);
     setLoading(false);
-  };
+  }, [propertyId]);
 
   useEffect(() => {
     fetchProperty();
-  }, [propertyId]);
+  }, [propertyId, fetchProperty]);
   
   if (loading) return <div className="text-center p-8">Đang tải...</div>;
   if (!property) return notFound();

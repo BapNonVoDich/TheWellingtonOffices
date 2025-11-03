@@ -6,12 +6,12 @@ import ConsignmentNotificationEmail from '@/emails/ConsignmentNotificationEmail'
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const initialState = {
-  message: '',
-  success: false,
+type InitialState = {
+  message: string;
+  success: boolean;
 };
 
-export async function handleConsignmentSubmit(prevState: typeof initialState, formData: FormData) {
+export async function handleConsignmentSubmit(prevState: InitialState, formData: FormData) {
   const submission = {
     contactName: formData.get('contactName') as string,
     phone: formData.get('phone') as string,

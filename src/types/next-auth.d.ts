@@ -1,6 +1,5 @@
 // src/types/next-auth.d.ts
 import { DefaultSession, DefaultUser } from 'next-auth';
-import { JWT } from 'next-auth/jwt';
 
 // Mở rộng type của module 'next-auth'
 declare module 'next-auth' {

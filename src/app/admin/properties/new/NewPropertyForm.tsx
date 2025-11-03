@@ -28,7 +28,6 @@ function SubmitButton() {
 
 export default function NewPropertyForm({ districts }: { districts: DistrictWithWards[] }) {
   const [files, setFiles] = useState<File[]>([]);
-  const [previews, setPreviews] = useState<string[]>([]); // Thêm state cho previews
   const [formState, formAction] = useActionState(createProperty, initialState);
   const router = useRouter();
 
@@ -69,7 +68,7 @@ export default function NewPropertyForm({ districts }: { districts: DistrictWith
             name="imageUrls" 
             isMultiple={true} 
             onFilesChange={setFiles}
-            onPreviewChange={setPreviews} // Thêm prop này
+            onPreviewChange={() => {}}
           />
         </div>
 

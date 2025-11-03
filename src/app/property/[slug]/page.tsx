@@ -1,8 +1,9 @@
 // src/app/property/[slug]/page.tsx
-import prisma from '@/lib/prisma';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
+import prisma from '@/lib/prisma';
 import type { PropertyWithDetails } from '@/types';
+import ImageGallery from './ImageGallery';
 
 // generateStaticParams để tạo các trang tĩnh khi build
 export async function generateStaticParams() {
@@ -15,7 +16,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function PropertyDetailPage({ params }: { params: { slug: string } }) {
+export default async function PropertyDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
 
   const property: PropertyWithDetails | null = await prisma.property.findUnique({
@@ -42,26 +43,11 @@ export default async function PropertyDetailPage({ params }: { params: { slug: s
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="bg-white p-8 rounded-lg shadow-md">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            <div className="relative w-full h-96 rounded-lg overflow-hidden">
-              {property.imageUrls && property.imageUrls.length > 0 ? (
-                <Image
-                  src={property.imageUrls[0]}
-                  alt={property.name}
-                  fill={true}
-                  style={{objectFit: 'cover'}}
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
-                />
-              ) : (
-                <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                  <span className="text-gray-500">Không có hình ảnh</span>
-                </div>
-              )}
-            </div>
+            <ImageGallery images={property.imageUrls} propertyName={property.name} />
             <div className="flex flex-col h-full">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900">{property.name}</h1>
               <p className="text-lg text-gray-600 mt-2">
-                {property.address_line}, {property.ward?.name}, {property.ward?.district.name}
+                {property.address_line}, {property.ward?.name}, {property.ward?.district?.name}
               </p>
               <div className="mt-6 pt-4 border-t">
                 <h2 className="text-lg font-semibold text-gray-800 mb-2">Thông tin chi tiết:</h2>

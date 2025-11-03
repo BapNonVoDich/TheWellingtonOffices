@@ -3,7 +3,7 @@
 
 import { useState, useEffect, useTransition } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { Grade, OfficeType } from '@prisma/client';
+import { Grade } from '@prisma/client';
 
 type Ward = { id: string; name: string };
 type District = { id: string; name: string; wards: Ward[] };

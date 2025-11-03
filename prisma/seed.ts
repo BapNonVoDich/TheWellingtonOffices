@@ -1,4 +1,5 @@
 // prisma/seed.ts
+import 'dotenv/config';
 import { PrismaClient, Role, Grade, OfficeType } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import fs from 'fs';
@@ -9,29 +10,15 @@ const prisma = new PrismaClient();
 async function main() {
   console.log('Start seeding...');
 
-  // 1. Upsert admin user
-  const password = 'password123';
-  const hashedPassword = await bcrypt.hash(password, 12);
-  const adminEmployee = await prisma.employee.upsert({
-    where: { email: 'admin@officesaigon.com' },
-    update: { password: hashedPassword },
-    create: {
-      email: 'admin@officesaigon.com',
-      name: 'Admin User',
-      password: hashedPassword,
-      role: Role.ADMIN,
-    },
-  });
-  console.log(`Upserted admin user: ${adminEmployee.email}`);
-
-  // 2. Clear old data
+  // 1. Clear old data (including employees)
   console.log('Deleting old data...');
+  await prisma.employee.deleteMany({});
   await prisma.office.deleteMany({});
   await prisma.property.deleteMany({});
   await prisma.ward.deleteMany({});
   await prisma.district.deleteMany({});
 
-  // 3. Seed Districts & Wards from JSON file
+  // 2. Seed Districts & Wards from JSON file
   console.log('Seeding districts...');
   const districtsPath = path.join(__dirname, 'data', 'districts.json');
   const districtsFile = fs.readFileSync(districtsPath, 'utf-8');
@@ -62,7 +49,27 @@ async function main() {
   await prisma.ward.createMany({ data: wardsToCreate });
   console.log(`${wardsToCreate.length} wards seeded.`);
 
-  
+  // 3. Create admin user with an old createdAt so it never appears first
+  const adminEmail = process.env.SEED_ADMIN_EMAIL;
+  const adminName = process.env.SEED_ADMIN_NAME || 'Admin User';
+  const adminPassword = process.env.SEED_ADMIN_PASSWORD;
+
+  if (!adminEmail || !adminPassword) {
+    throw new Error('Missing SEED_ADMIN_EMAIL or SEED_ADMIN_PASSWORD in environment');
+  }
+
+  const hashedPassword = await bcrypt.hash(adminPassword, 12);
+  const adminEmployee = await prisma.employee.create({
+    data: {
+      email: adminEmail,
+      name: adminName,
+      password: hashedPassword,
+      role: Role.ADMIN,
+      createdAt: new Date('2000-01-01T00:00:00.000Z'),
+    },
+  });
+  console.log(`Created admin user: ${adminEmployee.email}`);
+
   console.log('Seeding finished.');
 }
 

@@ -3,7 +3,6 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { slugify } from '@/lib/utils';
 import { Grade, OfficeType, District, Ward } from '@prisma/client';
 import MegaMenu from './MegaMenu';
 import DropdownMenu from './DropdownMenu'; // Giả sử bạn vẫn còn component này cho Hạng và Loại

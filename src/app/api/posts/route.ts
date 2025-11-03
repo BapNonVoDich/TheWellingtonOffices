@@ -9,7 +9,7 @@ export async function GET() {
       include: { author: true },
     });
     return NextResponse.json(posts);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Failed to fetch posts" }, { status: 500 });
   }
 }

@@ -1,7 +1,5 @@
 // src/app/admin/properties/edit/[id]/page.tsx
-import { updateProperty } from '@/app/actions/propertyActions';
 import prisma from '@/lib/prisma';
-import WardCombobox from '@/app/components/WardCombobox';
 import { notFound } from 'next/navigation';
 import EditPropertyForm from './EditPropertyForm';
 

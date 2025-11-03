@@ -1,7 +1,7 @@
 // src/app/components/RichTextEditor.tsx
 'use client';
 
-import { useEditor, EditorContent, Editor } from '@tiptap/react';
+import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 // --- Import các extension cho bảng ---
 import { Table } from '@tiptap/extension-table';
@@ -19,7 +19,7 @@ export default function RichTextEditor({
   initialContent?: string;
   onChange: (html: string) => void;
 }) {
-  const [_, setForceRenderKey] = useState(0);
+  const [, setForceRenderKey] = useState(0);
 
   const editor = useEditor({
     extensions: [

@@ -1,14 +1,14 @@
 // src/app/tin-tuc/[slug]/page.tsx
-import prisma from '@/lib/prisma';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import Image from 'next/image';
+import prisma from '@/lib/prisma';
 
 type Props = { params: { slug: string } };
 
 // Ham nay tao Title va Description dong cho SEO
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params; // Thêm await
+  const { slug } = params;
   const post = await prisma.post.findUnique({
     where: { slug: slug },
   });
@@ -25,8 +25,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 export default async function PostDetailPage({ params }: { params: { slug: string } }) {
-  const { slug } = await params; // Thêm await
-  const post = await prisma.post.findUnique({
+  const { slug } = params;
+  const post = await prisma.post.findFirst({
     where: { slug: slug, published: true },
     include: { author: true },
   });

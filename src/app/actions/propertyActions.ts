@@ -4,7 +4,6 @@
 import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
 import { slugify } from '@/lib/utils';
 import { deleteImage } from '@/app/actions/cloudinaryActions';
 import { v2 as cloudinary } from 'cloudinary';
@@ -38,7 +37,7 @@ async function uploadToCloudinary(file: File): Promise<string> {
   });
 }
 
-export async function createProperty(prevState: any, formData: FormData) {
+export async function createProperty(prevState: { success: boolean; message: string }, formData: FormData) {
   const imageFiles = formData.getAll('imageFiles') as File[];
   const imageUrls: string[] = [];
 
@@ -126,7 +125,7 @@ export async function createProperty(prevState: any, formData: FormData) {
   }
 }
 
-export async function updateProperty(id: string, prevState: any, formData: FormData) {
+export async function updateProperty(id: string, prevState: { success: boolean; message: string }, formData: FormData) {
   const newImageFiles = formData.getAll('newImageFiles') as File[];
   const existingImageUrls = formData.getAll('existingImageUrls') as string[];
   const newImageUrls: string[] = [];
