@@ -3,14 +3,17 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import prisma from '@/lib/prisma';
+import { generateMetadata as generateSEOMetadata, generateArticleSchema, generateBreadcrumbSchema } from '@/lib/seo';
+import Script from 'next/script';
 
-type Props = { params: { slug: string } };
+type Props = { params: Promise<{ slug: string }> };
 
 // Ham nay tao Title va Description dong cho SEO
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = params;
+  const { slug } = await params;
   const post = await prisma.post.findUnique({
     where: { slug: slug },
+    include: { author: true },
   });
 
   if (!post) {
@@ -19,13 +22,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  return {
-    title: `${post.title} | The Wellington Offices`,
-    description: post.content.substring(0, 160), // Lấy 160 ký tự đầu làm description
-  };
+  // Strip HTML tags for description
+  const plainText = post.content.replace(/<[^>]*>/g, '').substring(0, 160);
+
+  return generateSEOMetadata({
+    title: post.title,
+    description: plainText,
+    url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://thewellingtonoffices.com'}/tin-tuc/${post.slug}`,
+    image: post.imageUrl || undefined,
+    type: 'article',
+    publishedTime: post.createdAt.toISOString(),
+    modifiedTime: post.updatedAt.toISOString(),
+    author: post.author.name,
+    keywords: ['tin tức', 'thị trường văn phòng', 'bất động sản', 'news'],
+  });
 }
-export default async function PostDetailPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export default async function PostDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
   const post = await prisma.post.findFirst({
     where: { slug: slug, published: true },
     include: { author: true },
@@ -35,7 +48,26 @@ export default async function PostDetailPage({ params }: { params: { slug: strin
     notFound();
   }
 
+  const articleSchema = generateArticleSchema(post);
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://thewellingtonoffices.com';
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: 'Trang chủ', url: baseUrl },
+    { name: 'Tin tức', url: `${baseUrl}/tin-tuc` },
+    { name: post.title, url: `${baseUrl}/tin-tuc/${post.slug}` },
+  ]);
+
   return (
+    <>
+      <Script
+        id="article-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <Script
+        id="breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
     <div className="max-w-4xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
       <article>
         <header className="mb-8">
@@ -68,6 +100,7 @@ export default async function PostDetailPage({ params }: { params: { slug: strin
         />
       </article>
     </div>
+    </>
   );
 
 

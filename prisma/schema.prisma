@@ -48,15 +48,25 @@ model Employee {
 }
 
 model District {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  name  String @unique
-  wards Ward[]
+  id       String     @id @default(auto()) @map("_id") @db.ObjectId
+  name     String     @unique
+  wards    Ward[]
+  oldWards OldWard[]
+}
+
+model OldWard {
+  id         String     @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  district   District   @relation(fields: [districtId], references: [id])
+  districtId String     @db.ObjectId
+  splitInto  String[]   @db.ObjectId // Array of Ward IDs
+  properties Property[]
 }
 
 model Ward {
   id         String     @id @default(auto()) @map("_id") @db.ObjectId
   name       String
-  mergedFrom String[]
+  mergedFrom String[]   @db.ObjectId // Array of OldWard IDs
   district   District   @relation(fields: [districtId], references: [id])
   districtId String     @db.ObjectId
   properties Property[]
@@ -69,6 +79,8 @@ model Property {
   address_line    String
   wardId          String?   @db.ObjectId
   ward            Ward?     @relation(fields: [wardId], references: [id])
+  oldWardId       String?   @db.ObjectId
+  oldWard         OldWard?  @relation(fields: [oldWardId], references: [id])
   imageUrls       String[]
   description     String?
   directions      String?

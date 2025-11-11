@@ -4,9 +4,10 @@ import { notFound } from 'next/navigation';
 import EditPostForm from './EditPostForm'; // Import component form mới
 
 // Page component chính là một Server Component để lấy dữ liệu
-export default async function EditPostPage({ params }: { params: { id: string } }) {
+export default async function EditPostPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   const post = await prisma.post.findUnique({
-    where: { id: params.id },
+    where: { id },
   });
 
   if (!post) {
@@ -14,10 +15,12 @@ export default async function EditPostPage({ params }: { params: { id: string } 
   }
 
   return (
-    <div className="bg-white p-8 rounded-lg shadow-md max-w-4xl mx-auto">
-      <h1 className="text-2xl font-bold text-gray-800 mb-6">Chỉnh sửa bài viết</h1>
-      {/* Truyền dữ liệu post đã lấy được vào Client Component */}
+    <>
+      <div className="mb-6">
+        <h1 className="text-3xl font-bold text-gray-900">Chỉnh sửa bài viết</h1>
+        <p className="text-sm text-gray-600 mt-1">Cập nhật thông tin và nội dung bài viết</p>
+      </div>
       <EditPostForm post={post} />
-    </div>
+    </>
   );
 }

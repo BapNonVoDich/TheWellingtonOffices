@@ -1,7 +1,7 @@
 // src/app/components/ImageUploader.tsx
 'use client';
 
-import { useState, useRef, ChangeEvent, DragEvent, useEffect } from 'react';
+import { useState, useRef, ChangeEvent, DragEvent, useEffect, useMemo } from 'react';
 import { CloudArrowUpIcon, TrashIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 
@@ -13,21 +13,56 @@ interface ImageUploaderProps {
   onPreviewChange: (previews: string[]) => void;
 }
 
+// Helper function to validate if a string is a valid URL
+const isValidUrl = (url: string | null | undefined): boolean => {
+  if (!url || typeof url !== 'string' || url.trim() === '') return false;
+  try {
+    new URL(url);
+    return true;
+  } catch {
+    // Also check if it's a blob URL (for local file previews)
+    if (typeof url === 'string' && url.startsWith('blob:')) return true;
+    return false;
+  }
+};
+
 export default function ImageUploader({ name, isMultiple = false, defaultValue = [], onFilesChange, onPreviewChange }: ImageUploaderProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [previews, setPreviews] = useState<string[]>(defaultValue);
+  // Filter out invalid URLs from defaultValue
+  const validDefaultValues = (defaultValue || []).filter(url => isValidUrl(url));
+  const [previews, setPreviews] = useState<string[]>(validDefaultValues);
   const [files, setFiles] = useState<File[]>([]);
   const dragItem = useRef<number | null>(null);
   const dragOverItem = useRef<number | null>(null);
 
   const [localUrls, setLocalUrls] = useState<string[]>([]);
 
+  // Memoize valid previews to avoid unnecessary updates
+  const validPreviews = useMemo(() => {
+    return previews.filter(url => isValidUrl(url));
+  }, [previews]);
+
+  // Use ref to track previous validPreviews to avoid unnecessary updates
+  const prevValidPreviewsRef = useRef<string[]>([]);
+
   useEffect(() => {
-    onPreviewChange(previews);
+    // Only call onPreviewChange if validPreviews actually changed
+    const hasChanged = 
+      validPreviews.length !== prevValidPreviewsRef.current.length ||
+      validPreviews.some((url, index) => url !== prevValidPreviewsRef.current[index]);
+    
+    if (hasChanged) {
+      prevValidPreviewsRef.current = validPreviews;
+      onPreviewChange(validPreviews);
+    }
+  }, [validPreviews, onPreviewChange]);
+
+  // Separate effect for cleanup
+  useEffect(() => {
     return () => {
       localUrls.forEach(url => URL.revokeObjectURL(url));
     }
-  }, [previews, onPreviewChange, localUrls]);
+  }, [localUrls]);
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return;
@@ -103,38 +138,42 @@ export default function ImageUploader({ name, isMultiple = false, defaultValue =
     e.currentTarget.classList.remove('opacity-50');
     handleSort();
   };
-  
+
   return (
     <div>
       <div className="mt-2 flex flex-wrap gap-4">
-        {previews.map((url, index) => (
-          <div 
-            key={url} 
-            className="relative w-40 h-40 rounded-lg overflow-hidden border cursor-grab"
-            draggable
-            onDragStart={(e) => handleDragStart(e, index)}
-            onDragEnter={(e) => handleDragEnter(e, index)}
-            onDragEnd={handleDragEnd}
-            onDragOver={(e) => e.preventDefault()}
-          >
-            <Image 
-              src={url} 
-              alt={`Preview ${index}`}
-              width={160}
-              height={120}
-              className="rounded-lg border object-contain bg-gray-100"
-            />
-            <button
-              type="button"
-              onClick={() => handleRemoveImage(index)}
-              className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-full hover:bg-red-600 transition"
-              aria-label="Xóa hình ảnh"
+        {validPreviews.map((url, index) => {
+          // Find the actual index in the original previews array
+          const actualIndex = previews.indexOf(url);
+          return (
+            <div 
+              key={`${url}-${index}`} 
+              className="relative w-40 h-40 rounded-lg overflow-hidden border cursor-grab"
+              draggable
+              onDragStart={(e) => handleDragStart(e, actualIndex)}
+              onDragEnter={(e) => handleDragEnter(e, actualIndex)}
+              onDragEnd={handleDragEnd}
+              onDragOver={(e) => e.preventDefault()}
             >
-              <TrashIcon className="h-4 w-4" />
-            </button>
-          </div>
-        ))}
-        {(!isMultiple && previews.length === 0) || isMultiple ? (
+              <Image 
+                src={url} 
+                alt={`Preview ${index}`}
+                width={160}
+                height={120}
+                className="rounded-lg border object-contain bg-gray-100"
+              />
+              <button
+                type="button"
+                onClick={() => handleRemoveImage(actualIndex)}
+                className="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-full hover:bg-red-600 transition"
+                aria-label="Xóa hình ảnh"
+              >
+                <TrashIcon className="h-4 w-4" />
+              </button>
+            </div>
+          );
+        })}
+        {(!isMultiple && validPreviews.length === 0) || isMultiple ? (
           <button
             type="button"
             onClick={() => fileInputRef.current?.click()}

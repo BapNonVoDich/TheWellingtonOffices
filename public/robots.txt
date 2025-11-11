@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /login
+
+# Sitemap
+Sitemap: https://thewellingtonoffices.com/sitemap.xml
+

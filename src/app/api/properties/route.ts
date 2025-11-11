@@ -6,7 +6,11 @@ export async function GET() {
   try {
     const properties = await prisma.property.findMany({
       orderBy: { createdAt: 'desc' },
-      include: { ward: { include: { district: true } } }
+      include: { 
+        ward: { include: { district: true } },
+        oldWard: { include: { district: true } },
+        offices: true
+      }
     });
     return NextResponse.json(properties);
   } catch (error) {

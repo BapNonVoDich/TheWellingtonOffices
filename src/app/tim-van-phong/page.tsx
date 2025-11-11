@@ -4,6 +4,8 @@ import Image from 'next/image';
 import prisma from '@/lib/prisma';
 import OfficeSearchBar from '../components/OfficeSearchBar';
 import { Prisma, Grade, OfficeType } from '@prisma/client';
+import { generateMetadata as generateSEOMetadata } from '@/lib/seo';
+import type { Metadata } from 'next';
 
 interface SearchOfficePageProps {
   searchParams: Promise<{
@@ -15,6 +17,15 @@ interface SearchOfficePageProps {
     grade?: string; // Them type
     type?: string;  // Them type
   }>
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  return generateSEOMetadata({
+    title: "Tìm kiếm văn phòng cho thuê",
+    description: "Tìm kiếm văn phòng cho thuê phù hợp với nhu cầu. Lọc theo diện tích, giá cả, vị trí và hạng văn phòng tại TP.HCM.",
+    url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://thewellingtonoffices.com'}/tim-van-phong`,
+    keywords: ["tìm văn phòng", "văn phòng cho thuê", "tìm kiếm văn phòng", "office search"],
+  });
 }
 
 export default async function SearchOfficePage({ searchParams }: SearchOfficePageProps) {
@@ -118,7 +129,7 @@ export default async function SearchOfficePage({ searchParams }: SearchOfficePag
                           {property.imageUrls[0] ? (
                             <Image
                               src={property.imageUrls[0]}
-                              alt={property.name}
+                              alt={`Văn phòng cho thuê ${office.area}m² tại ${property.name}, ${property.ward?.name || ''}, ${property.ward?.district?.name || ''}`}
                               fill={true}
                               style={{objectFit: 'cover'}}
                               className="rounded-t-lg md:rounded-l-lg md:rounded-t-none"

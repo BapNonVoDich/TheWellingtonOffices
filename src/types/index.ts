@@ -9,11 +9,16 @@ export type PropertyWithOffices = Prisma.PropertyGetPayload<{
   }
 }>;
 
-// Type MOI cho trang chi tiết (bao gồm cả District)
+// Type MOI cho trang chi tiết (bao gồm cả District và OldWard)
 export type PropertyWithDetails = Prisma.PropertyGetPayload<{
   include: {
     offices: true,
     ward: {
+      include: {
+        district: true
+      }
+    },
+    oldWard: {
       include: {
         district: true
       }

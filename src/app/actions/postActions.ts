@@ -5,7 +5,6 @@ import { auth } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 import { slugify } from '@/lib/utils';
 import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
 
 export async function createPost(formData: FormData) {
   const session = await auth();
@@ -43,7 +42,8 @@ export async function createPost(formData: FormData) {
 
   revalidatePath('/admin/posts');
   revalidatePath('/tin-tuc');
-  redirect('/admin/posts');
+  
+  return { success: true };
 }
 
 // HÀM MỚI: Cập nhật bài viết
@@ -83,7 +83,8 @@ export async function updatePost(id: string, formData: FormData) {
   revalidatePath('/admin/posts');
   revalidatePath(`/admin/posts/edit/${id}`);
   revalidatePath('/tin-tuc');
-  redirect('/admin/posts');
+  
+  return { success: true };
 }
 
 // HÀM MỚI: Xóa bài viết

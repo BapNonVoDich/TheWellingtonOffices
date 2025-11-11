@@ -6,7 +6,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Tin tức & Phân tích thị trường | The Wellington Offices',
-  description: 'Cập nhật những tin tức mới nhất về thị trường văn phòng cho thuê và các phân tích chuyên sâu.',
+  description: 'Cập nhật tin tức mới nhất về thị trường văn phòng cho thuê tại TP.HCM. Phân tích chuyên sâu về xu hướng và giá cả.',
 };
 
 export default async function NewsListPage() {
@@ -31,7 +31,7 @@ export default async function NewsListPage() {
                 {post.imageUrl ? (
                   <Image
                     src={post.imageUrl}
-                    alt={post.title}
+                    alt={`${post.title} - Tin tức văn phòng cho thuê`}
                     fill
                     style={{ objectFit: 'cover' }}
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

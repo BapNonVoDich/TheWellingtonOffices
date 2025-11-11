@@ -7,7 +7,8 @@ export const metadata: Metadata = {
   description: 'Tìm hiểu về The Wellington Offices, sứ mệnh và đội ngũ của chúng tôi.',
 };
 
-const backgroundImage = 'https://images.unsplash.com/photo-1559526661-3056f685ff71?q=80&w=2070&auto=format&fit=crop'; // Chọn một hình ảnh nền phù hợp
+// Sử dụng local image thay vì external URL để tránh 404
+const backgroundImage = '/images/BG.jpg';
 
 export default function AboutUsPage() {
   return (
@@ -31,8 +32,8 @@ export default function AboutUsPage() {
               <Image
                 src={backgroundImage}
                 alt="Hình nền văn phòng hiện đại"
-                layout="fill"
-                objectFit="cover"
+                fill
+                style={{ objectFit: 'cover' }}
                 priority
               />
             </div>

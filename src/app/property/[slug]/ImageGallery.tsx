@@ -7,9 +7,13 @@ import { ChevronLeftIcon, ChevronRightIcon, XMarkIcon } from '@heroicons/react/2
 interface ImageGalleryProps {
   images: string[];
   propertyName: string;
+  location?: string;
 }
 
-export default function ImageGallery({ images, propertyName }: ImageGalleryProps) {
+export default function ImageGallery({ images, propertyName, location }: ImageGalleryProps) {
+  const altBase = location 
+    ? `Văn phòng cho thuê ${propertyName} tại ${location}`
+    : `Văn phòng cho thuê ${propertyName}`;
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -38,7 +42,7 @@ export default function ImageGallery({ images, propertyName }: ImageGalleryProps
       <div className="relative w-full h-96 rounded-lg overflow-hidden group">
         <Image
           src={images[currentImageIndex]}
-          alt={`${propertyName} - Hình ${currentImageIndex + 1}`}
+          alt={`${altBase} - Hình ảnh ${currentImageIndex + 1}`}
           fill={true}
           style={{objectFit: 'cover'}}
           sizes="(max-width: 768px) 100vw, 50vw"
@@ -93,7 +97,7 @@ export default function ImageGallery({ images, propertyName }: ImageGalleryProps
             >
               <Image
                 src={imageUrl}
-                alt={`${propertyName} - Thumbnail ${index + 1}`}
+                alt={`${altBase} - Ảnh nhỏ ${index + 1}`}
                 fill={true}
                 style={{objectFit: 'cover'}}
                 sizes="(max-width: 768px) 25vw, 12.5vw"
@@ -117,7 +121,7 @@ export default function ImageGallery({ images, propertyName }: ImageGalleryProps
           <div className="relative max-w-7xl max-h-full">
             <Image
               src={images[currentImageIndex]}
-              alt={`${propertyName} - Hình ${currentImageIndex + 1}`}
+              alt={`${altBase} - Hình ảnh ${currentImageIndex + 1}`}
               width={1200}
               height={800}
               style={{objectFit: 'contain'}}

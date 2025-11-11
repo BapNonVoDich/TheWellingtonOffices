@@ -1,14 +1,27 @@
 import Image from "next/image";
 import Link from "next/link";
 import prisma from "@/lib/prisma";
+import { generateMetadata as generateSEOMetadata, generateOrganizationSchema } from "@/lib/seo";
+import type { Metadata } from "next";
+import Script from "next/script";
+
 // Yêu cầu Next.js build lại trang này mỗi 3600 giây (1 giờ)
-export const revalidate = 3600; 
+export const revalidate = 3600;
+
+export const metadata: Metadata = generateSEOMetadata({
+  title: "The Wellington Offices - Tìm kiếm và cho thuê văn phòng chuyên nghiệp",
+  description: "Khám phá hàng ngàn lựa chọn văn phòng cho thuê tại các vị trí đắc địa nhất Việt Nam. Tìm văn phòng phù hợp với nhu cầu doanh nghiệp của bạn.",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://thewellingtonoffices.com",
+  image: "/images/BG.jpg",
+  keywords: ["văn phòng cho thuê", "cho thuê văn phòng", "văn phòng quận 1", "văn phòng tphcm", "office rental", "co-working space"],
+}); 
 export default async function HomePage() {
   // Always fetch at SSR so data is ready before hydration
   const properties = await prisma.property.findMany({
     take: 9,
     include: {
-      ward: true,
+      ward: { include: { district: true } },
+      oldWard: { include: { district: true } },
       offices: { where: { isAvailable: true } },
     },
     orderBy: { createdAt: "desc" },
@@ -16,7 +29,15 @@ export default async function HomePage() {
 
   const isEmpty = properties.length === 0;
 
+  const organizationSchema = generateOrganizationSchema();
+
   return (
+    <>
+      <Script
+        id="organization-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
     <div>
       {/* HERO - Fixed height prevents CLS */}
       <div className="relative bg-gray-900 h-[400px] sm:h-[500px] lg:h-[600px]">
@@ -92,7 +113,7 @@ export default async function HomePage() {
                       {property.imageUrls?.length > 0 ? (
                         <Image
                           src={property.imageUrls[0]}
-                          alt={property.name}
+                          alt={`Văn phòng cho thuê ${property.name} tại ${property.ward?.name || property.oldWard?.name || ''}, ${property.ward?.district?.name || property.oldWard?.district?.name || ''}`}
                           width={400}
                           height={300}
                           className="object-cover w-full h-full"
@@ -119,9 +140,9 @@ export default async function HomePage() {
                         </h2>
                         <p
                           className="text-gray-500 text-sm mt-1 truncate"
-                          title={property.ward?.name}
+                          title={property.ward?.name || property.oldWard?.name}
                         >
-                          {property.ward?.name}
+                          {property.ward?.name || property.oldWard?.name}
                         </p>
                       </div>
                       
@@ -137,5 +158,6 @@ export default async function HomePage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

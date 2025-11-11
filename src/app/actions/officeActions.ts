@@ -13,14 +13,18 @@ export async function createOffice(propertyId: string, formData: FormData) {
   const minLease = formData.get('minimumLeaseTerm')?.toString();
   const maxLease = formData.get('maximumLeaseTerm')?.toString();
 
+  const isAvailableStr = formData.get('isAvailable')?.toString();
+  const isAvailable = isAvailableStr !== 'false'; // Default to true if not explicitly 'false'
+
   const data = {
     area: parseInt(formData.get('area')?.toString() || '0', 10),
     price_per_sqm: parseFloat(formData.get('price_per_sqm')?.toString() || '0'),
-    floor: formData.get('floor')?.toString() || '',
+    floor: formData.get('floor')?.toString() || null,
     type: formData.get('type')?.toString() as OfficeType,
-    grade: formData.get('grade')?.toString() as Grade, // Them grade
-    minimumLeaseTerm: minLease ? parseInt(minLease, 10) : null, // Them minLease
-    maximumLeaseTerm: maxLease ? parseInt(maxLease, 10) : null, // Them maxLease
+    grade: formData.get('grade')?.toString() as Grade,
+    minimumLeaseTerm: minLease ? parseInt(minLease, 10) : null,
+    maximumLeaseTerm: maxLease ? parseInt(maxLease, 10) : null,
+    isAvailable: isAvailable,
     propertyId: propertyId,
     createdById: session.user.id,
     lastUpdatedById: session.user.id,
@@ -41,14 +45,18 @@ export async function updateOffice(officeId: string, propertyId: string, formDat
   const minLease = formData.get('minimumLeaseTerm')?.toString();
   const maxLease = formData.get('maximumLeaseTerm')?.toString();
 
+  const isAvailableStr = formData.get('isAvailable')?.toString();
+  const isAvailable = isAvailableStr !== 'false'; // Default to true if not explicitly 'false'
+
   const data = {
     area: parseInt(formData.get('area')?.toString() || '0', 10),
     price_per_sqm: parseFloat(formData.get('price_per_sqm')?.toString() || '0'),
-    floor: formData.get('floor')?.toString() || '',
+    floor: formData.get('floor')?.toString() || null,
     type: formData.get('type')?.toString() as OfficeType,
     grade: formData.get('grade')?.toString() as Grade,
     minimumLeaseTerm: minLease ? parseInt(minLease, 10) : null,
     maximumLeaseTerm: maxLease ? parseInt(maxLease, 10) : null,
+    isAvailable: isAvailable,
     lastUpdatedById: session.user.id,
   };
 

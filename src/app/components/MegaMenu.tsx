@@ -3,19 +3,20 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import type { Ward, District } from '@prisma/client';
+import type { Ward, District, OldWard } from '@prisma/client';
 import { slugify } from '@/lib/utils';
 
 export type DistrictWithWards = District & { 
-  wards: Ward[] 
+  wards: (Ward | OldWard)[] 
 };
 
 interface MegaMenuProps {
   title: string;
   items: DistrictWithWards[];
+  isOldWard?: boolean;
 }
 
-export default function MegaMenu({ title, items }: MegaMenuProps) {
+export default function MegaMenu({ title, items, isOldWard = false }: MegaMenuProps) {
   const [activeDistrict, setActiveDistrict] = useState<DistrictWithWards | null>(null);
 
   return (
@@ -35,7 +36,10 @@ export default function MegaMenu({ title, items }: MegaMenuProps) {
             {items.map((item) => (
               <Link
                 key={item.id}
-                href={`/van-phong-cho-thue/${slugify(item.name)}`} // <-- Đã sửa URL cho Quận
+                href={isOldWard 
+                  ? `/van-phong-cho-thue-cu/${slugify(item.name)}`
+                  : `/van-phong-cho-thue/${slugify(item.name)}`
+                }
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-semibold"
                 onMouseEnter={() => setActiveDistrict(item)}
               >
@@ -50,7 +54,10 @@ export default function MegaMenu({ title, items }: MegaMenuProps) {
               activeDistrict.wards.map((ward) => (
                 <Link
                   key={ward.id}
-                  href={`/van-phong-cho-thue/${slugify(activeDistrict.name)}/${slugify(ward.name)}`} // <-- Đã sửa URL cho Phường
+                  href={isOldWard
+                    ? `/van-phong-cho-thue-cu/${slugify(activeDistrict.name)}/${slugify(ward.name)}`
+                    : `/van-phong-cho-thue/${slugify(activeDistrict.name)}/${slugify(ward.name)}`
+                  }
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >
                   {ward.name}

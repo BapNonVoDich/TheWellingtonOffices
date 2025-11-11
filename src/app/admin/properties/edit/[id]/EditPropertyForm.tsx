@@ -4,13 +4,18 @@
 import { useActionState, useState, useEffect } from 'react';
 import {  useFormStatus } from 'react-dom';
 import { updateProperty } from '@/app/actions/propertyActions';
-import WardCombobox from '@/app/components/WardCombobox';
+import DualWardSelector from '@/app/components/DualWardSelector';
 import ImageUploader from '@/app/components/ImageUploader';
 import { useRouter } from 'next/navigation';
-import type { District, Ward, Property } from '@prisma/client';
+import type { Property } from '@prisma/client';
 import toast from 'react-hot-toast';
 
-type DistrictWithWards = District & { wards: Ward[] };
+type DistrictWithWards = {
+  id: string;
+  name: string;
+  wards: { id: string; name: string; mergedFrom: string[] }[];
+  oldWards: { id: string; name: string; splitInto: string[] }[];
+};
 
 type WardOption = {
   id: string;
@@ -19,9 +24,10 @@ type WardOption = {
 };
 
 interface EditPropertyFormProps {
-    property: Property & { ward: (Ward & { district: District }) | null };
+    property: Property;
     districts: DistrictWithWards[];
     defaultWard: WardOption | null;
+    defaultOldWard: WardOption | null;
 }
 
 const initialState = {
@@ -77,13 +83,11 @@ export default function EditPropertyForm({ property, districts, defaultWard }: E
           <input type="text" name="name" id="name" required defaultValue={property.name} className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"/>
         </div>
         <div>
-          <label htmlFor="address_line" className="block text-sm font-medium text-gray-700">Địa chỉ</label>
-          <input type="text" name="address_line" id="address_line" required defaultValue={property.address_line} className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"/>
-        </div>
-
-        <div>
-          <label htmlFor="ward" className="block text-sm font-medium text-gray-700">Phường/Xã (sau 7/2025)</label>
-          <WardCombobox districts={districts} defaultValue={defaultWard} />
+          <DualWardSelector 
+            districts={districts} 
+            defaultWard={defaultWard}
+            
+          />
         </div>
 
         <div>

@@ -6,6 +6,8 @@ import { Toaster } from "react-hot-toast";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import prisma from "@/lib/prisma";
+import { generateOrganizationSchema } from "@/lib/seo";
+import Script from "next/script";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,15 +28,26 @@ export default async function RootLayout({
 }) {
   const districts = await prisma.district.findMany({
     orderBy: { name: "asc" },
-    include: { wards: { orderBy: { name: "asc" } } },
+    include: { 
+      wards: { orderBy: { name: "asc" } },
+      oldWards: { orderBy: { name: "asc" } },
+    },
     where: {
       NOT: { name: { in: ["Tỉnh Bình Dương", "Tỉnh Bà Rịa - Vũng Tàu"] } },
     },
   });
 
+  const organizationSchema = generateOrganizationSchema();
+
   return (
     <html lang="vi" className={`h-full ${inter.variable}`}>
       <body className="bg-gray-100 font-sans antialiased overflow-x-hidden min-h-screen flex flex-col">
+        <Script
+          id="organization-schema-global"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
         <AuthProvider>
           <Toaster position="top-center" />
           

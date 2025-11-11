@@ -11,6 +11,8 @@ if (!process.env.NEXTAUTH_SECRET) {
 export const { handlers, auth, signIn, signOut } = NextAuth({
   session: {
     strategy: 'jwt',
+    maxAge: 8 * 60 * 60, // 8 hours in seconds
+    updateAge: 60 * 60, // 1 hour - refresh token every hour if user is active
   },
   providers: [
     CredentialsProvider({
@@ -51,18 +53,35 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       if (user) {
         token.id = user.id;
         token.role = user.role;
+        token.iat = Math.floor(Date.now() / 1000); // Issue time
+        token.exp = Math.floor(Date.now() / 1000) + (8 * 60 * 60); // Expire in 8 hours
       }
+      
+      // Refresh token if it's about to expire (within 1 hour)
+      const now = Math.floor(Date.now() / 1000);
+      if (token.exp && token.exp - now < 60 * 60) {
+        token.exp = now + (8 * 60 * 60); // Extend expiration
+      }
+      
       return token;
     },
     session({ session, token }) {
+      // Check if token is expired
+      const now = Math.floor(Date.now() / 1000);
+      if (token.exp && token.exp < now) {
+        // Session expired - return session with expired date
+        session.expires = new Date(0) as Date & string;
+        return session;
+      }
+      
       // Lấy các thuộc tính từ token và gán vào session
-      // Đây là phiên bản an toàn và rõ ràng nhất
       const safeTokenId = token.id as string | undefined;
       const safeTokenRole = token.role as string | undefined;
 
       if (session.user && safeTokenId && safeTokenRole) {
         session.user.id = safeTokenId;
         session.user.role = safeTokenRole;
+        session.expires = new Date((token.exp as number) * 1000) as Date & string;
       }
       
       return session;

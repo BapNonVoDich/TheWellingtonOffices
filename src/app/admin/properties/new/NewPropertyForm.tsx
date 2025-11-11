@@ -3,14 +3,18 @@
 
 import { useState, useEffect } from 'react';
 import { createProperty } from '@/app/actions/propertyActions';
-import WardCombobox from '@/app/components/WardCombobox';
+import DualWardSelector from '@/app/components/DualWardSelector';
 import ImageUploader from '@/app/components/ImageUploader';
 import { useFormStatus } from 'react-dom';
 import { useActionState } from 'react';
-import type { District, Ward } from '@prisma/client';
 import { useRouter } from 'next/navigation';
 
-type DistrictWithWards = District & { wards: Ward[] };
+type DistrictWithWards = {
+  id: string;
+  name: string;
+  wards: { id: string; name: string; mergedFrom: string[] }[];
+  oldWards: { id: string; name: string; splitInto: string[] }[];
+};
 
 const initialState = {
   message: '',
@@ -53,13 +57,7 @@ export default function NewPropertyForm({ districts }: { districts: DistrictWith
           <input type="text" name="name" id="name" required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"/>
         </div>
         <div>
-          <label htmlFor="address_line" className="block text-sm font-medium text-gray-700">Địa chỉ</label>
-          <input type="text" name="address_line" id="address_line" required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"/>
-        </div>
-
-        <div>
-          <label htmlFor="ward" className="block text-sm font-medium text-gray-700">Phường/Xã (sau 7/2025)</label>
-          <WardCombobox districts={districts} />
+          <DualWardSelector districts={districts} />
         </div>
 
         <div>

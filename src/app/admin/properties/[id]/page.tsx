@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useTransition, Fragment, useCallback } from 'react';
+import { useState, useEffect, useTransition, Fragment, useCallback, use } from 'react';
 import { notFound } from 'next/navigation';
 import { createOffice, updateOffice, deleteOffice } from '@/app/actions/officeActions';
 import { Property, Office, Grade } from '@prisma/client';
@@ -10,8 +10,8 @@ type PropertyWithOffices = Property & {
   offices: Office[];
 };
 
-export default function ManageOfficesPage({ params }: { params: { id: string } }) {
-  const propertyId = params.id;
+export default function ManageOfficesPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id: propertyId } = use(params);
   const [property, setProperty] = useState<PropertyWithOffices | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -62,24 +62,50 @@ export default function ManageOfficesPage({ params }: { params: { id: string } }
                 <th className="py-3 px-4">Giá ($/m²)</th>
                 <th className="py-3 px-4">Tầng</th>
                 <th className="py-3 px-4">Hạng</th>
+                <th className="py-3 px-4">Loại hình</th>
                 <th className="py-3 px-4">Thời hạn (tháng)</th>
+                <th className="py-3 px-4">Trạng thái</th>
                 <th className="py-3 px-4">Hành động</th>
               </tr>
             </thead>
             <tbody>
-              {property.offices.map(office => (
-                <tr key={office.id} className="border-b hover:bg-gray-50">
-                  <td className="py-3 px-4 font-medium">{office.area} m²</td>
-                  <td className="py-3 px-4">${office.price_per_sqm}</td>
-                  <td className="py-3 px-4">{office.floor || '-'}</td>
-                  <td className="py-3 px-4">{office.grade}</td>
-                  <td className="py-3 px-4">{office.minimumLeaseTerm || '?'} - {office.maximumLeaseTerm || '?'}</td>
-                  <td className="py-3 px-4 space-x-2">
-                    <button onClick={() => setOfficeToEdit(office)} className="text-blue-600 hover:underline text-xs">Sửa</button>
-                    <button onClick={() => setOfficeToDelete(office)} className="text-red-600 hover:underline text-xs">Xóa</button>
+              {property.offices.length === 0 ? (
+                <tr>
+                  <td colSpan={8} className="py-8 text-center text-gray-500">
+                    Chưa có văn phòng nào. Nhấn &quot;Thêm Văn phòng mới&quot; để bắt đầu.
                   </td>
                 </tr>
-              ))}
+              ) : (
+                property.offices.map(office => (
+                  <tr key={office.id} className="border-b hover:bg-gray-50">
+                    <td className="py-3 px-4 font-medium">{office.area} m²</td>
+                    <td className="py-3 px-4">${office.price_per_sqm}</td>
+                    <td className="py-3 px-4">{office.floor || '-'}</td>
+                    <td className="py-3 px-4">{office.grade}</td>
+                    <td className="py-3 px-4">
+                      {office.type === 'TRADITIONAL' ? 'Truyền thống' : 'Trọn gói'}
+                    </td>
+                    <td className="py-3 px-4">
+                      {office.minimumLeaseTerm || office.maximumLeaseTerm 
+                        ? `${office.minimumLeaseTerm || '?'} - ${office.maximumLeaseTerm || '?'}`
+                        : '-'}
+                    </td>
+                    <td className="py-3 px-4">
+                      <span className={`px-2 py-1 rounded-full text-xs ${
+                        office.isAvailable 
+                          ? 'bg-green-100 text-green-800' 
+                          : 'bg-red-100 text-red-800'
+                      }`}>
+                        {office.isAvailable ? 'Còn trống' : 'Đã thuê'}
+                      </span>
+                    </td>
+                    <td className="py-3 px-4 space-x-2">
+                      <button onClick={() => setOfficeToEdit(office)} className="text-blue-600 hover:underline text-xs">Sửa</button>
+                      <button onClick={() => setOfficeToDelete(office)} className="text-red-600 hover:underline text-xs">Xóa</button>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
@@ -242,9 +268,16 @@ function OfficeForm({ onSubmit, isPending, defaultValues }: { onSubmit: (formDat
       </div>
       <div>
         <label htmlFor="type" className="block text-sm font-medium">Loại hình</label>
-        <select name="type" id="type" defaultValue={defaultValues?.type} required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+        <select name="type" id="type" defaultValue={defaultValues?.type || 'TRADITIONAL'} required className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
           <option value="TRADITIONAL">Truyền thống</option>
           <option value="SERVICED">Trọn gói</option>
+        </select>
+      </div>
+      <div>
+        <label htmlFor="isAvailable" className="block text-sm font-medium">Trạng thái</label>
+        <select name="isAvailable" id="isAvailable" defaultValue={defaultValues?.isAvailable !== undefined ? defaultValues.isAvailable.toString() : 'true'} className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md">
+          <option value="true">Còn trống</option>
+          <option value="false">Đã thuê</option>
         </select>
       </div>
       <div className="flex justify-end pt-4">

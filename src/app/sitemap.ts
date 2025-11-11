@@ -15,6 +15,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const wards = await prisma.ward.findMany({
     include: { district: true },
   });
+  const oldWards = await prisma.oldWard.findMany({
+    include: { district: true },
+  });
 
   // Tạo sitemap cho các trang tĩnh
   const staticPages = [
@@ -86,13 +89,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
-  // Tạo sitemap cho các trang phường
-  const wardPages = wards.map((ward) => ({
-    url: `${baseUrl}/van-phong-cho-thue/${slugify(ward.district.name)}/${slugify(ward.name)}`,
+  // Tạo sitemap cho các trang phường (oldWard - địa chỉ cũ)
+  const oldWardPages = oldWards.map((oldWard) => ({
+    url: `${baseUrl}/van-phong-cho-thue/${slugify(oldWard.district.name)}/${slugify(oldWard.name)}`,
+    lastModified: new Date(),
+    changeFrequency: 'daily',
+    priority: 0.8,
+  }));
+
+  // Tạo sitemap cho các trang phường mới (ward - địa chỉ mới)
+  const newWardPages = wards.map((ward) => ({
+    url: `${baseUrl}/van-phong-cho-thue/dia-chi-moi/${slugify(ward.name)}`,
     lastModified: new Date(),
     changeFrequency: 'daily',
     priority: 0.8,
   }));
   
-  return [...staticPages, ...propertyPages, ...postPages, ...districtPages, ...wardPages] as MetadataRoute.Sitemap;
+  return [...staticPages, ...propertyPages, ...postPages, ...districtPages, ...oldWardPages, ...newWardPages] as MetadataRoute.Sitemap;
 }

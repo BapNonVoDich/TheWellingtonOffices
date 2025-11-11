@@ -8,6 +8,19 @@ export default async function NewPropertyPage() {
     include: {
       wards: {
         orderBy: { name: 'asc' },
+        select: {
+          id: true,
+          name: true,
+          mergedFrom: true,
+        },
+      },
+      oldWards: {
+        orderBy: { name: 'asc' },
+        select: {
+          id: true,
+          name: true,
+          splitInto: true,
+        },
       }
     }
   });

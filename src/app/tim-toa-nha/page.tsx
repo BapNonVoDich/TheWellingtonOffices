@@ -5,6 +5,8 @@ import prisma from '@/lib/prisma';
 import { Prisma, Grade } from '@prisma/client';
 import BuildingSearchBar from '../components/BuildingSearchBar';
 import PaginationControls from '../components/PaginationControls';
+import { generateMetadata as generateSEOMetadata } from '@/lib/seo';
+import type { Metadata } from 'next';
 
 interface SearchBuildingPageProps {
   searchParams: Promise<{
@@ -16,6 +18,15 @@ interface SearchBuildingPageProps {
 }
 
 const ITEMS_PER_PAGE = 9;
+
+export async function generateMetadata(): Promise<Metadata> {
+  return generateSEOMetadata({
+    title: "Tìm kiếm tòa nhà văn phòng",
+    description: "Tìm kiếm tòa nhà văn phòng cho thuê tại các quận phường. Khám phá các tòa nhà với đầy đủ tiện ích và vị trí đắc địa nhất.",
+    url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://thewellingtonoffices.com'}/tim-toa-nha`,
+    keywords: ["tìm tòa nhà", "tòa nhà văn phòng", "building search", "office building"],
+  });
+}
 
 export default async function SearchBuildingPage({ searchParams }: SearchBuildingPageProps) {
     const { page, wardId, districtId, grade } = await searchParams;
@@ -41,7 +52,11 @@ export default async function SearchBuildingPage({ searchParams }: SearchBuildin
         prisma.property.findMany({
             where,
             include: { 
-                ward: true, 
+                ward: {
+                    include: {
+                        district: true,
+                    }
+                }, 
                 offices: { where: { isAvailable: true } } 
             },
             orderBy: { createdAt: 'desc' },
@@ -81,7 +96,7 @@ export default async function SearchBuildingPage({ searchParams }: SearchBuildin
                           {property.imageUrls && property.imageUrls.length > 0 ? (
                             <Image
                               src={property.imageUrls[0]}
-                              alt={property.name}
+                              alt={`Văn phòng cho thuê ${property.name} tại ${property.ward?.name || ''}, ${property.ward?.district?.name || ''}`}
                               fill={true}
                               style={{objectFit: 'cover'}}
                               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

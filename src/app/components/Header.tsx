@@ -3,12 +3,12 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Grade, OfficeType, District, Ward } from '@prisma/client';
-import MegaMenu from './MegaMenu';
+import { Grade, OfficeType, District, Ward, OldWard } from '@prisma/client';
+import NestedMegaMenu from './NestedMegaMenu';
 import DropdownMenu from './DropdownMenu'; // Giả sử bạn vẫn còn component này cho Hạng và Loại
 
 interface HeaderProps {
-  districts: (District & { wards: Ward[] })[];
+  districts: (District & { wards: Ward[]; oldWards: OldWard[] })[];
 }
 
 export default function Header({ districts }: HeaderProps) {
@@ -63,7 +63,10 @@ export default function Header({ districts }: HeaderProps) {
             </div>
             {/* Menu Desktop */}
             <div className="hidden md:flex items-center space-x-1 text-base">
-              <MegaMenu title="Theo Quận & Phường" items={districts} />
+              <NestedMegaMenu 
+                title="Theo Quận/Phường" 
+                districts={districts}
+              />
               <DropdownMenu title="Theo Hạng" items={gradeItems} />
               <DropdownMenu title="Theo Loại" items={typeItems} />
               <Link href="/tim-van-phong" className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-blue-700 ml-4">

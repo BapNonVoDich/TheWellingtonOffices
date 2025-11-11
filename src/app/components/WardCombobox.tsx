@@ -10,23 +10,44 @@ type DistrictWithWards = {
   id: string;
   name: string;
   wards: { id: string; name: string }[];
+  oldWards?: { id: string; name: string }[];
 }
 
 type WardOption = {
   id: string;
   name: string;
   districtName: string;
+  isOldWard?: boolean;
 }
 
-export default function WardCombobox({ districts, defaultValue }: { districts: DistrictWithWards[],defaultValue?: WardOption | null }) {
+interface WardComboboxProps {
+  districts: DistrictWithWards[];
+  defaultValue?: WardOption | null;
+  includeOldWards?: boolean;
+  label?: string;
+}
+
+export default function WardCombobox({ districts, defaultValue, includeOldWards = false, label }: WardComboboxProps) {
   // Chuyển đổi dữ liệu lồng nhau thành một danh sách phẳng để dễ tìm kiếm
-  const allWards: WardOption[] = districts.flatMap(district => 
-    district.wards.map(ward => ({
+  const allWards: WardOption[] = districts.flatMap(district => {
+    const newWards = district.wards.map(ward => ({
       id: ward.id,
-      name: `${ward.name}, ${district.name}`,
-      districtName: district.name
-    }))
-  );
+      name: `${ward.name}, ${district.name} (Địa chỉ mới)`,
+      districtName: district.name,
+      isOldWard: false
+    }));
+    
+    const oldWards = includeOldWards && district.oldWards 
+      ? district.oldWards.map(oldWard => ({
+          id: oldWard.id,
+          name: `${oldWard.name}, ${district.name} (Địa chỉ cũ)`,
+          districtName: district.name,
+          isOldWard: true
+        }))
+      : [];
+    
+    return [...newWards, ...oldWards];
+  });
 
   const [selected, setSelected] = useState<WardOption | null>(defaultValue || null);
   const [query, setQuery] = useState('');
@@ -43,6 +64,7 @@ export default function WardCombobox({ districts, defaultValue }: { districts: D
 
   return (
     <div>
+      {label && <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>}
       <Combobox value={selected} onChange={setSelected}>
         <div className="relative mt-1">
           <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-blue-300 sm:text-sm">
@@ -110,8 +132,9 @@ export default function WardCombobox({ districts, defaultValue }: { districts: D
         </div>
       </Combobox>
       {/* Các input ẩn này sẽ gửi dữ liệu đến Server Action */}
-      <input type="hidden" name="wardName" value={selected?.name.split(',')[0].trim() || ''} />
+      <input type="hidden" name="wardName" value={selected?.name?.split(',')[0]?.trim() || ''} />
       <input type="hidden" name="districtName" value={selected?.districtName || ''} />
+      <input type="hidden" name="isOldWard" value={selected?.isOldWard ? 'true' : 'false'} />
     </div>
   );
 }

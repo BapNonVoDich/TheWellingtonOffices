@@ -53,9 +53,8 @@ export async function createProperty(prevState: { success: boolean; message: str
     imageUrls.push(...uploadedUrls);
 
     const name = formData.get('name')?.toString() || '';
-    const address_line = formData.get('address_line')?.toString() || '';
     
-    if (!name || !address_line) {
+    if (!name) {
       if (imageUrls.length > 0) {
           const deletePromises = imageUrls.map(async (url) => {
             const publicId = url.split('/').slice(-2).join('/').split('.')[0];
@@ -65,28 +64,38 @@ export async function createProperty(prevState: { success: boolean; message: str
           });
           await Promise.all(deletePromises);
         }
-      return { success: false, message: 'Vui lòng điền đầy đủ tên và địa chỉ.' };
+      return { success: false, message: 'Vui lòng điền đầy đủ tên tòa nhà.' };
+    }
+    
+    // Get wardId and oldWardId from hidden inputs
+    const wardId = formData.get('wardId')?.toString() || null;
+    const oldWardId = formData.get('oldWardId')?.toString() || null;
+
+    // Generate address_line from ward or oldWard
+    let address_line = '';
+    if (wardId) {
+      const ward = await prisma.ward.findUnique({
+        where: { id: wardId },
+        include: { district: true }
+      });
+      if (ward) {
+        address_line = `${ward.name}, ${ward.district.name}`;
+      }
+    } else if (oldWardId) {
+      const oldWard = await prisma.oldWard.findUnique({
+        where: { id: oldWardId },
+        include: { district: true }
+      });
+      if (oldWard) {
+        address_line = `${oldWard.name}, ${oldWard.district.name}`;
+      }
+    }
+    
+    if (!address_line) {
+      return { success: false, message: 'Vui lòng chọn ít nhất một địa chỉ (cũ hoặc mới).' };
     }
     
     const propertySlug = slugify(`${name} ${address_line}`);
-    
-    const wardName = formData.get('wardName')?.toString();
-    const districtName = formData.get('districtName')?.toString();
-    
-    let wardId = null;
-    if (wardName && districtName) {
-      const ward = await prisma.ward.findFirst({
-        where: {
-          name: wardName,
-          district: {
-            name: districtName,
-          },
-        },
-      });
-      if (ward) {
-        wardId = ward.id;
-      }
-    }
 
     await prisma.property.create({
       data: {
@@ -95,6 +104,7 @@ export async function createProperty(prevState: { success: boolean; message: str
         address_line,
         imageUrls,
         wardId: wardId,
+        oldWardId: oldWardId,
         amenities: [], 
         createdById: userId,
         lastUpdatedById: userId,
@@ -139,7 +149,7 @@ export async function updateProperty(id: string, prevState: { success: boolean; 
 
     const existingProperty = await prisma.property.findUnique({
       where: { id },
-      select: { imageUrls: true, wardId: true },
+      select: { imageUrls: true, wardId: true, oldWardId: true },
     });
 
     if (!existingProperty) {
@@ -162,9 +172,8 @@ export async function updateProperty(id: string, prevState: { success: boolean; 
     const finalImageUrls = [...existingImageUrls, ...newImageUrls];
 
     const name = formData.get('name')?.toString() || '';
-    const address_line = formData.get('address_line')?.toString() || '';
     
-    if (!name || !address_line) {
+    if (!name) {
        if (newImageUrls.length > 0) {
         const deleteNewImages = newImageUrls.map(async (url) => {
           const publicId = url.split('/').slice(-2).join('/').split('.')[0];
@@ -174,23 +183,38 @@ export async function updateProperty(id: string, prevState: { success: boolean; 
         });
         await Promise.all(deleteNewImages);
       }
-      return { success: false, message: 'Vui lòng điền đầy đủ tên và địa chỉ.' };
+      return { success: false, message: 'Vui lòng điền đầy đủ tên tòa nhà.' };
+    }
+
+    // Get wardId and oldWardId from hidden inputs
+    const wardId = formData.get('wardId')?.toString() || null;
+    const oldWardId = formData.get('oldWardId')?.toString() || null;
+
+    // Generate address_line from ward or oldWard
+    let address_line = '';
+    if (wardId) {
+      const ward = await prisma.ward.findUnique({
+        where: { id: wardId },
+        include: { district: true }
+      });
+      if (ward) {
+        address_line = `${ward.name}, ${ward.district.name}`;
+      }
+    } else if (oldWardId) {
+      const oldWard = await prisma.oldWard.findUnique({
+        where: { id: oldWardId },
+        include: { district: true }
+      });
+      if (oldWard) {
+        address_line = `${oldWard.name}, ${oldWard.district.name}`;
+      }
+    }
+    
+    if (!address_line) {
+      return { success: false, message: 'Vui lòng chọn ít nhất một địa chỉ (cũ hoặc mới).' };
     }
 
     const propertySlug = slugify(`${name} ${address_line}`);
-
-    const wardName = formData.get('wardName')?.toString();
-    const districtName = formData.get('districtName')?.toString();
-    
-    let wardId: string | null = existingProperty.wardId || null;
-    if (wardName && districtName) {
-        const ward = await prisma.ward.findFirst({
-            where: { name: wardName, district: { name: districtName } },
-        });
-        if (ward) {
-            wardId = ward.id;
-        }
-    }
 
     await prisma.property.update({
       where: { id: id },
@@ -200,6 +224,7 @@ export async function updateProperty(id: string, prevState: { success: boolean; 
         address_line,
         imageUrls: finalImageUrls,
         wardId: wardId,
+        oldWardId: oldWardId,
         lastUpdatedById: userId,
       },
     });
