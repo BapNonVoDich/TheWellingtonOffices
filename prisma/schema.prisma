@@ -33,18 +33,19 @@ model Post {
 }
 
 model Employee {
-  id                  String     @id @default(auto()) @map("_id") @db.ObjectId
-  email               String     @unique
+  id                  String        @id @default(auto()) @map("_id") @db.ObjectId
+  email               String        @unique
   name                String
   password            String
-  role                Role       @default(AGENT)
-  createdAt           DateTime   @default(now())
-  updatedAt           DateTime   @updatedAt
-  propertiesCreated   Property[] @relation("CreatedByProperty")
-  propertiesUpdated   Property[] @relation("UpdatedByProperty")
-  officesCreated      Office[]   @relation("CreatedByOffice")
-  officesUpdated      Office[]   @relation("UpdatedByOffice")
+  role                Role          @default(AGENT)
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+  propertiesCreated   Property[]    @relation("CreatedByProperty")
+  propertiesUpdated   Property[]    @relation("UpdatedByProperty")
+  officesCreated      Office[]      @relation("CreatedByOffice")
+  officesUpdated      Office[]      @relation("UpdatedByOffice")
   posts               Post[]
+  siteContentUpdated  SiteContent[] @relation("UpdatedBySiteContent")
 }
 
 model District {
@@ -129,4 +130,18 @@ model Office {
   lastUpdatedBy     Employee   @relation("UpdatedByOffice", fields: [lastUpdatedById], references: [id])
   propertyId        String     @db.ObjectId
   property          Property   @relation(fields: [propertyId], references: [id])
+}
+
+model SiteContent {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  key         String   @unique // "home", "contact", "about", "header", "footer"
+  title       String?
+  subtitle    String?
+  description String?
+  content     String?  // HTML/rich text content
+  metadata    String?  // JSON string for structured data (address, phone, email, etc.)
+  imageUrl    String?
+  updatedAt   DateTime @updatedAt
+  updatedById String   @db.ObjectId
+  updatedBy   Employee @relation("UpdatedBySiteContent", fields: [updatedById], references: [id])
 }

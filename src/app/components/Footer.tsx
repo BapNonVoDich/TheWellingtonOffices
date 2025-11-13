@@ -1,5 +1,47 @@
 // src/app/components/Footer.tsx
+'use client';
+
+import { useState, useEffect } from 'react';
+import { getSiteContent, type SiteContentMetadata } from '@/app/actions/siteContentActions';
+
 export default function Footer() {
+  const [footerInfo, setFooterInfo] = useState({
+    companyDescription: 'Nền tảng tìm kiếm và cho thuê văn phòng hàng đầu, cung cấp giải pháp không gian làm việc tối ưu cho doanh nghiệp của bạn tại TP.HCM và các khu vực lân cận.',
+    address: '18E Cộng Hoà, P. Tân Bình, Q. Tân Bình, TP.HCM',
+    phone: '097 1777213',
+    email: 'thewellingtonoffice@gmail.com',
+    workingHours: 'T2 - T6: 8:00 - 18:00',
+    facebook: '#',
+    instagram: '#',
+    linkedin: '#',
+    tiktok: '#',
+  });
+
+  useEffect(() => {
+    const loadContent = async () => {
+      try {
+        const content = await getSiteContent('footer');
+        if (content?.metadata) {
+          const metadata: SiteContentMetadata = JSON.parse(content.metadata);
+          setFooterInfo((prev) => ({
+            companyDescription: metadata.companyDescription || prev.companyDescription,
+            address: metadata.address || prev.address,
+            phone: metadata.phone || prev.phone,
+            email: metadata.email || prev.email,
+            workingHours: metadata.workingHours || prev.workingHours,
+            facebook: metadata.facebook || prev.facebook,
+            instagram: metadata.instagram || prev.instagram,
+            linkedin: metadata.linkedin || prev.linkedin,
+            tiktok: metadata.tiktok || prev.tiktok,
+          }));
+        }
+      } catch (error) {
+        console.error('Error loading footer content:', error);
+      }
+    };
+    loadContent();
+  }, []);
+
   return (
     <footer className="bg-gray-800 text-gray-300">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 min-h-[400px]">
@@ -9,7 +51,7 @@ export default function Footer() {
           <div className="md:col-span-2">
             <h3 className="text-lg font-semibold text-white mb-4">The Wellington Offices</h3>
             <p className="text-base leading-relaxed">
-              Nền tảng tìm kiếm và cho thuê văn phòng hàng đầu, cung cấp giải pháp không gian làm việc tối ưu cho doanh nghiệp của bạn tại TP.HCM và các khu vực lân cận.
+              {footerInfo.companyDescription}
             </p>
           </div>
 
@@ -17,10 +59,10 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold text-white mb-4">Kết nối với chúng tôi</h3>
             <div className="space-y-4 text-base">
-              <p><strong>Địa chỉ:</strong> 18E Cộng Hoà, P. Tân Bình, Q. Tân Bình, TP.HCM</p>
-              <p><strong>Giờ làm việc:</strong> T2 - T6: 8:00 - 18:00</p>
-              <p><strong>Hotline:</strong> 097 1777213</p>
-              <p><strong>Email:</strong> thewellingtonoffice@gmail.com</p>
+              <p><strong>Địa chỉ:</strong> {footerInfo.address}</p>
+              <p><strong>Giờ làm việc:</strong> {footerInfo.workingHours}</p>
+              <p><strong>Hotline:</strong> {footerInfo.phone}</p>
+              <p><strong>Email:</strong> {footerInfo.email}</p>
             </div>
           </div>
 
@@ -29,7 +71,7 @@ export default function Footer() {
             <h3 className="text-lg font-semibold text-white mb-4">Mạng xã hội</h3>
             <div className="flex space-x-4">
               {/* Facebook */}
-              <a href="#" className="text-gray-400 hover:text-white" aria-label="Facebook">
+              <a href={footerInfo.facebook} className="text-gray-400 hover:text-white" aria-label="Facebook">
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 4.991 3.657 9.128 
                   8.438 9.878v-6.987H8.077V12h2.36V9.797c0-2.337 
@@ -40,7 +82,7 @@ export default function Footer() {
                 </svg>
               </a>
               {/* Instagram */}
-              <a href="#" className="text-gray-400 hover:text-white" aria-label="Instagram">
+              <a href={footerInfo.instagram} className="text-gray-400 hover:text-white" aria-label="Instagram">
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 
                   0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 
@@ -55,7 +97,7 @@ export default function Footer() {
                 </svg>
               </a>
               {/* LinkedIn */}
-              <a href="#" className="text-gray-400 hover:text-white" aria-label="LinkedIn">
+              <a href={footerInfo.linkedin} className="text-gray-400 hover:text-white" aria-label="LinkedIn">
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 
                   4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 
@@ -67,7 +109,7 @@ export default function Footer() {
                 </svg>
               </a>
               {/* TikTok */}
-              <a href="#" className="text-gray-400 hover:text-white" aria-label="TikTok">
+              <a href={footerInfo.tiktok} className="text-gray-400 hover:text-white" aria-label="TikTok">
                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2c1.65 0 3 .35 4.24 
                   1.03.2 2.23 1.77 3.97 3.9 

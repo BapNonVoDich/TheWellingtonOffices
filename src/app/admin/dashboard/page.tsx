@@ -185,7 +185,7 @@ export default function DashboardPage() {
       {/* Quick Actions */}
       <div className="mt-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
         <h2 className="text-lg font-semibold text-gray-900 mb-4">Thao tác nhanh</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
           <Link
             href="/admin/properties/new"
             className="flex items-center px-4 py-3 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
@@ -222,6 +222,58 @@ export default function DashboardPage() {
             </svg>
             <span className="text-sm font-medium text-indigo-900">Quản lý bài viết</span>
           </Link>
+        </div>
+
+        {/* Content Management Section */}
+        <div className="border-t border-gray-200 pt-6">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Quản lý nội dung</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            <Link
+              href="/admin/content/home"
+              className="flex items-center px-4 py-3 bg-orange-50 rounded-lg hover:bg-orange-100 transition-colors"
+            >
+              <svg className="w-5 h-5 mr-3 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+              <span className="text-sm font-medium text-orange-900">Trang Home</span>
+            </Link>
+            <Link
+              href="/admin/content/contact"
+              className="flex items-center px-4 py-3 bg-teal-50 rounded-lg hover:bg-teal-100 transition-colors"
+            >
+              <svg className="w-5 h-5 mr-3 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <span className="text-sm font-medium text-teal-900">Trang Liên hệ</span>
+            </Link>
+            <Link
+              href="/admin/content/about"
+              className="flex items-center px-4 py-3 bg-cyan-50 rounded-lg hover:bg-cyan-100 transition-colors"
+            >
+              <svg className="w-5 h-5 mr-3 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span className="text-sm font-medium text-cyan-900">Về chúng tôi</span>
+            </Link>
+            <Link
+              href="/admin/content/header"
+              className="flex items-center px-4 py-3 bg-pink-50 rounded-lg hover:bg-pink-100 transition-colors"
+            >
+              <svg className="w-5 h-5 mr-3 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+              <span className="text-sm font-medium text-pink-900">Header</span>
+            </Link>
+            <Link
+              href="/admin/content/footer"
+              className="flex items-center px-4 py-3 bg-amber-50 rounded-lg hover:bg-amber-100 transition-colors"
+            >
+              <svg className="w-5 h-5 mr-3 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+              </svg>
+              <span className="text-sm font-medium text-amber-900">Footer</span>
+            </Link>
+          </div>
         </div>
       </div>
     </>

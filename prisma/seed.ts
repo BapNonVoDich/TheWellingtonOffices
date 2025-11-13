@@ -284,6 +284,92 @@ async function main() {
     console.log('Skipping admin user creation (missing SEED_ADMIN_EMAIL or SEED_ADMIN_PASSWORD)');
   }
 
+  // 5. Seed Site Content (skip if already exists)
+  console.log('Seeding site content...');
+  const adminUser = await prisma.employee.findFirst({
+    where: { role: Role.ADMIN },
+  });
+
+  if (!adminUser) {
+    console.log('Skipping site content seeding (no admin user found)');
+  } else {
+    const siteContentData = [
+      {
+        key: 'home',
+        title: 'Không Gian Làm Việc Lý Tưởng',
+        subtitle: 'Dành Cho Doanh Nghiệp Của Bạn',
+        description: 'Khám phá hàng ngàn lựa chọn văn phòng cho thuê tại các vị trí đắc địa nhất.',
+        imageUrl: '/images/BG.jpg',
+      },
+      {
+        key: 'contact',
+        title: 'Liên hệ với chúng tôi',
+        description: 'Chúng tôi luôn sẵn sàng lắng nghe. Hãy để lại lời nhắn và chúng tôi sẽ phản hồi sớm nhất có thể.',
+        metadata: JSON.stringify({
+          address: '123 Lê Lợi, P. Bến Thành, Q.1, TP.HCM',
+          phone: '097 1777213',
+          email: 'thewellingtonoffice@gmail.com',
+          workingHours: 'T2 - T6: 8:00 - 18:00',
+        }),
+      },
+      {
+        key: 'about',
+        title: 'Về The Wellington Offices',
+        description: 'Đối tác tin cậy của bạn trong lĩnh vực không gian làm việc linh hoạt và hiệu quả.',
+        content: JSON.stringify({
+          mission: {
+            title: 'Sứ mệnh của chúng tôi',
+            text: 'Mang đến không gian làm việc lý tưởng, hỗ trợ sự phát triển bền vững cho mọi doanh nghiệp. Chúng tôi cam kết cung cấp dịch vụ tận tâm và giải pháp tối ưu nhất.',
+          },
+          team: {
+            title: 'Đội ngũ của chúng tôi',
+            text: 'Đội ngũ The Wellington Offices là tập hợp những chuyên gia giàu kinh nghiệm và nhiệt huyết trong lĩnh vực bất động sản thương mại. Chúng tôi luôn nỗ lực để hiểu rõ nhu cầu của khách hàng và cung cấp những giải pháp phù hợp nhất.',
+          },
+        }),
+        imageUrl: '/images/BG.jpg',
+      },
+      {
+        key: 'header',
+        metadata: JSON.stringify({
+          phone: '097 1777213',
+          email: 'thewellingtonoffice@gmail.com',
+        }),
+      },
+      {
+        key: 'footer',
+        metadata: JSON.stringify({
+          companyDescription: 'Nền tảng tìm kiếm và cho thuê văn phòng hàng đầu, cung cấp giải pháp không gian làm việc tối ưu cho doanh nghiệp của bạn tại TP.HCM và các khu vực lân cận.',
+          address: '18E Cộng Hoà, P. Tân Bình, Q. Tân Bình, TP.HCM',
+          phone: '097 1777213',
+          email: 'thewellingtonoffice@gmail.com',
+          workingHours: 'T2 - T6: 8:00 - 18:00',
+          facebook: '#',
+          instagram: '#',
+          linkedin: '#',
+          tiktok: '#',
+        }),
+      },
+    ];
+
+    for (const content of siteContentData) {
+      const existing = await prisma.siteContent.findUnique({
+        where: { key: content.key },
+      });
+
+      if (!existing) {
+        await prisma.siteContent.create({
+          data: {
+            ...content,
+            updatedById: adminUser.id,
+          },
+        });
+        console.log(`Created site content for key: ${content.key}`);
+      } else {
+        console.log(`Site content for key ${content.key} already exists.`);
+      }
+    }
+  }
+
   console.log('Seeding finished.');
 }
 

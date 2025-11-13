@@ -2,8 +2,9 @@
 'use client';
 
 import { useFormState, useFormStatus } from 'react-dom';
-// Đảm bảo import từ file .tsx mới
 import { handleContactSubmit } from '@/app/actions/contactActions';
+import { getSiteContent, type SiteContentMetadata } from '@/app/actions/siteContentActions';
+import { useEffect, useState } from 'react';
 
 const initialState = {
   message: '',
@@ -21,12 +22,49 @@ function SubmitButton() {
 
 export default function ContactPage() {
   const [state, formAction] = useFormState(handleContactSubmit, initialState);
+  const [contactInfo, setContactInfo] = useState<{
+    title: string;
+    description: string;
+    address: string;
+    phone: string;
+    email: string;
+    workingHours: string;
+  }>({
+    title: 'Liên hệ với chúng tôi',
+    description: 'Chúng tôi luôn sẵn sàng lắng nghe. Hãy để lại lời nhắn và chúng tôi sẽ phản hồi sớm nhất có thể.',
+    address: '123 Lê Lợi, P. Bến Thành, Q.1, TP.HCM',
+    phone: '097 1777213',
+    email: 'thewellingtonoffice@gmail.com',
+    workingHours: 'T2 - T6: 8:00 - 18:00',
+  });
+
+  useEffect(() => {
+    const loadContent = async () => {
+      try {
+        const content = await getSiteContent('contact');
+        if (content) {
+          const metadata: SiteContentMetadata = content.metadata ? JSON.parse(content.metadata) : {};
+          setContactInfo((prev) => ({
+            title: content.title || prev.title,
+            description: content.description || prev.description,
+            address: metadata.address || prev.address,
+            phone: metadata.phone || prev.phone,
+            email: metadata.email || prev.email,
+            workingHours: metadata.workingHours || prev.workingHours,
+          }));
+        }
+      } catch (error) {
+        console.error('Error loading contact content:', error);
+      }
+    };
+    loadContent();
+  }, []);
 
   return (
     <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-extrabold text-gray-900">Liên hệ với chúng tôi</h1>
-        <p className="mt-4 text-lg text-gray-600">Chúng tôi luôn sẵn sàng lắng nghe. Hãy để lại lời nhắn và chúng tôi sẽ phản hồi sớm nhất có thể.</p>
+        <h1 className="text-4xl font-extrabold text-gray-900">{contactInfo.title}</h1>
+        <p className="mt-4 text-lg text-gray-600">{contactInfo.description}</p>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -34,10 +72,10 @@ export default function ContactPage() {
         <div className="md:col-span-1 bg-white p-8 rounded-lg shadow-md">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">Thông tin liên hệ</h2>
           <div className="space-y-4 text-gray-700">
-            <p><strong>Địa chỉ:</strong> 123 Lê Lợi, P. Bến Thành, Q.1, TP.HCM</p>
-            <p><strong>Hotline:</strong> 097 1777213</p>
-            <p><strong>Email:</strong> thewellingtonoffice@gmail.com</p>
-            <p><strong>Giờ làm việc:</strong> T2 - T6: 8:00 - 18:00</p>
+            <p><strong>Địa chỉ:</strong> {contactInfo.address}</p>
+            <p><strong>Hotline:</strong> {contactInfo.phone}</p>
+            <p><strong>Email:</strong> {contactInfo.email}</p>
+            <p><strong>Giờ làm việc:</strong> {contactInfo.workingHours}</p>
           </div>
         </div>
 

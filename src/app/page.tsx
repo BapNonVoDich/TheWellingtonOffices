@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import prisma from "@/lib/prisma";
 import { generateMetadata as generateSEOMetadata, generateOrganizationSchema } from "@/lib/seo";
+import { getSiteContent } from "@/app/actions/siteContentActions";
 import type { Metadata } from "next";
 import Script from "next/script";
 
@@ -16,6 +17,14 @@ export const metadata: Metadata = generateSEOMetadata({
   keywords: ["văn phòng cho thuê", "cho thuê văn phòng", "văn phòng quận 1", "văn phòng tphcm", "office rental", "co-working space"],
 }); 
 export default async function HomePage() {
+  // Fetch home content from database
+  const homeContent = await getSiteContent('home');
+  
+  // Fallback to hardcoded values if not in database
+  const heroTitle = homeContent?.title || "Không Gian Làm Việc Lý Tưởng";
+  const heroSubtitle = homeContent?.subtitle || "Dành Cho Doanh Nghiệp Của Bạn";
+  const heroDescription = homeContent?.description || "Khám phá hàng ngàn lựa chọn văn phòng cho thuê tại các vị trí đắc địa nhất.";
+  const heroImage = homeContent?.imageUrl || "/images/BG.jpg";
   // Always fetch at SSR so data is ready before hydration
   const properties = await prisma.property.findMany({
     take: 9,
@@ -44,7 +53,7 @@ export default async function HomePage() {
         {/* Image container */}
         <div className="absolute inset-0">
           <Image
-            src="/images/BG.jpg"
+            src={heroImage}
             alt="Văn phòng hiện đại"
             width={1920}
             height={1080}
@@ -62,14 +71,13 @@ export default async function HomePage() {
         {/* Hero text */}
         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4">
           <h1 className="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl drop-shadow-lg">
-            <span className="block">Không Gian Làm Việc Lý Tưởng</span>
+            <span className="block">{heroTitle}</span>
             <span className="block text-blue-400 mt-2">
-              Dành Cho Doanh Nghiệp Của Bạn
+              {heroSubtitle}
             </span>
           </h1>
           <p className="mt-4 max-w-md mx-auto text-lg text-gray-200 sm:text-xl md:mt-5 md:max-w-3xl drop-shadow-md">
-            Khám phá hàng ngàn lựa chọn văn phòng cho thuê tại các vị trí đắc
-            địa nhất.
+            {heroDescription}
           </p>
         </div>
       </div>
