@@ -5,17 +5,20 @@ import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { getSiteContent, updateSiteContent } from '@/app/actions/siteContentActions';
 import ImageUploader from '@/app/components/ImageUploader';
+import RichTextEditor from '@/app/components/RichTextEditor';
 import toast from 'react-hot-toast';
 
 export default function EditHomePage() {
   const [title, setTitle] = useState('');
   const [subtitle, setSubtitle] = useState('');
   const [description, setDescription] = useState('');
+  const [htmlContent, setHtmlContent] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [files, setFiles] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[]>([]);
+  const [editMode, setEditMode] = useState<'form' | 'html'>('form');
   const router = useRouter();
 
   useEffect(() => {
@@ -26,9 +29,14 @@ export default function EditHomePage() {
           setTitle(content.title || '');
           setSubtitle(content.subtitle || '');
           setDescription(content.description || '');
+          setHtmlContent(content.content || '');
           setImageUrl(content.imageUrl || '');
           if (content.imageUrl) {
             setPreviews([content.imageUrl]);
+          }
+          // Nếu có HTML content, mặc định chuyển sang mode HTML
+          if (content.content) {
+            setEditMode('html');
           }
         }
       } catch (error) {
@@ -78,9 +86,10 @@ export default function EditHomePage() {
       }
 
       await updateSiteContent('home', {
-        title,
-        subtitle,
-        description,
+        title: editMode === 'form' ? title : undefined,
+        subtitle: editMode === 'form' ? subtitle : undefined,
+        description: editMode === 'form' ? description : undefined,
+        content: editMode === 'html' ? htmlContent : undefined,
         imageUrl: finalImageUrl,
       });
 
@@ -109,48 +118,108 @@ export default function EditHomePage() {
         <p className="text-sm text-gray-600 mt-1">Cập nhật nội dung hero section của trang chủ</p>
       </div>
 
+      {/* Tab selector */}
+      <div className="mb-6 bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+        <div className="flex space-x-4">
+          <button
+            type="button"
+            onClick={() => setEditMode('form')}
+            className={`px-4 py-2 rounded-md font-medium transition-colors ${
+              editMode === 'form'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
+          >
+            Form đơn giản
+          </button>
+          <button
+            type="button"
+            onClick={() => setEditMode('html')}
+            className={`px-4 py-2 rounded-md font-medium transition-colors ${
+              editMode === 'html'
+                ? 'bg-blue-600 text-white'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
+          >
+            Chỉnh sửa HTML
+          </button>
+        </div>
+      </div>
+
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
-            Tiêu đề chính
-          </label>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="w-full px-4 py-3 text-xl border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Nhập tiêu đề..."
-          />
-        </div>
+        {editMode === 'form' ? (
+          <>
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
+                Tiêu đề chính
+              </label>
+              <input
+                type="text"
+                id="title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="w-full px-4 py-3 text-xl border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Nhập tiêu đề..."
+              />
+            </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <label htmlFor="subtitle" className="block text-sm font-medium text-gray-700 mb-2">
-            Tiêu đề phụ
-          </label>
-          <input
-            type="text"
-            id="subtitle"
-            value={subtitle}
-            onChange={(e) => setSubtitle(e.target.value)}
-            className="w-full px-4 py-3 text-lg border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Nhập tiêu đề phụ..."
-          />
-        </div>
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <label htmlFor="subtitle" className="block text-sm font-medium text-gray-700 mb-2">
+                Tiêu đề phụ
+              </label>
+              <input
+                type="text"
+                id="subtitle"
+                value={subtitle}
+                onChange={(e) => setSubtitle(e.target.value)}
+                className="w-full px-4 py-3 text-lg border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Nhập tiêu đề phụ..."
+              />
+            </div>
 
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-          <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
-            Mô tả
-          </label>
-          <textarea
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            rows={3}
-            className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Nhập mô tả..."
-          />
-        </div>
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+                Mô tả
+              </label>
+              <textarea
+                id="description"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                rows={3}
+                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                placeholder="Nhập mô tả..."
+              />
+            </div>
+          </>
+        ) : (
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <label htmlFor="htmlContent" className="block text-sm font-medium text-gray-700 mb-2">
+              HTML Content
+            </label>
+            <p className="text-sm text-gray-500 mb-4">
+              Nhập HTML đầy đủ cho trang home. Bạn có thể sử dụng Rich Text Editor hoặc chỉnh sửa HTML trực tiếp.
+            </p>
+            <div className="mb-4">
+              <RichTextEditor
+                initialContent={htmlContent}
+                onChange={(newContent) => setHtmlContent(newContent)}
+              />
+            </div>
+            <div className="mt-4">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Hoặc chỉnh sửa HTML trực tiếp:
+              </label>
+              <textarea
+                id="htmlContent"
+                value={htmlContent}
+                onChange={(e) => setHtmlContent(e.target.value)}
+                rows={20}
+                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono text-sm"
+                placeholder="<div>Nhập HTML của bạn ở đây...</div>"
+              />
+            </div>
+          </div>
+        )}
 
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
           <label className="block text-sm font-medium text-gray-700 mb-2">

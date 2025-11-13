@@ -20,11 +20,6 @@ export default async function HomePage() {
   // Fetch home content from database
   const homeContent = await getSiteContent('home');
   
-  // Fallback to hardcoded values if not in database
-  const heroTitle = homeContent?.title || "Không Gian Làm Việc Lý Tưởng";
-  const heroSubtitle = homeContent?.subtitle || "Dành Cho Doanh Nghiệp Của Bạn";
-  const heroDescription = homeContent?.description || "Khám phá hàng ngàn lựa chọn văn phòng cho thuê tại các vị trí đắc địa nhất.";
-  const heroImage = homeContent?.imageUrl || "/images/BG.jpg";
   // Always fetch at SSR so data is ready before hydration
   const properties = await prisma.property.findMany({
     take: 9,
@@ -37,8 +32,108 @@ export default async function HomePage() {
   });
 
   const isEmpty = properties.length === 0;
-
   const organizationSchema = generateOrganizationSchema();
+
+  // Nếu có HTML content, render nó
+  if (homeContent?.content) {
+    return (
+      <>
+        <Script
+          id="organization-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <div dangerouslySetInnerHTML={{ __html: homeContent.content }} />
+        
+        {/* GRID SECTION */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+            Các tòa nhà nổi bật
+          </h2>
+
+          {/* Grid container with consistent sizing */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {isEmpty
+              ? Array.from({ length: 9 }).map((_, i) => (
+                  <div
+                    key={i}
+                    className="border rounded-lg shadow-lg overflow-hidden bg-white"
+                    style={{ height: '320px' }}
+                  >
+                    <div className="relative w-full h-48 bg-gray-200 animate-pulse" />
+                    <div className="p-4 h-32 flex flex-col justify-between">
+                      <div className="space-y-2">
+                        <div className="h-5 bg-gray-200 rounded animate-pulse w-3/4" />
+                        <div className="h-4 bg-gray-200 rounded animate-pulse w-1/2" />
+                      </div>
+                      <div className="pt-2 border-t border-gray-200">
+                        <div className="h-6 w-32 bg-gray-200 rounded-full animate-pulse" />
+                      </div>
+                    </div>
+                  </div>
+                ))
+              : properties.map((property) => (
+                  <Link href={`/property/${property.slug}`} key={property.id}>
+                    <div 
+                      className="border rounded-lg shadow-lg overflow-hidden bg-white hover:shadow-xl transition-shadow duration-300"
+                      style={{ height: '320px' }}
+                    >
+                      <div className="relative w-full h-48 bg-gray-200">
+                        {property.imageUrls?.length > 0 ? (
+                          <Image
+                            src={property.imageUrls[0]}
+                            alt={`Văn phòng cho thuê ${property.name} tại ${property.ward?.name || property.oldWard?.name || ''}, ${property.ward?.district?.name || property.oldWard?.district?.name || ''}`}
+                            width={400}
+                            height={300}
+                            className="object-cover w-full h-full"
+                            sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
+                            placeholder="blur"
+                            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                            loading="lazy"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                            <span className="text-gray-500 text-sm">Không có hình ảnh</span>
+                          </div>
+                        )}
+                      </div>
+                      
+                      <div className="p-4 h-32 flex flex-col justify-between">
+                        <div>
+                          <h2
+                            className="text-xl font-semibold truncate"
+                            title={property.name}
+                          >
+                            {property.name}
+                          </h2>
+                          <p
+                            className="text-gray-500 text-sm mt-1 truncate"
+                            title={property.ward?.name || property.oldWard?.name}
+                          >
+                            {property.ward?.name || property.oldWard?.name}
+                          </p>
+                        </div>
+                        
+                        <div className="pt-2 border-t border-gray-200">
+                          <span className="bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 rounded-full">
+                            {property.offices.length} văn phòng trống
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+          </div>
+        </div>
+      </>
+    );
+  }
+  
+  // Fallback về code hiện tại nếu không có HTML content
+  const heroTitle = homeContent?.title || "Không Gian Làm Việc Lý Tưởng";
+  const heroSubtitle = homeContent?.subtitle || "Dành Cho Doanh Nghiệp Của Bạn";
+  const heroDescription = homeContent?.description || "Khám phá hàng ngàn lựa chọn văn phòng cho thuê tại các vị trí đắc địa nhất.";
+  const heroImage = homeContent?.imageUrl || "/images/BG.jpg";
 
   return (
     <>
