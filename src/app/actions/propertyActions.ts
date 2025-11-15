@@ -48,9 +48,43 @@ export async function createProperty(prevState: { success: boolean; message: str
     }
     const userId = session.user.id;
 
-    const uploadPromises = imageFiles.map(file => uploadToCloudinary(file));
-    const uploadedUrls = await Promise.all(uploadPromises);
-    imageUrls.push(...uploadedUrls);
+    // Upload images with better error handling - track successful uploads
+    const uploadResults = await Promise.allSettled(
+      imageFiles.map(file => uploadToCloudinary(file))
+    );
+    
+    const successfulUploads: string[] = [];
+    const failedUploads: number[] = [];
+    
+    uploadResults.forEach((result, index) => {
+      if (result.status === 'fulfilled') {
+        successfulUploads.push(result.value);
+        imageUrls.push(result.value);
+      } else {
+        failedUploads.push(index);
+        console.error(`Lỗi khi upload ảnh ${index + 1}:`, result.reason);
+      }
+    });
+    
+    // If any upload failed, rollback all successful uploads
+    if (failedUploads.length > 0) {
+      if (successfulUploads.length > 0) {
+        const rollbackPromises = successfulUploads.map(async (url) => {
+          const publicId = url.split('/').slice(-2).join('/').split('.')[0];
+          if (publicId) {
+            const result = await deleteImage(publicId);
+            if (!result.success) {
+              console.error(`Không thể rollback ảnh ${publicId}:`, result.error);
+            }
+          }
+        });
+        await Promise.all(rollbackPromises);
+      }
+      return { 
+        success: false, 
+        message: `Không thể upload ${failedUploads.length} ảnh. Vui lòng thử lại.` 
+      };
+    }
 
     const name = formData.get('name')?.toString() || '';
     
@@ -59,7 +93,10 @@ export async function createProperty(prevState: { success: boolean; message: str
           const deletePromises = imageUrls.map(async (url) => {
             const publicId = url.split('/').slice(-2).join('/').split('.')[0];
             if (publicId) {
-              await deleteImage(publicId);
+              const result = await deleteImage(publicId);
+              if (!result.success) {
+                console.error(`Không thể xóa ảnh ${publicId}:`, result.error);
+              }
             }
           });
           await Promise.all(deletePromises);
@@ -122,7 +159,10 @@ export async function createProperty(prevState: { success: boolean; message: str
       const deletePromises = imageUrls.map(async (url) => {
         const publicId = url.split('/').slice(-2).join('/').split('.')[0];
         if (publicId) {
-          await deleteImage(publicId);
+          const result = await deleteImage(publicId);
+          if (!result.success) {
+            console.error(`Không thể xóa ảnh ${publicId}:`, result.error);
+          }
         }
       });
       await Promise.all(deletePromises);
@@ -160,14 +200,51 @@ export async function updateProperty(id: string, prevState: { success: boolean; 
     const deletePromises = imagesToDelete.map(async (url) => {
         const publicId = url.split('/').slice(-2).join('/').split('.')[0];
         if (publicId) {
-          await deleteImage(publicId);
+          const result = await deleteImage(publicId);
+          if (!result.success) {
+            console.error(`Không thể xóa ảnh ${publicId}:`, result.error);
+          }
         }
     });
     await Promise.all(deletePromises);
 
-    const uploadPromises = newImageFiles.map(file => uploadToCloudinary(file));
-    const uploadedUrls = await Promise.all(uploadPromises);
-    newImageUrls.push(...uploadedUrls);
+    // Upload new images with better error handling
+    const uploadResults = await Promise.allSettled(
+      newImageFiles.map(file => uploadToCloudinary(file))
+    );
+    
+    const successfulUploads: string[] = [];
+    const failedUploads: number[] = [];
+    
+    uploadResults.forEach((result, index) => {
+      if (result.status === 'fulfilled') {
+        successfulUploads.push(result.value);
+        newImageUrls.push(result.value);
+      } else {
+        failedUploads.push(index);
+        console.error(`Lỗi khi upload ảnh mới ${index + 1}:`, result.reason);
+      }
+    });
+    
+    // If any upload failed, rollback all successful uploads
+    if (failedUploads.length > 0) {
+      if (successfulUploads.length > 0) {
+        const rollbackPromises = successfulUploads.map(async (url) => {
+          const publicId = url.split('/').slice(-2).join('/').split('.')[0];
+          if (publicId) {
+            const result = await deleteImage(publicId);
+            if (!result.success) {
+              console.error(`Không thể rollback ảnh ${publicId}:`, result.error);
+            }
+          }
+        });
+        await Promise.all(rollbackPromises);
+      }
+      return { 
+        success: false, 
+        message: `Không thể upload ${failedUploads.length} ảnh mới. Vui lòng thử lại.` 
+      };
+    }
 
     const finalImageUrls = [...existingImageUrls, ...newImageUrls];
 
@@ -178,7 +255,10 @@ export async function updateProperty(id: string, prevState: { success: boolean; 
         const deleteNewImages = newImageUrls.map(async (url) => {
           const publicId = url.split('/').slice(-2).join('/').split('.')[0];
           if (publicId) {
-            await deleteImage(publicId);
+            const result = await deleteImage(publicId);
+            if (!result.success) {
+              console.error(`Không thể xóa ảnh ${publicId}:`, result.error);
+            }
           }
         });
         await Promise.all(deleteNewImages);
@@ -240,7 +320,10 @@ export async function updateProperty(id: string, prevState: { success: boolean; 
       const deleteNewImages = newImageUrls.map(async (url) => {
         const publicId = url.split('/').slice(-2).join('/').split('.')[0];
         if (publicId) {
-          await deleteImage(publicId);
+          const result = await deleteImage(publicId);
+          if (!result.success) {
+            console.error(`Không thể xóa ảnh ${publicId}:`, result.error);
+          }
         }
       });
       await Promise.all(deleteNewImages);
@@ -268,7 +351,10 @@ export async function deleteProperty(id: string) {
       const deletePromises = property.imageUrls.map(async (url) => {
         const publicId = url.split('/').slice(-2).join('/').split('.')[0];
         if (publicId) {
-          await deleteImage(publicId);
+          const result = await deleteImage(publicId);
+          if (!result.success) {
+            console.error(`Không thể xóa ảnh ${publicId}:`, result.error);
+          }
         }
       });
       await Promise.all(deletePromises);

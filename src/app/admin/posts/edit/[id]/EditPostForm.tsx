@@ -58,11 +58,13 @@ export default function EditPostForm({ post }: { post: Post }) {
         imageUrl = await uploadImage(files[0]);
       } else if (previews.length > 0) {
         // Check if preview is a valid URL (not blob)
-        if (!previews[0].startsWith('blob:')) {
-          // Use existing URL from previews
-          imageUrl = previews[0];
+        const previewUrl = previews[0];
+        if (previewUrl && !previewUrl.startsWith('blob:')) {
+          // Use existing URL from previews (keep current image)
+          imageUrl = previewUrl;
         }
         // If it's a blob URL and no files, it means user removed the image
+        // imageUrl will remain empty string
       } else {
         // No previews and no files - user deleted the image
         imageUrl = '';

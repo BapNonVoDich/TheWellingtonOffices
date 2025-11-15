@@ -14,10 +14,22 @@ cloudinary.config({
 export async function deleteImage(publicId: string) {
   try {
     const result = await cloudinary.uploader.destroy(publicId);
-    console.log("Xóa ảnh ", publicId, " thành công:", result);
-    return { success: true };
+    
+    // Cloudinary returns { result: 'ok' } on success, { result: 'not found' } if image doesn't exist
+    if (result.result === 'ok') {
+      console.log("Xóa ảnh thành công:", publicId);
+      return { success: true };
+    } else if (result.result === 'not found') {
+      console.warn("Ảnh không tồn tại trên Cloudinary:", publicId);
+      // Consider this a success since the goal is to remove the image
+      return { success: true, warning: 'Image not found on Cloudinary' };
+    } else {
+      console.error("Lỗi khi xóa ảnh - kết quả không mong đợi:", result);
+      return { success: false, error: `Unexpected result: ${result.result}` };
+    }
   } catch (error) {
-    console.error("Lỗi khi xóa ảnh:", error);
-    return { success: false, error: (error as Error).message };
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    console.error("Lỗi khi xóa ảnh:", publicId, errorMessage);
+    return { success: false, error: errorMessage };
   }
 }

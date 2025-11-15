@@ -97,10 +97,37 @@ export default async function SearchOfficePage({ searchParams }: SearchOfficePag
         officeWhere.type = type as OfficeType;
     }
 
-    // 3) Lay Offices KHONG include property (tranh loi Prisma khi relation null tren data xau)
+    // 3) Lay Offices với property để hiển thị đầy đủ thông tin
     const offices = await prisma.office.findMany({
         where: officeWhere,
         orderBy: { createdAt: 'desc' },
+        include: {
+            property: {
+                include: {
+                    ward: {
+                        include: { district: true },
+                    },
+                    oldWard: {
+                        include: { district: true },
+                    },
+                },
+            },
+        },
+    });
+
+    // Lọc offices có property hợp lệ (có ward hoặc oldWard)
+    const validOffices = offices.filter(office => {
+        const property = office.property;
+        if (!property) return false;
+        
+        // Nếu có districtId filter, kiểm tra property có ward với districtId đó
+        if (districtId) {
+            return property.ward?.districtId === districtId || 
+                   property.oldWard?.districtId === districtId;
+        }
+        
+        // Nếu không có districtId filter, chỉ cần có property
+        return true;
     });
 
     return (
@@ -112,15 +139,15 @@ export default async function SearchOfficePage({ searchParams }: SearchOfficePag
             </div>
             
             <h2 className="text-2xl font-bold text-gray-900 my-8">
-                Kết quả tìm kiếm ({offices.length})
+                Kết quả tìm kiếm ({validOffices.length})
             </h2>
 
-            {offices.length === 0 ? (
+            {validOffices.length === 0 ? (
                 <p className="text-center text-gray-500 mt-8">Không có văn phòng nào phù hợp.</p>
             ) : (
                 <div className="space-y-6">
-                  {offices.map((office) => {
-                    const property = validProperties.find((p) => p.id === office.propertyId);
+                  {validOffices.map((office) => {
+                    const property = office.property;
                     if (!property) return null; // Bo qua office mo coi
                     return (
                     <Link href={`/property/${property.slug}`} key={office.id}>
@@ -140,7 +167,9 @@ export default async function SearchOfficePage({ searchParams }: SearchOfficePag
                           <div>
                             <p className="text-sm text-blue-600 font-semibold">{property.name}</p>
                             <h3 className="text-lg font-bold mt-1">Văn phòng {office.area} m², Tầng {office.floor || '?'}</h3>
-                            <p className="text-sm text-gray-500 mt-1">{property.address_line}, {property.ward?.name}, {property.ward?.district?.name}</p>
+                            <p className="text-sm text-gray-500 mt-1">
+                              {property.address_line}, {property.ward?.name || property.oldWard?.name || ''}, {property.ward?.district?.name || property.oldWard?.district?.name || ''}
+                            </p>
                           </div>
                           <div className="flex items-end justify-between mt-4">
                             <div>

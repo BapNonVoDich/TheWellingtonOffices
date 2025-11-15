@@ -59,38 +59,18 @@ export default function NestedMegaMenu({ title, districts }: NestedMegaMenuProps
           className="origin-top-left absolute left-48 mt-0 w-[40rem] rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
           onMouseLeave={() => setActiveDistrict(null)}
         >
-          <div className="grid grid-cols-3">
-            {/* Column 1: Districts */}
-            <div className="col-span-1 border-r border-gray-200 py-2 max-h-96 overflow-y-auto">
-              {districts.map((district) => (
-                <Link
-                  key={district.id}
-                  href={activeSubMenu === 'old' 
-                    ? `/van-phong-cho-thue/${slugify(district.name)}`
-                    : `/van-phong-cho-thue/dia-chi-moi/${slugify(district.name)}`
-                  }
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-semibold"
-                  onMouseEnter={() => setActiveDistrict(district)}
-                >
-                  {district.name}
-                </Link>
-              ))}
-            </div>
-
-            {/* Column 2: Wards/OldWards */}
-            <div className="col-span-2 py-2 max-h-96 overflow-y-auto">
-              {activeDistrict && activeSubMenu === 'old' && activeDistrict.oldWards.length > 0 ? (
-                activeDistrict.oldWards.map((oldWard) => (
-                  <Link
-                    key={oldWard.id}
-                    href={`/van-phong-cho-thue/${slugify(activeDistrict.name)}/${slugify(oldWard.name)}`}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  >
-                    {oldWard.name}
-                  </Link>
-                ))
-              ) : activeDistrict && activeSubMenu === 'new' && activeDistrict.wards.length > 0 ? (
-                activeDistrict.wards.map((ward) => (
+          {activeSubMenu === 'new' ? (
+            // Địa chỉ mới: Chỉ hiển thị danh sách phường, không có quận
+            <div className="py-2 max-h-96 overflow-y-auto">
+              {districts
+                .flatMap((district) => 
+                  district.wards.map((ward) => ({
+                    id: ward.id,
+                    name: ward.name,
+                  }))
+                )
+                .sort((a, b) => a.name.localeCompare(b.name, 'vi'))
+                .map((ward) => (
                   <Link
                     key={ward.id}
                     href={`/van-phong-cho-thue/dia-chi-moi/${slugify(ward.name)}`}
@@ -98,14 +78,45 @@ export default function NestedMegaMenu({ title, districts }: NestedMegaMenuProps
                   >
                     {ward.name}
                   </Link>
-                ))
-              ) : (
-                <div className="p-4 text-sm text-gray-500 flex items-center justify-center h-full">
-                  Di chuột qua một quận để xem các phường
-                </div>
-              )}
+                ))}
             </div>
-          </div>
+          ) : (
+            // Địa chỉ cũ: Giữ nguyên cấu trúc quận và phường
+            <div className="grid grid-cols-3">
+              {/* Column 1: Districts */}
+              <div className="col-span-1 border-r border-gray-200 py-2 max-h-96 overflow-y-auto">
+                {districts.map((district) => (
+                  <Link
+                    key={district.id}
+                    href={`/van-phong-cho-thue/${slugify(district.name)}`}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 font-semibold"
+                    onMouseEnter={() => setActiveDistrict(district)}
+                  >
+                    {district.name}
+                  </Link>
+                ))}
+              </div>
+
+              {/* Column 2: OldWards */}
+              <div className="col-span-2 py-2 max-h-96 overflow-y-auto">
+                {activeDistrict && activeDistrict.oldWards.length > 0 ? (
+                  activeDistrict.oldWards.map((oldWard) => (
+                    <Link
+                      key={oldWard.id}
+                      href={`/van-phong-cho-thue/${slugify(activeDistrict.name)}/${slugify(oldWard.name)}`}
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                    >
+                      {oldWard.name}
+                    </Link>
+                  ))
+                ) : (
+                  <div className="p-4 text-sm text-gray-500 flex items-center justify-center h-full">
+                    Di chuột qua một quận để xem các phường
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
